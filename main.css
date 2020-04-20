@@ -5,7 +5,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Zilla+Slab:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 
 
+/* * * * * * * * * * * * * * * Layout * * * * * * * * * * * * * * */
+main{
+	display: grid;
+	grid-template-areas: "nav main main main"
+}
 
+nav{
+	grid-area: nav;
+	padding: .5em;
+}
+
+main section.mainsection{
+	grid-area: main;
+	padding: .5em;
+}
+
+
+/* * * * * * * * * * * * * * * General * * * * * * * * * * * * * * */
 body, textarea::placeholder{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
@@ -14,12 +31,24 @@ body, textarea::placeholder{
 
 h1, h2, h3, h4, h5, h6, button {
 	font-family: 'Zilla Slab', serif;
+	margin: .25em;
 }
 
-h1, h2 {
+h1{
+	font-weight: 700;
+}
+
+h2{
 	font-weight: 600;
 }
 
+#brand{
+	font-weight: 300;
+}
+/* * * * * * * * * * * * * * * Header * * * * * * * * * * * * * * */
+
+
+/* * * * * * * * * * * * * * * Buttons/Inputs/Etc * * * * * * * * * * * * * * */
 button{
 	border-radius: 5px;
 	padding: .5em;
