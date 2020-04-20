@@ -6,15 +6,36 @@
 
 
 
-body{
+body, textarea::placeholder{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
+	margin: 1em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, button {
 	font-family: 'Zilla Slab', serif;
 }
 
 h1, h2 {
 	font-weight: 600;
+}
+
+button{
+	border-radius: 5px;
+	padding: .5em;
+	font-size: 1.1em;
+	margin: 1em;
+}
+
+input{
+	width: 700px;
+	border-radius: 5px;
+}
+
+textarea{
+	width: 800px;
+	height: 250px;
+	background-color: #D4EE9F;
+	border-radius: 5px;
+	padding: .5em;
 }
