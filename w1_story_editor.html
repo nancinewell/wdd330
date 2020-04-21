@@ -17,9 +17,9 @@
 		function saveStory(){
 			var storyName = document.getElementById("name_input").value;
 			var storyHTML = document.getElementById("story_editor").value;
-      list.push(storyName);
+			list.push(storyName);
 			localStorage.setItem(storyName, storyHTML);
-      localStorage.setItem(storyList, list)
+			localStorage.setItem(storyList, list)
 		}
 		
 		function displayStory(){
@@ -27,10 +27,10 @@
 			document.getElementById("story_display").innerHTML=storyHTML;
 		}
 
-    function displayList(){
-      var titles = localStorage.getItem(storyList);
-      document.getElementById("story_list").innerHTML=list; 
-    }
+		function displayList(){
+		  var titles = localStorage.getItem(storyList);
+		  document.getElementById("story_list").innerHTML=titles; 
+		}
 	</script>
 
 </head>
