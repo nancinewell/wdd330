@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
 <head>
-	<?php $ptitle='WDD330 Nanci Newell'; include '/module_head.php'; ?>
+	<?php $ptitle='WDD330 Nanci Newell'; include 'module_head.php'; ?>
 </head>
 
 <body>
 	
 	<header>
-		<?php include '/module_header.php'; ?>
+		<?php include 'module_header.php'; ?>
 	</header>
 	
 	<main>
