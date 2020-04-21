@@ -6,21 +6,31 @@
 	<link rel="stylesheet" media="screen" href="main.css">
 	<script>
 		function loadStory(){
-			var storyName = document.getElementById("name_input").value
-			var storyHTML = localStorage.getItem(storyName)
-			document.getElementById("story_editor").value=storyHTML
+			var storyName = document.getElementById("name_input").value;
+			var storyHTML = localStorage.getItem(storyName);
+			document.getElementById("story_editor").value=storyHTML;
 		}
-		
+
+    var list = [];
+    var storyList;
+
 		function saveStory(){
-			var storyName = document.getElementById("name_input").value
-			var storyHTML = document.getElementById("story_editor").value
-			localStorage.setItem(storyName, storyHTML)
+			var storyName = document.getElementById("name_input").value;
+			var storyHTML = document.getElementById("story_editor").value;
+      list.push(storyName);
+			localStorage.setItem(storyName, storyHTML);
+      localStorage.setItem(storyList, list)
 		}
 		
 		function displayStory(){
-			var storyHTML = document.getElementById("story_editor").value
-			document.getElementById("story_display").innerHTML=storyHTML
+			var storyHTML = document.getElementById("story_editor").value;
+			document.getElementById("story_display").innerHTML=storyHTML;
 		}
+
+    function displayList(){
+      var titles = localStorage.getItem(storyList);
+      document.getElementById("story_list").innerHTML=list; 
+    }
 	</script>
 
 </head>
@@ -54,7 +64,9 @@
 				<button onclick="loadStory()">Find and Edit It</button>
 				<button onclick="saveStory()">Save It</button>
 				<button onclick="displayStory()">Display It</button>
+				<button onclick="displayList()">List Titles</button> 
 			</section>
+      <section id="story_list"></section>
 			<textarea id="story_editor" placeholder="Write a story. Make it awesome. Don't give up!"></textarea>
 
 			<section id="story_display"></section>

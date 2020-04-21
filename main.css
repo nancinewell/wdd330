@@ -9,7 +9,7 @@
 main{
 	display: grid;
 	grid-template-areas: "nav main main main";
-	padding: 1em;
+	padding: .5em;
 }
 
 nav{
@@ -66,7 +66,7 @@ a:visited{
 }
 
 a:hover{
-	transform: translate(-15px, 0);
+	transform: translate(-.5em, 0);
 	color: #000;
 }
 
@@ -102,4 +102,10 @@ textarea{
 
 li{
 	list-style: none;
+	padding-left: .75em;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
 }
