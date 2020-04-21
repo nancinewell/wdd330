@@ -7,7 +7,7 @@
 <body>
 	
 	<header>
-		<?php include 'module_header.php'; ?>
+		<?php include $_SERVER['DOCUMENT_ROOT'].'/wdd330/module_header.php'; ?>
 	</header>
 	
 	<main>
