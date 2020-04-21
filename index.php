@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<?php $ptitle='WDD330 Nanci Newell'; include 'module_head.php'; ?>
+	<?php $ptitle='WDD330 Nanci Newell'; include $_SERVER['DOCUMENT_ROOT'].'module_head.php'; ?>
 </head>
 
 <body>
