@@ -8,7 +8,8 @@
 /* * * * * * * * * * * * * * * Layout * * * * * * * * * * * * * * */
 main{
 	display: grid;
-	grid-template-areas: "nav main main main"
+	grid-template-areas: "nav main main main";
+	padding: 1em;
 }
 
 nav{
@@ -23,10 +24,13 @@ main section.mainsection{
 
 
 /* * * * * * * * * * * * * * * General * * * * * * * * * * * * * * */
+body{
+	margin: 0;
+}
+
 body, textarea::placeholder{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
-	margin: 1em;
 }
 
 h1, h2, h3, h4, h5, h6, button {
@@ -45,8 +49,31 @@ h2{
 #brand{
 	font-weight: 300;
 }
-/* * * * * * * * * * * * * * * Header * * * * * * * * * * * * * * */
 
+/* * * * * * * * * * * * * * * Links * * * * * * * * * * * * * * */
+a{
+	color: #7c9f35;
+	font-weight: 600;
+	text-decoration: none;
+	transition-duration: .3s;
+	display: inline-block;
+}
+
+a:visited{
+	color: #b2b0b0;
+}
+
+a:hover{
+	transform: translate(-15px, 0);
+	color: #000;
+}
+
+/* * * * * * * * * * * * * * * Header * * * * * * * * * * * * * * */
+header{
+	padding: 1em;
+	background-color: #4e4e4e;
+	color: #dddcdc;
+}
 
 /* * * * * * * * * * * * * * * Buttons/Inputs/Etc * * * * * * * * * * * * * * */
 button{
@@ -64,7 +91,13 @@ input{
 textarea{
 	width: 800px;
 	height: 250px;
-	background-color: #D4EE9F;
+	background-color: #e5f5c4;
 	border-radius: 5px;
 	padding: .5em;
+}
+
+/* * * * * * * * * * * * * * * Lists * * * * * * * * * * * * * * */
+
+li{
+	list-style: none;
 }
