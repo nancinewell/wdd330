@@ -26,6 +26,7 @@ main section.mainsection{
 /* * * * * * * * * * * * * * * General * * * * * * * * * * * * * * */
 body{
 	margin: 0;
+	line-height: 1.5em;
 }
 
 body, textarea::placeholder{
@@ -49,6 +50,7 @@ h2{
 #brand{
 	font-weight: 300;
 }
+
 
 /* * * * * * * * * * * * * * * Links * * * * * * * * * * * * * * */
 a{
