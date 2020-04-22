@@ -17,7 +17,7 @@
 		function saveStory(){
 			var storyName = document.getElementById("name_input").value;
 			var storyHTML = document.getElementById("story_editor").value;
-			list.push(storyName);
+			list.push(storyName);4r
 			localStorage.setItem(storyName, storyHTML);
 			localStorage.setItem(storyList, list)
 		}
@@ -28,7 +28,22 @@
 		}
 
 		function displayList(){
-		  var titles = localStorage.getItem(storyList);
+			var titles = localStorage.getItem(storyList);
+			
+			
+			if (titles != null)
+        {
+            var titleList = titles.split(',');
+			var titleListLength = titleList.length;
+            for (var i=0; i<=titleListLength; i++)
+                {
+                    titleList[i] = titleList[i] + '<br />';
+                    return titleList;
+                }
+        }
+        return titles;
+			
+			
 		  document.getElementById("story_list").innerHTML=titles; 
 		}
 	</script>
