@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>WDD 330 Localstorage</title>
 	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
 	<script>
 		function loadStory(){
 			var storyName = document.getElementById("name_input").value;
@@ -73,8 +74,10 @@
 	</header>
 	
 	<main>
-		<nav>
-			<ul>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
 				<li><a href="index.html">Home</a></li>
 				<li>Week 1
 					<ul>
@@ -93,7 +96,7 @@
 				<button onclick="loadStory()">Find and Edit It</button>
 				<button onclick="saveStory()">Save It</button>
 				<button onclick="displayStory()">Display It</button>
-				<button onclick="displayList()">List Saved Titles</button> 
+				<button onclick="displayList()">List Recently Saved Titles</button> 
 			</section>
       		<section id="story_list"></section>
 			<textarea id="story_editor" placeholder="Write a story. Make it awesome. Don't give up!"></textarea>
