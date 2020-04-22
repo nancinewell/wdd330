@@ -108,14 +108,15 @@ header{
 		right: 1.5em;
 	}
 	#menu-check ~ ul{
-		opacity: 0;
+		transform: scale(0, 0);
 		position: fixed;
 		bottom: 4em;
 		right: 1.5em;
+		transition: .3s;
 	}
 	
 	#menu-check:checked ~ ul{
-		opacity: 100%;
+		transform: scale(1, 1);
 	}
 	.mobile-menu > *{
 		background-color: #4e4e4e;
