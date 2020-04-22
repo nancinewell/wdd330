@@ -15,12 +15,30 @@
     var storyList;
 
 		function saveStory(){
+			
+			list = localStorage.getItem(storyList).split(",");
+			
+			var newList = [];
 			var storyName = document.getElementById("name_input").value;
 			var storyHTML = document.getElementById("story_editor").value;
-			list.push(storyName);4r
+			list.push(storyName + '<br />');
+			
+			newList = removeDuplicateUsingSet(list);
+			
 			localStorage.setItem(storyName, storyHTML);
-			localStorage.setItem(storyList, list)
+			localStorage.setItem(storyList, newList);
+			
 		}
+		
+		function removeDuplicateUsingSet(arr){
+			let unique_array = Array.from(new Set(arr))
+			return unique_array
+		}
+		
+		
+		
+		
+		
 		
 		function displayStory(){
 			var storyHTML = document.getElementById("story_editor").value;
@@ -28,23 +46,12 @@
 		}
 
 		function displayList(){
-			var titles = localStorage.getItem(storyList);
-			
-			
-			if (titles != null)
-        {
-            var titleList = titles.split(',');
-			var titleListLength = titleList.length;
-            for (var i=0; i<=titleListLength; i++)
-                {
-                    titleList[i] = titleList[i] + '<br />';
-                    return titleList;
-                }
-        }
-        return titles;
-			
-			
-		  document.getElementById("story_list").innerHTML=titles; 
+			var titles = localStorage.getItem(storyList).split(",");
+			var str_end = "";
+			for (var i=0; i<=titles.length - 1; i++){
+				str_end += String(titles[i]);	
+			}
+			document.getElementById("story_list").innerHTML=str_end;
 		}
 	</script>
 
@@ -79,9 +86,9 @@
 				<button onclick="loadStory()">Find and Edit It</button>
 				<button onclick="saveStory()">Save It</button>
 				<button onclick="displayStory()">Display It</button>
-				<button onclick="displayList()">List Titles</button> 
+				<button onclick="displayList()">List Saved Titles</button> 
 			</section>
-      <section id="story_list"></section>
+      		<section id="story_list"></section>
 			<textarea id="story_editor" placeholder="Write a story. Make it awesome. Don't give up!"></textarea>
 
 			<section id="story_display"></section>
