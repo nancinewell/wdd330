@@ -16,7 +16,7 @@
 
 		function saveStory(){
 			
-			if (list != null) {
+			if (!list == null) {
 				list = localStorage.getItem(storyList).split(",");
 			}
 			
@@ -43,8 +43,17 @@
 			document.getElementById("story_display").innerHTML=storyHTML;
 		}
 
-		function displayList(){
-			var titles = localStorage.getItem(storyList).split(",");
+		function displayList(){			
+			var titles = localStorage.getItem(storyList);
+			
+			
+			
+			if(titles != null){
+				titles = titles.split(",");
+			}
+			else {
+				titles=[];
+			}
 			var str_end = "";
 			for (var i=0; i<=titles.length - 1; i++){
 				str_end += String(titles[i]);	
