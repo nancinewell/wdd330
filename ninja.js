@@ -4,6 +4,21 @@ const quiz = [
     ["What is Batman's real name?","Bruce Wayne"]
 ];
 
+let score = 0;
+
+for( const [question, answer] of quiz){
+	const response = prompt (question);
+	if(response === answer){
+		alert('Correctamundo!');
+		score++
+	} else {
+		alert(`That's a big Nope sandwich covered in Nope sauce! \nIt's really ${answer}.`);
+	}
+}
+
+alert(`G A M E   O V E R \nYou scored ${score} point${score !== 1 ?'s.' : '.'}`);
+
+/*
 function start(quiz){
     let score = 0;
     // main game loop
@@ -29,4 +44,4 @@ function start(quiz){
         alert(`Game Over! \nYou scored ${score} point${score !== 1 ? 's' : ''}!`);
     }
 }
-start(quiz);
+start(quiz);*/
