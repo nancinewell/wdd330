@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+	
+	<script>
+		function myTest(){
+			
+			let inputNumbers = {
+				num1: parseFloat(document.getElementById("first-num").value),
+				num2: parseFloat(document.getElementById("second-num").value)
+			};
+			
+			
+			inputNumbers.num1 === inputNumbers.num2 ? document.getElementById("answer").innerHTML = `I said another number.` :
+			
+			(inputNumbers.num1 > inputNumbers.num2) ? document.getElementById("answer").innerHTML = `${inputNumbers.num1} is bigger than ${inputNumbers.num2}.` :
+			
+			document.getElementById("answer").innerHTML = `${inputNumbers.num2} is bigger than ${inputNumbers.num1}.`;
+		}
+
+	
+	</script>
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li>Week 2
+					<ul>
+						<li><a href="w2_assignment.html">Assignment</a></li>
+						<li><a href="w2_notes.html">Notes</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<section class="mainsection">
+			<h3>What I Learned This Module</h3>
+			<p>I reviewed a lot of things I already knew, like reserved words (and some words that are not reserved, but ought to be), arrays, variables, loops, logic, operators, etc. I'll try to stick to new things.</p>
+			<p>I have always used <span class="keyword">var</span>. The first new thing, and probably the new thing I'll use most, I learned about is declaring variables using <span class="keyword">let</span> and <span class="keyword">const</span>. It seemed very important in the readings that <span class="keyword">let</span> and <span class="keyword">const</span> are block scoped, meaning their scope is limited to the block they are in.I'm not sure I understand the difference between them and <span class="keyword">var</span> yet. My understanding is that <span class="keyword">var</span> is only accessible in the block it's in, too... so... ? I had to look into that further.</p>
+			<p>A good answer I found was on <a href="https://stackoverflow.com/questions/762011/whats-the-difference-between-using-let-and-var" target="_blank"> stackoverflow.com</a>, explaining that <span class="keyword">var</span> is not block scoped, but function scoped. Variables declared with <span class="keyword">var</span> are accessible in the function even before they're declared, though it will be "undefined", whereas <span class="keyword">let</span> would trigger a reference error if you try to access it before it's declared.</p>
+			<p>Another great new thing I learned about was <span class="keyword">Template Literals</span>, which allow you to `Put functionality within a ${myString} and continuing the text` instead of "Adding text and then using a variable" + likeThis + "with the concatenate operator." Super exciting!</p>
+			<p>I had tried to work with the <span class="keyword">join()</span> method when I was doing my extra button on the Story Editor. I was trying to get rid of the commas in the array of story titles, so was using <span class="keyword">join(' ')</span> instead. It didn't work, but this was before I realized that pulling my array out of localStorage actually turned it into a string, so of course I couldn't use it to turn it into a string with spaces instead of commas.</p>
+			<p>I was very excited to learn about <span class="keyword">Sets</span>! Last week, I went thought quite an ordeal figuring out my extra button, and part of that was eliminating duplicates. Had I known about <span class="keyword">Set</span>, that particular obstacle would have been solved much more quickly.</p>
+			<p>The <span class="keyword">ternary operator</span> was quite fun to learn about. I'm all about shorthand and concise coding! I'll need to practice this one to nail the syntax down.</p>
+			<div>
+				<label for="first-number">Give me a number</label>
+				<input type="number" id="first-num" value="0">
+				<br>
+
+				<label for="second-number">Give me another number</label>
+				<input type="number" id="second-num" value="0">
+				<br>
+
+				<button onclick="myTest()">Which is bigger?</button>
+				<span id="answer" class="keyword"></span>
+			</div>
+			
+			<p>This is a pretty simple example, but I think I just spent a good 30 minutes on it trying to use a few new things at once... not to mention I forgot to add <span class="keyword">.value</span> to my <span class="keyword">parseFloat</span> for long enough to be embarrassing. However, I got the <span class="keyword">ternary operator</span> to work as well as the <span class="keyword">template literals</span>... And I <em>think</em> I successfully and appropriately used a <span class="keyword">closure</span>. I went through three different successful versions of code, each time adding another thing I wanted to practice. </p>
+			<p>Something that had me researching quite a bit was <span class="keyword">closures</span>. The book was just not very clear to me. I first found an article titled <a href="https://www.sitepoint.com/demystifying-javascript-closures-callbacks-iifes/" target="_blank">Demystifying JavaScript Closures, Callbacks, and IIFEs</a> that was very clear. 
+			
+				<blockquote cite="https://www.sitepoint.com/demystifying-javascript-closures-callbacks-iifes/">In JavaScript, a closure is any function that keeps reference to variables from its parent’s scope even after the parent has returned. This means practically any function can be considered a closure, because... a function can refer to, or have access to –
+					<ul>
+						<li>any variables and parameters in its own function scope</li>
+						<li>any variables and parameters of outer (parent) functions</li>
+						<li>any variables from the global scope.</li>
+					</ul>
+				So, chances are you’ve already used closures without even knowing it. 
+				</blockquote>
+			
+			Essentially, the <span class="keyword">closure</span> is a block within a block. You can refer to variables outside the closer. It stores a refence to its outer variable rather than a value.</p>
+			<p>	While reading this article, they used examples of code that used a colon in a way I haven't seen before, so I had to go look that up, too. A quick example at <a href="https://stackoverflow.com/questions/418799/what-does-colon-do-in-javascript" target="_blank">stackoverflow.com</a> showed that you can use it within a <span class="keyword">closure</span> to more concisely declare values in an object. I used that in my test above, too. </p>
+			<p><span class="keyword">Arrow functions</span> 
+				are completely new to me. Declaring functions within a variable at all is new to me, but this is certainly concise. Parameters, then &#61;&#62;, then the main body of the anonymous function. It doesn't need to be placed in a block if it's only one line, and single parameters don't need to be inside parentheses. </p>
+			<p>Some new things that interested me that I'll only mention are <span class="keyword">spread</span>, <span class="keyword">sort</span> (I might go back and add it to my story editor to sort the titles), <span class="keyword">maps</span>, <span class="keyword">for-of</span>, <span class="keyword">call-backs</span>, <span class="keyword">reduce()</span>, <span class="keyword">filter()</span>.</p>
+		</section>
+	</main>
+</body>
+</html>

@@ -77,9 +77,11 @@ a:visited{
 }
 
 a:hover{
+	
+	color: #a6c663;
+}
+.mobile-menu a:hover{
 	transform: translate(-.5em, 0);
-	color: #e5f5c4;
-	text-shadow: 0px 0px 4px #4e4e4e;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -190,12 +192,34 @@ ul{
 
 
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+										MISC 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+.keyword{
+	color: #7c9f35;
+	font-weight: 600;
+}
 
+blockquote{
+	font-family: 'Zilla Slab', serif;
+	font-weight: 400;
+	font-size: 1.25em;
+}
 
+blockquote li{
+	list-style: circle;
+	margin-left: 2em;
+}
 
+blockquote ul{
+	margin: 1em;
+}
 
-
+#first-num, #second-num{
+	width: 2.5em;
+	padding: .5em;
+}
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
