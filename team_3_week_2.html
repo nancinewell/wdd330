@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+	<script>
+		//USE A DIFFERENT WAY TO DEFINE THE FUNCTION FOR EACH
+		// function declaration, a function expression, an arrow function
+		// differences of each?
+		
+		//1.  Naomi first function: read the contents of the input, and write them to the div.
+		function getText() {
+			var input = document.getElementById("textInput").value;
+    		document.getElementById("output").innerHTML = input;
+}
+
+		//3. Wendy second function: expects a number as an argument,  sum all the numbers up to it, write to div.
+
+		function addNumber() { 
+			let num1 = parseFloat(document.getElementById("numInput1").value);
+			var Total = 0
+			for (var i=1; i <= num1;  i++) { 
+				// a place to store the input number
+				Total += i;
+				}
+			document.getElementById("output").innerHTML = Total;
+		}
+		
+		//5. Nanci third function: sum the numbers from both inputs, write to div.
+		function sumBothNumbers() {
+			let num1 = parseFloat(document.getElementById("numInput1").value);
+			let num2 = parseFloat(document.getElementById("numInput2").value);
+;
+			let compute = num1 + num2;
+			document.getElementById("output").innerHTML= compute;
+				
+			}
+
+		// review for repeated code and make a function out of it. 
+		// try to add callbacks
+		
+		function calculator(){
+			let operator = document.getElementById("operator").value;
+			let val1 = parseFloat(document.getElementById("numInput3").value);
+			let val2 = parseFloat(document.getElementById("numInput4").value);
+
+			const add = (val1, val2) => {return (val1 + val2);}
+			let subtract = (val1, val2) => val1 - val2;
+			let multiply = (val1, val2) => val1 * val2;
+			let divide = (val1, val2) => val1 / val2;
+
+			if (operator === "multiply"){
+			document.getElementById("output").innerHTML= multiply(val1, val2);
+			} if (operator === "divide"){
+			document.getElementById("output").innerHTML= divide(val1, val2);
+			} if (operator === "subtract"){
+			document.getElementById("output").innerHTML= subtract(val1, val2);
+			} if (operator === "add"){
+			document.getElementById("output").innerHTML= add(val1, val2);
+			} 
+		}
+
+	</script>
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li>Week 1
+					<ul>
+						<li><a href="w1_story_editor.html">Story Editor</a></li>
+						<li><a href="w1_notes.html">Notes</a></li>
+					</ul>
+				</li>
+				<li>Week 2
+					<ul>
+						<li><a href="team_3_week_2">Team Assignment</a></li>
+						<li><a href="w2_notes.html">Notes</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<section class="mainsection">
+			<h3>Get Text Function</h3>
+			<input id="textInput" type="text"><br>
+			<button onclick="getText()">Load Text</button><br>
+
+			<h3>Add Number Loop Function</h3>
+			<button onClick="addNumber()">Add Number</button>
+
+			<h3>Sum Both Numbers Function</h3>
+			<input id="numInput1" type ="number">
+			<input id="numInput2" type= "number" >
+			<button onclick="sumBothNumbers()">Sum Them</button>
+
+			<h3>Strech Goal 1</h3>
+			<select id="operator">
+			  <option value="multiply" >Multiply</option>
+			  <option value="divide">Divide</option>
+			  <option value="subtract">Subtract</option>
+			  <option value="add">Add</option>
+			</select>
+			<input id="numInput3" type ="number">
+			<input id="numInput4" type= "number" >
+			<button onclick="calculator()">Calculate</button>
+
+	
+	<h4>Output Div</h4>
+	<div id="output"></div>
+		</section>
+	</main>
+</body>
+</html>
