@@ -7,6 +7,56 @@
 	<link rel="stylesheet" media="screen" href="large.css">
 	
 	<script>
+		function madlibs(){
+			const madlibEntries = {
+				input1: "adjective",
+				input2: "adjective",
+				input3: "noun",
+				input4: "noun",
+				input5: "plural noun",
+				input6: "game",
+				input7: "plural noun",
+				input8: "verb (ending in 'ing')",
+				input9: "verb (ending in 'ing')",
+				input10: "plural noun",
+				input11: "verb (ending in 'ing')",
+				input12: "noun",
+				input13: "plant",
+				input14: "part of the body",
+				input15: "place",
+				input16: "verb (ending in 'ing')",
+				input17: "adjective",
+				input18: "number",
+				input19: "plural noun",
+			}
+			
+			for(var i=1; i<=Object.keys(madlibEntries).length; i++){
+				
+				madlibEntries["input"+i]=document.getElementById("input"+i).value;
+				document.getElementById("output"+i).innerHTML= madlibEntries["input"+i];
+			}
+			document.getElementById("madlibs-display").style.display= "block";
+			document.getElementById("madlibs-entry").style.display= "none";
+
+		}
+
+		function reset() {
+			let count = document.getElementsByTagName("input").length;
+			
+			for(let i=1; i<count; i++){
+				document.getElementById("input"+i).value = '';
+			}
+			
+			
+			document.getElementById("madlibs-display").style.display= "none";
+			document.getElementById("madlibs-entry").style.display= "grid";
+		}
+			
+			
+			
+			
+		
+		
 	</script>
 </head>
 
@@ -36,7 +86,45 @@
 		
 		<section class="mainsection">
 			<h3>What I Learned This Module</h3>
-			<p> <span class="keyword"> </span></p>
+			<p>I like how the article <cite><a href="https://javascript.info/object-methods">Object methods, "this"</a></cite> compared <span class="keyword">functions</span> to things the users (objects) do. Functions that are properties of an object are <span class="keyword">methods</span>.</p>
+			<p>Now <span class="keyword">this</span> looks interesting! I'm excited to try it out to see just how useful it can be. <span class="keyword">this</span> is unbound, so not limited to the object referencing it, but is instead evaluated at the time of call.</p>
+			<p>I'll be totally honest- at this point, I dont' understand the bit about <span class="keyword">arrow functions</span> having no <span class="keyword">this</span>. In my research, I found a video by <a href="https://youtu.be/mrYMzpbFz18">The Coding Train</a> about the <span class="keyword">arrow function</span>. It's a great video- I recommend! He talks about <span class="keyword">arrow functions</span> as well as how <span class="keyword">this</span> interacts in <span class="keyword">functions</span> vs <span class="keyword">arrow functions</span>. One thing he didn't really explain as clearly is that <span class="keyword">this</span> refers to the window object in simple functions, which is why his example worked well with the <span class="keyword">arrow function</span>, as it brought the reference back to the containing object. This is better explained in the <cite src="https://zellwk.com/blog/this/"><a href="https://zellwk.com/blog/this/">This in JavaScript</a></cite>.</p>
+			<p><cite src="https://zellwk.com/blog/this/"><a href="https://zellwk.com/blog/this/">This in JavaScript</a></cite> was less clear about <span class="keyword">bind</span>. To find some more information on it, I went to <cite src="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Mozilla</a></cite>. Just in the example that it provided, it better illustrated why you might want to <span class="keyword">bind</span> <span class="keyword">this</span> to a particular thing. For instance, <span class="keyword">this</span> in simple functions refers to the window object, but you can bind it to something else so that it will reference the thing you want.</p>
+			<p><span class="keyword">Object Literals</span> are objects created by wrapping all of its properties and methods in braces that are mutable while the program is running, even if the object itself is a <span class="keyword">const</span>.</p>
+			<p>I got really thrown off by a typo in the book. In chapter 5 while talking about <span class="keyword">computed properties</span>, it started talking about the new <span class="keyword">Symbol</span> date type, then used an example that didn't have a date. I read it 3 times without making sense of it before I looked it up elsewhere and realized it's talking about a data type, not a date type. Then there was the description of <span class="keyword">Symbols</span> themseves was confusing because they used the same word "name" for the identifier, the description, and the property name. 
+			<br><br>const name = Symbol('name');
+			<br>const supergirl = { [name]: 'Supergirl' };
+			<br><br>It was unclear whether the property name was referencing the identifier or the description based on the example they gave. While this was confusing, it helped me see that even though I read about <span class="keyword">Symbols</span> in chapter 2, I clearly didn't understand them well enough. I found a question on the motivation for bringing <span class="keyword">Symbols</span> into ES6 on <a href="https://stackoverflow.com/questions/21724326/what-is-the-motivation-for-bringing-symbols-to-es6">stackoverflow.com</a>, which outlines the original purpose was to have private properties, but they were downgraded and are not private now. This didn't really help me much, so I kept searching. I found an article about <a href="https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/">Symbols in ES6 and why they're awesome</a>. It talked about how <span class="keyword">Symbols</span> are really just a different way to attach proprties to an object. They ensure a unique value. This still didn't click to me why you would need that- can't you just use unique strings? So I kept looking. I found another article titled <cite><a href="https://medium.com/intrinsic/javascript-symbols-but-why-6b02768f4a5c">JavaScript Symbols: But Why?</a></cite>. While reading through this one, which admittedly was saying the same thing again, I had an epiphany. My mind went to family history, and how I have 2 relatives names Charles Miles Estey (grandfather and grandson). FINALLY- This is why you might want a <span class="keyword">symbol</span>! You cannot always control the names of things, and sometimes they might have the same string of characters, but are still unique, like my ancestors. This article talked about preventing name collisions when two libraries want to add properties and both happen to use the same key (which is apparently more common than I think it would be), <span class="keyword">symbols</span> would be used to make each one unique.</p>
+				
+			<h4>Madlibs</h4>
+			<div id="madlibs-entry">
+				<div><label>Adjective</label><input type="text" id="input1" value=""><br></div>
+				<div><label>Adjective</label><input type="text" id="input2"><br></div>
+				<div><label>Noun</label><input type="text" id="input3" ><br></div>
+				<div><label>Noun</label><input type="text" id="input4" ><br></div>
+				<div><label>Plural Noun</label><input type="text" id="input5" ><br></div>
+				<div><label>Game</label><input type="text" id="input6" ><br></div>
+				<div><label>Plural Noun</label><input type="text" id="input7" ><br></div>
+				<div><label>Verb (end in "ing")</label><input type="text" id="input8"><br></div>
+				<div><label>Verb (end in "ing")</label><input type="text" id="input9"><br></div>
+				<div><label>Plural Noun</label><input type="text" id="input10"><br></div>
+				<div><label>Verb (end in "ing")</label><input type="text" id="input11"><br></div>
+				<div><label>Noun</label><input type="text" id="input12"><br></div>
+				<div><label>Plant</label><input type="text" id="input13"><br></div>
+				<div><label>Part of the Body</label><input type="text" id="input14"><br></div>
+				<div><label>Place</label><input type="text" id="input15"><br></div>
+				<div><label>Verb (end in "ing")</label><input type="text" id="input16"><br></div>
+				<div><label>Adjective</label><input type="text" id="input17"><br></div>
+				<div><label>Number</label><input type="text" id="input18"><br></div>
+				<div><label>Plural Noun</label><input type="text" id="input19"><br></div>
+				<button id="madbutton" onclick="madlibs()">Create Your Madlibs</button>
+			</div>
+			<div id="madlibs-display">
+				<p>A vacation is when you take a trip to some <span class="keyword" id="output1"></span> place with your <span class="keyword" id="output2"></span> family. Usually you go to some place that is near a/an <span class="keyword" id="output3"></span> or up on a/an <span class="keyword" id="output4"></span>. A good vacation place is one where you can ride <span class="keyword" id="output5"></span> or play <span class="keyword" id="output6"></span> or go hunting for <span class="keyword" id="output7"></span>. I like to spend my time <span class="keyword" id="output8"></span> or <span class="keyword" id="output9"></span>. When parents go on a vacation, they spend their time eating three <span class="keyword" id="output10"></span> a day, and fathers play golf, and mothers sit around <span class="keyword" id="output11"></span>. Last summer, my little brother fell in a/an <span class="keyword" id="output12"></span> and got poison <span class="keyword" id="output13"></span> all
+				over his <span class="keyword" id="output14"></span>. My family is going to go to (the) <span class="keyword" id="output15"></span>, and I will practice <span class="keyword" id="output16"></span>. Parents need vacations more than kids because parents are always very	<span class="keyword" id="output17"></span> and because they have to work <span class="keyword" id="output18"></span> hours every day all year making enough <span class="keyword" id="output19"></span> to pay for the vacation.</p>
+				<button onclick="reset()">Reset Madlibs</button>
+			</div>
+			<p>The purpose of the Madlibs exercise was to better understand <span class="keyword">object literals</span> and how to iterate through and change their properties. It worked much like an <span class="keyword">array</span>, though that's partly because I gave the property names numbers that could correspond with i for the loop. </p>
 		</section>
 	</main>
 </body>

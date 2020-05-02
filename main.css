@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6, button {
 
 #brand{
 	font-weight: 300;
-	color: #e5f5c4;
+	color: #d56a6a;
 }
 
 main, mainsection{
@@ -204,8 +204,12 @@ ul{
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 .keyword{
-	color: #7c9f35;
+	color: #aa3939;
 	font-weight: 600;
+}
+
+#madlibs-display {
+	display: none;
 }
 
 blockquote{

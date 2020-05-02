@@ -23,7 +23,20 @@ main section.mainsection{
 	grid-area: main;
 	padding: .5em;
 }
-
+	
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+										MADLIBS LAYOUT 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+	#madlibs-entry {
+		display: grid;
+		grid-template-columns: 30% 30% 30%;
+		grid-gap: 1em;
+	}
+	
+	#madbutton {
+		grid-row-start: 8;
+	}
+	
 	
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										NAVIGATION 
