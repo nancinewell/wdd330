@@ -27,7 +27,7 @@
 				input16: "verb (ending in 'ing')",
 				input17: "adjective",
 				input18: "number",
-				input19: "plural noun",
+				input19: "plural noun"
 			}
 			
 			for(var i=1; i<=Object.keys(madlibEntries).length; i++){
@@ -52,9 +52,30 @@
 			document.getElementById("madlibs-entry").style.display= "grid";
 		}
 			
+		function regExpTest(){
+			let input = document.getElementById("regexp-test").value;
+			const pattern = /^[A-Z]+\W|_?[0-9]$/;
+			let test = pattern.test(input);
+			if (test == true){
+				document.getElementById("password-output").innerHTML = "Acceptable";
+			} else {
+				document.getElementById("password-output").innerHTML = "Please follow the established pattern";
+			}
 			
+		}	
 			
+		function wordCount(){
+			let paragraph = document.getElementById("count-paragraph").innerHTML;
+			let input = document.getElementById("count-input").value;
+			const pattern = new RegExp(" " + input + " ", "g\i");
+			let count = paragraph.match(pattern);
 			
+			if (count != null) {
+				document.getElementById("count-output").innerHTML = count.length;
+			} else {
+				document.getElementById("count-output").innerHTML = 0;
+			}
+		}	
 		
 		
 	</script>
@@ -124,7 +145,20 @@
 				over his <span class="keyword" id="output14"></span>. My family is going to go to (the) <span class="keyword" id="output15"></span>, and I will practice <span class="keyword" id="output16"></span>. Parents need vacations more than kids because parents are always very	<span class="keyword" id="output17"></span> and because they have to work <span class="keyword" id="output18"></span> hours every day all year making enough <span class="keyword" id="output19"></span> to pay for the vacation.</p>
 				<button onclick="reset()">Reset Madlibs</button>
 			</div>
-			<p>The purpose of the Madlibs exercise was to better understand <span class="keyword">object literals</span> and how to iterate through and change their properties. It worked much like an <span class="keyword">array</span>, though that's partly because I gave the property names numbers that could correspond with i for the loop. </p>
+			<p>The purpose of the Madlibs exercise was to better understand <span class="keyword">object literals</span> and how to iterate through and change their properties. It worked much like an <span class="keyword">array</span>, though that's partly because I gave the property names numbers that could correspond with i for the loop. After completing it, I told my husband what I did, and he said this is not really a good use of an object literal because I'm just replacing all of the properties. I guess I don't really understand why I would use this. We had an extensive conversation about how the things I'm learning are preparing me for larger things later, but for now I just need to learn how to do these small things. The problem I'm having is that I don't understand why I would ever use certain things, so it's very difficult to try to apply my learning when I dont' know what I would apply it to.</p>
+			<p>Some small exercises to play with <span class="keyword">RegExp</span>.</p>
+			<h4>Create a Password</h4>
+			<p>Password must begin with a capital letter and end in a number.</p>
+			<input id="regexp-test">
+			<button onclick="regExpTest()">Test Password</button>
+			<div id="password-output" class="keyword"></div>
+			
+			<label>What word shall we count in this paragraph?</label><input id="count-input">
+			<button onclick="wordCount()">Count them!</button>
+			<div id="count-output" class="keyword"></div>
+			<blockquote id="count-paragraph">&#9753; Two households, both alike in dignity, In fair Verona, where we lay our scene, pattern From ancient grudge break to new mutiny, Where civil blood makes civil hands unclean. From forth the fatal loins of these two foes A pair of star-cross'd lovers take their life; Whose misadventured piteous overthrows Do with their death bury their parents' strife. The fearful passage of their death-mark'd love, And the continuance of their parents' rage, Which, but their children's end, nought could remove, Is now the two hours' traffic of our stage; The which if you with patient ears attend, What here shall miss, our toil shall strive to mend.</blockquote>
+			<p>It's rather particular, but I tweeked it just right to find and count the words (not just the patterns within any word) based on the pattern given by the user, disregarding case sensitivity.</p>
+			
 		</section>
 	</main>
 </body>
