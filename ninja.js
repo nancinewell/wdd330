@@ -1,43 +1,64 @@
 const quiz = [
-    { name: "Superman",realName: "Clark Kent" },
-    { name: "Wonder Woman",realName: "Diana Prince" },
-    { name: "Batman",realName: "Bruce Wayne" },
-];
+              { name: "Superman",realName: "Clark Kent" },
+              { name: "Wonderwoman",realName: "Dianna Prince" },
+              { name: "Batman",realName: "Bruce Wayne" },
+            ];
 
+// View Object
+const view = {
+	score: document.querySelector("#score strong"),
+	question: document.getElementById("question"),
+	result: document.getElementById("result"),
+	info: document.getElementById("info"),
+  
+	render(target,content,attributes) {
+		for(const key in attributes) {
+			target.setAttribute(key, attributes[key]);
+		}
+		if (content != null){
+      target.innerHTML = content;
+		}
+  }
+};
+
+// Game Object
 const game = {
-	start(quiz){
-		this.questions = [...quiz];
-		this.score = 0;
-		
-		//primary game loop
-		for (const question of this.questions){
-			this.question = question;
-			this.ask();
-		}
-		//end of primary game loop
-		this.gameOver();
-	},
-	ask(){
-		const question = `What is ${this.question.name}'s real name?`;
-		const response = prompt(question);
-		this.check(response);
-	}, 
-	check(response){
-		const answer = this.question.realName;
-		if(response === answer){
-			alert('Nice job!');
-			this.score++;
-		} else {
-			alert(`Sorry! A bigger fan would have known it's ${answer}.`);
-		}
-	}, 
-	gameOver(){
-		alert(`G A M E   O V E R  \nYou scored ${this.score} point${this.score !==1 ? 's' : ''}`);
-	}
-	
+  start(quiz){
+    this.score = 0;
+    this.questions = [...quiz];
+    // main game loop
+    for(const question of this.questions){
+      this.question = question;
+      this.ask();
+    }
+    // end of main game loop
+    this.gameOver();
+  },
+  ask(){
+    const question = `What is ${this.question.name}'s real name?`;
+    view.render(view.question,question);
+    const response =  prompt(question);
+    this.check(response);
+  },
+  check(response){
+    const answer = this.question.realName;
+    if(response === answer){
+      view.render(view.result,'You know your DC!',{'class':'correct'});
+      alert('You know your DC!!');
+      this.score++;
+      view.render(view.score,this.score);
+    } else {
+      view.render(view.result,`Sorry! A bigger fan would have known the answer is ${answer}.`,{'class':'wrong'});
+      alert(`Sorry! A bigger fan would have known the answer is ${answer}.`);
+    }
+  },
+  gameOver(){
+    view.render(view.info,`G A M E   O V E R \nYou scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
+  }
 }
 
 game.start(quiz);
+
 
 
 
