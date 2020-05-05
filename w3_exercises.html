@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+	
+	<script>
+		const MOUNTAINS = [
+			{name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+			{name: "Everest", height: 8848, place: "Nepal"},
+			{name: "Mount Fuji", height: 3776, place: "Japan"},
+			{name: "Vaalserberg", height: 323, place: "Netherlands"},
+			{name: "Denali", height: 6168, place: "United States"},
+			{name: "Popocatepetl", height: 5465, place: "Mexico"},
+			{name: "Mont Blanc", height: 4808, place: "Italy/France"}
+		];
+		
+		function generateTable(){
+			
+			//function to create elements
+			function createElement(tag, text, id){
+				const genElement = document.createElement(tag);
+				genElement.textContent = text;
+				genElement.setAttribute("id", id);
+				return genElement;
+			}
+			
+			
+			//create table
+			document.getElementById("mountains").appendChild(createElement("table","", "mountain-table"));
+			
+			
+			//create header
+			document.getElementById("mountain-table").appendChild(createElement("tr", "", "table-header"))
+			
+			
+			//put data in header
+			let keyNames = Object.keys(MOUNTAINS[0])
+				
+			for (let i=0; i<keyNames.length;i++ ){
+				document.getElementById("table-header").appendChild(createElement("th", keyNames[i].toUpperCase()));
+			}
+			
+			//create table data
+			let rowQty = MOUNTAINS.length;
+			
+			for (i2=0; i2<rowQty; i2++){
+				let mtIndex = Object.values(MOUNTAINS[i2]);
+				document.getElementById("mountain-table").appendChild(createElement("tr", "", "row"+i2))
+				
+				for (i=0; i<keyNames.length;i++ ){
+				document.getElementById("row"+i2).appendChild(createElement("td", mtIndex[i]));
+				}
+			}
+			
+			//right-align number value cells by setting style.textAlign property to "right"
+			
+			let td = document.getElementsByTagName("td");
+			
+			for (i=0; i<td.length; i++){
+				if (td[i].textContent>=0){
+					td[i].style.textAlign = "right";
+				}
+			}
+			document.getElementById("mt-button").style.display = "none";
+		}
+	</script>
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li>Week 3
+					<ul>
+						<li><a href="w3_team3">Team Assignment</a></li>
+						<li><a href="w3_notes.html">Notes</a></li>
+						<li><a href="w3_exercises.html">Exercises</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<section class="mainsection">
+			<h3>14.1</h3>
+			<div>
+				<h4>Mountains</h4>
+				<div id="mountains"></div>
+				<button onclick="generateTable()" id="mt-button">Click to Generate Table</button>
+			</div>
+			<div>
+			<h4>Elements by Tag Name</h4>
+				
+				
+			</div>
+		</section>
+	</main>
+</body>
+</html>

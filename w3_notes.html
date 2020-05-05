@@ -100,6 +100,7 @@
 					<ul>
 						<li><a href="w3_team3">Team Assignment</a></li>
 						<li><a href="w3_notes.html">Notes</a></li>
+						<li><a href="w3_exercises.html">Exercises</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -162,8 +163,8 @@
 			<p>I was happy to be reminded of <span class="keyword">querySelector()</span>, which I haven't used in quite some time. I like CSS, so using CSS notation is always good for me. Mental note- remember that it will only access the first element that matches the selector. This is useful for id's, as they are unique, so you'll always access what you're looking for. To find them all, use <span class="keyword">querySelectorAll()</span>. You can use CSS pseudo-selectors with this, too.</p>
 			<p>I don't remember ever learning that many of the selector properties will return whitespace as text nodes. I found an interesting <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace">article</a> where the author wrote some functions to test a node to see if it's ignorable to help get around the whitespace, but I think it would be more beneficial to understand how the whitespace is handled and recognized by the DOM and simply take my actions from there.</p>
 			<p>Another thing I appreciated being reminded of is that you need to use camel case when altering the CSS properties through JavaScript.</p>
-			<p>The last thing that I want to note is the importance of not calling things in a function that haven't loaded on the page yet. For the Quiz Ninja project, I had to move the script tag to the bottom of the page because it was starting the quiz when it loaded. With the script tag in the head of the page, it was trying to alter the innerHTML of elements before the elements had even loaded, causing an error.</p>
-			
+			<p>An important thing that I want to note is the importance of not calling things in a function that haven't loaded on the page yet. For the Quiz Ninja project, I had to move the script tag to the bottom of the page because it was starting the quiz when it loaded. With the script tag in the head of the page, it was trying to alter the innerHTML of elements before the elements had even loaded, causing an error.</p>
+			<p>Important info about <span class="keyword">event listeners</span>: don't use the parentheses when the function is used as an argument to an event listener; can be used on a node or globally; <span class="keyword">pageX</span> and <span class="keyword">pageY</span> seem infinitely more useful than <span class="keyword">screenX</span>, <span class="keyword">screenY</span>, <span class="keyword">clientX</span>, and <span class="keyword">clientY</span>. </p>
 		</section>
 	</main>
 </body>
