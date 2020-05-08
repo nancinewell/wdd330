@@ -191,6 +191,13 @@
 			
 		}
 		
+		function byTagName(node, tagName){
+			let byTagName = node.getElementsByTagName(tagName);
+			return byTagName;
+		}
+		
+
+		
 	</script>
 </head>
 
@@ -225,6 +232,12 @@
 				<h4>Mountains</h4>
 				<div id="mountains"></div>
 				<button onclick="generateTable()" id="mt-button">Click to Generate Table</button>
+			</div>
+			
+			<div>
+				<h4>Elements by Tag Name</h4>
+				<h1>Heading with a <span>span</span> element.</h1>
+				<p>A paragraph with <span>one</span>, <span>two</span> spans.</p>
 			</div>
 			
 			<div>
@@ -291,6 +304,14 @@
 			document.getElementById("mouse-trail").addEventListener("mousemove", mousyTrail, true)
 			myTabs(document.querySelector(".tab-panel"));
 			document.querySelector(".tab-panel").addEventListener("click", buttonClick, true)
+			
+			console.log(byTagName(document.body, "h1").length);
+			// → 1 + 1 in the header
+			console.log(byTagName(document.body, "span").length);
+			// → 3 + 1 in the header
+			let para = document.querySelector("p");
+			console.log(byTagName(para, "span").length);
+			// → 2
 		</script>
 	</main>
 </body>
