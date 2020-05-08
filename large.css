@@ -62,5 +62,13 @@ main section.mainsection{
 		display: block;
 	}
 	
+	#powers input, #char-type>input{
+		display: inline;
+		margin-right: 30%;
+		float: right;
+}
+	
+	
+	
 /*DON'T DELETE THIS ONE!*/	
 }

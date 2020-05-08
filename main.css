@@ -186,14 +186,22 @@ button{
 input{
 	width: 100%;
 	border-radius: 5px;
+	padding: .5em;
+}
+
+input:focus{
+	background-color: #e5f5c4;
 }
 
 textarea{
 	width: 98%;
 	height: 5em;
-	background-color: #e5f5c4;
 	border-radius: 5px;
 	padding: .5em;
+}
+
+textarea:focus{
+	background-color: #e5f5c4;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -315,6 +323,32 @@ button.active{
 	font-weight: 700;
 }
 
+.hero-class{
+	width: 2em;
+	padding: 1em;
+
+}
+
+#powers input, #char-type input{
+	display: inline;
+	margin-right: 30%;
+	float: right;
+}
+
+input#age {
+	max-width: 2em;
+	display: inline;
+	margin-right: 30%;
+	float: right;
+}
+
+.error{
+	background: #f99;
+	border: #900 1px solid;
+	display: none;
+	border-radius: 5px;
+	padding: 1em;
+    }
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
