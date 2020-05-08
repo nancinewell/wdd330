@@ -6,6 +6,7 @@ const quiz = [
 
 // View Object
 const view = {
+	start: document.getElementById("start"),
 	score: document.querySelector("#score strong"),
 	question: document.getElementById("question"),
 	result: document.getElementById("result"),
@@ -16,9 +17,15 @@ const view = {
 			target.setAttribute(key, attributes[key]);
 		}
 		if (content != null){
-      target.innerHTML = content;
+			target.innerHTML = content;
 		}
-  }
+	},
+	show(element){
+		element.style.display = 'block';
+	},
+	hide(element){
+		element.style.display = 'none';
+	}
 };
 
 // Game Object
@@ -80,32 +87,7 @@ for( const [question, answer] of quiz){
 	}
 }
 
-alert(`G A M E   O V E R \nYou scored ${score} point${score !== 1 ?'s.' : '.'}`);
-
-/*
-function start(quiz){
-    let score = 0;
-    // main game loop
-    for(const [question,answer] of quiz){
-        const response = ask(question);
-        check(response,answer);
-    }
-    // end of main game loop
-    gameOver();
-    // function declarations
-    function ask(question){
-        return prompt(question);
-    }
-    function check(response,answer){
-        if(response === answer){
-        alert('Correct!');
-        score++;
-        } else {
-        alert(`Nope! The correct answer is ${answer}`);
-        }
-    }
-    function gameOver(){
-        alert(`Game Over! \nYou scored ${score} point${score !== 1 ? 's' : ''}!`);
-    }
-}
-start(quiz);*/
+//game.start(view.hide(view.start));
+//view.start.addEventListener('click', () => game.start(quiz), false);
+//view.start.addEventListener('click', () => test(), false);
+view.start.addEventListener('click', () => game.start(quiz), false);

@@ -66,6 +66,131 @@
 			}
 			document.getElementById("mt-button").style.display = "none";
 		}
+	
+
+		
+		function catimate(){
+			
+			let cat = document.querySelectorAll("img");
+			let angle = Math.PI / 2;
+			function animate(time, lastTime) {
+				if (lastTime != null) {
+				angle += (time - lastTime) * 0.001;
+			}
+			cat[0].style.top = (Math.sin(angle) * 2) + "em";
+			cat[0].style.left = (Math.cos(angle) * 20) + "em";
+			cat[1].style.top = (Math.sin(angle) * -2) + "em";
+			cat[1].style.left = (Math.cos(angle) * -20) + "em";
+			requestAnimationFrame(newTime => animate(newTime, time));
+			}
+			requestAnimationFrame(animate);
+		}
+		
+		
+			
+		function arrowHandler(event) {
+			//Get the balloon and it's size
+			let balloon = document.getElementById("balloon");
+			let style = window.getComputedStyle(balloon, null).getPropertyValue('font-size');
+			let originalFontSize = parseFloat(style);
+			let newFontSize;
+
+			//inflate by 10%, deflate by 10%... unless it gets too big, then pop it.
+			if (originalFontSize < 45){
+				if (event.key == "ArrowUp"){
+					newFontSize = originalFontSize * 1.1;
+					balloon.style.fontSize = newFontSize + "px";
+					event.preventDefault();
+
+				} else if (event.key == "ArrowDown"){
+					newFontSize = originalFontSize - (originalFontSize * 0.1);
+					balloon.style.fontSize = newFontSize + "px";
+					event.preventDefault();
+
+				}
+			} else {
+				balloon.innerHTML="&#128165;";
+				document.body.removeEventListener("keydown", arrowHandler);
+			}
+		}
+				
+		
+		
+		var mouseCounter = 0;
+		
+		function mousyTrail(){
+			let mouseHouse = document.getElementById("mouse-trail");
+			var breadCrumbs = document.querySelectorAll(".trail");
+			mouseCounter++;
+			breadCrumbs[mouseCounter % breadCrumbs.length].style.left = (event.pageX - 5 )+ "px";
+			breadCrumbs[mouseCounter % breadCrumbs.length].style.top = (event.pageY - 5 ) + "px";
+		}
+			
+		/*Tabbed panels are widely used in user interfaces. They allow you to select an interface panel by choosing from a number of tabs “sticking out” above an element.
+
+		In this exercise you must implement a simple tabbed interface. 
+		
+		Write a function, asTabs, that takes a DOM node and creates a tabbed interface showing the child elements of that node. 
+		
+		X 	It should insert a list of <button> elements at the top of the node, one for each child 	element, containing text retrieved from the data-tabname attribute of the child. 
+		
+		X	All but one of the original children should be hidden (given a display style of none). X	The currently visible node can be selected by clicking the buttons.
+
+		X	When that works, extend it to style the button for the currently selected tab 	
+			differently so that it is obvious which tab is selected.*/
+		function myTabs(node){
+			let tabs = node.children;
+			
+			function createElement(tag, text, className, id){
+				const genElement = document.createElement(tag);
+				genElement.textContent = text;
+				genElement.setAttribute("class", className);
+				genElement.setAttribute("id", id);
+				return genElement;
+			}
+			
+			for (let i = 0; i<tabs.length; i++){
+				let text = tabs[i].getAttributeNode("data-tabname").value.toUpperCase();
+				tabs[i].appendChild(createElement("BUTTON", text, "tab-buttons", "tab"+i));
+				tabs[i].style.display = "none";
+			}
+			tabs[0].style.display = "block";
+			
+			let buttons = document.querySelectorAll(".tab-buttons");
+			
+			for (i = 0; i<buttons.length; i++ ){
+				node.prepend(buttons[i]);
+			}
+		}
+			
+		function buttonClick(event){
+			const target = event.target;
+			const targetTag = target.tagName;
+			const buttons = document.querySelectorAll(".tab-buttons");
+			
+			for (let i = 0; i<buttons.length; i++ ){
+				(buttons[i].classList.remove("active"));
+			}
+			
+			if(targetTag == "BUTTON"){
+				target.classList.add("active");
+			}
+			
+			const divs = document.querySelectorAll(".tab-div");
+			
+			for(i=0; i<divs.length; i++){
+				let text = divs[i].getAttributeNode("data-tabname").value.toUpperCase();
+				let targetText = target.innerHTML;
+				if(text == targetText){
+					divs[i].style.display = "block";
+				} else {
+					divs[i].style.display = "none";
+				}
+			}
+			
+			
+		}
+		
 	</script>
 </head>
 
@@ -95,18 +220,78 @@
 		</nav>
 		
 		<section class="mainsection">
-			<h3>14.1</h3>
+			<h3>Eloquent JavaScript 14</h3>
 			<div>
 				<h4>Mountains</h4>
 				<div id="mountains"></div>
 				<button onclick="generateTable()" id="mt-button">Click to Generate Table</button>
 			</div>
+			
 			<div>
-			<h4>Elements by Tag Name</h4>
-				
-				
+				<h4>The Cat's Hat</h4>
+				<p id="catagraph">
+					<img src="images/cat.png" id="cat-exercise">
+					<img src="images/hat.png" id="hat-exercise">
+				</p>
+				<button onclick="catimate()">Animate</button>
 			</div>
+			
+			<h3>Eloquent JavaScript 15</h3>
+			
+			<div>
+				<h3>Balloon</h3>
+				<p id="balloon">&#127880;</p>
+			</div>
+			
+			<div>
+				<h3>Mouse Trail</h3>
+				<div id="mouse-trail">
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+				<div class="trail"></div>
+			</div>
+			</div>
+			
+			<div>
+				<h3>Tabs</h3>
+				<div class="tab-panel">
+					<div class="tab-div" data-tabname="science">Science</div>
+					<div class="tab-div" data-tabname="history">History</div>
+					<div class="tab-div" data-tabname="math">Math</div>
+					<div class="tab-div" data-tabname="geography">Geography</div>
+				</div>
+			
+			</div>
+		
 		</section>
+		
+		<script>
+			document.body.addEventListener("keydown", arrowHandler);
+			document.getElementById("mouse-trail").addEventListener("mousemove", mousyTrail, true)
+			myTabs(document.querySelector(".tab-panel"));
+			document.querySelector(".tab-panel").addEventListener("click", buttonClick, true)
+		</script>
 	</main>
 </body>
 </html>
