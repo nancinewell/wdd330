@@ -6,11 +6,16 @@
 	<link rel="stylesheet" media="screen" href="main.css">
 	<link rel="stylesheet" media="screen" href="large.css">
 	<script>
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+											SEARCH
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 		function search(event) {
 			alert(`You Searched for: ${input.value}`);
 			event.preventDefault();
 		}
-	
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+											HERO FORM
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 		function makeHero(event) {
 			event.preventDefault(); // prevent the form from being submitted
 			const hero = {}; // create an empty object
@@ -73,6 +78,110 @@
 				document.getElementById('submit').disabled = false;
 			}
 		}
+		
+		
+		
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+									OBJECT ORIENTED PROGRAMMING
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		//create Dice class
+		class Dice {
+			constructor(sides = 6){
+				this.sides = sides;
+			}
+			roll() {
+				return Math.floor(this.sides * Math.random() + 1);
+			}
+			sound(){
+				let audio = new Audio("die-sound.mp3");
+				audio.play();
+			}
+		}
+		//first die: 6 sides (default)
+		const die1 = new Dice();
+		
+		//second die: 8 sides
+		const die2 = new Dice(8);
+		
+		//third die: 10 sides
+		const die3 = new Dice(10);
+		
+		function rollDice(){
+			const storyDice = document.getElementById("story-dice");
+			const threeDice = storyDice.getElementsByTagName("img");
+			
+			//const die1Roll = die1.roll();
+			
+			
+			for (let i = 0; i < threeDice.length; i++){
+				
+				//roll each die
+				let dieRoll; 
+				switch(i){
+					case 0:  dieRoll = die1;
+						break;
+					case 1:  dieRoll = die2;
+						break;
+					case 2:  dieRoll = die3;
+				}
+				
+				//dieRoll.roll();
+				dieRoll.sound();
+				
+				//set how many sides for the image display
+				let dieSides;
+				switch (i){
+					case 0: dieSides = 6;
+						break;
+					case 1: dieSides = 8;
+						break;
+					case 2: dieSides = 10;
+						break;
+				}
+			
+			
+				switch (dieRoll.roll()){
+					case 1: threeDice[i].src="images/" + dieSides + "-1.png";
+						break;
+					case 2: threeDice[i].src="images/" + dieSides + "-2.png";
+						break;
+					case 3: threeDice[i].src="images/" + dieSides + "-3.png";
+						break;
+					case 4: threeDice[i].src="images/" + dieSides + "-4.png";
+						break;
+					case 5: threeDice[i].src="images/" + dieSides + "-5.png";
+						break;
+					case 6: threeDice[i].src="images/" + dieSides + "-6.png";
+						break;
+					case 7: threeDice[i].src="images/" + dieSides + "-6.png";
+						break;
+					case 8: threeDice[i].src="images/" + dieSides + "-6.png";
+						break;
+					case 9: threeDice[i].src="images/" + dieSides + "-6.png";
+						break;
+					case 10: threeDice[i].src="images/" + dieSides + "-6.png";
+						break;
+				}
+			}
+		}
+		
+		/*
+		switch (die1Roll){
+			case 1: threeDice[i].src="images/6-1.png";
+				break;
+			case 2: threeDice[i].src="images/6-2.png";
+				break;
+			case 3: threeDice[i].src="images/6-3.png";
+				break;
+			case 4: threeDice[i].src="images/6-4.png";
+				break;
+			case 5: threeDice[i].src="images/6-5.png";
+				break;
+			case 6: threeDice[i].src="images/6-6.png";
+				break;
+		}
+		*/
+		
 		
 	</script>
 </head>
@@ -177,7 +286,16 @@
 
 				</form>
 			</div>
-			
+			<div id="story-dice">
+				<h3>Object Oriented Programming</h3>
+				<h4>Story Dice</h4>
+				<p>Roll the dice, then make up a story using the images on the dice. This is a favorite of my children's.</p>
+				<button type="button" id="roll-dice">Roll!</button>
+				<img src="images/6-1.png" alt="6-sided die">
+				<img src="images/8-1.png" alt="8-sided die">
+				<img src="images/10-1.png" alt="10-sided die">
+				
+			</div>
 		</section>
 		<script>
 			/* * * * * * * * * * Search Form* * * * * * * * * * */
@@ -212,6 +330,9 @@
 			formHero.addEventListener('submit', makeHero, false);
 			formHero.heroName.addEventListener('keyup',disableSubmit,false);
 			
+			/* * * * * * * * * * Story Dice * * * * * * * * * * */
+			const rollButton = document.getElementById("roll-dice");
+			rollButton.addEventListener("click", rollDice)
 			
 		</script>
 	</main>
