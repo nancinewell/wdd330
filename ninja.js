@@ -54,14 +54,15 @@ const game = {
 	this.score = 0;
 	this.questions = [...quiz];
 	view.setup();
-	this.ask();
+	game.ask(quiz);
 	// main game loop
     /*for(const question of this.questions){
       this.question = question;
       this.ask();
     }*/
-    // end of main game loop
-    this.gameOver();
+    
+	// end of main game loop
+    //this.gameOver();
   },
   /*ask(){
     const question = `What is ${this.question.name}'s real name?`;
@@ -70,7 +71,7 @@ const game = {
     this.check(response);
   }*/
 	
-ask(name){
+ask(){
     if(this.questions.length > 0) {
         this.question = this.questions.pop();
         const question = `What is ${this.question.name}'s real name?`;
@@ -98,22 +99,22 @@ ask(name){
 		const response = view.response.answer.value;
 		const answer = this.question.realName;
 		if(response === answer){
-			view.render(view.result,'Correct!',{'class':'correct'});
+			view.render(view.result,'You sure know your heroes!',{'class':'correct'});
 			this.score++;
 			view.render(view.score,this.score);
 		} else {
-			view.render(view.result,`Wrong! The correct answer was ${answer}`,{'class':'wrong'});
+			view.render(view.result,`Sorry! A bigger fan would have known the answer is ${answer}`,{'class':'wrong'});
 		}
 		view.resetForm();
 		this.ask();
 },
   gameOver(){
-    view.render(view.info,`G A M E   O V E R \nYou scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
+    view.render(view.info,`G A M E   O V E R !    \nYou scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
 	view.teardown();
   }
 }
 
-game.start(quiz);
+//view.start.addEventListener("click", game.start(quiz));
 view.response.addEventListener('submit', (event) => game.check(event), false);
 view.hide(view.response);
 

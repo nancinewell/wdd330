@@ -105,7 +105,7 @@
 		<section class="mainsection">
 			<div>
 				<h3>Search Example</h3>
-				<form name="search" action="/search">
+				<form name="search" action="/search" id="search">
 					<input name="searchInput" placeholder="What are you looking for?">
 					<button type="submit">Search</button>
 					<button type="reset">Reset</button>
@@ -123,6 +123,16 @@
 					<label for="realName">Real Name:
 						<input type="password" name="realName" id="realName">
 					</label>
+					<label for="City">Base of Operations:
+						<select name="city" id="city">
+							<option value="" selected>Choose a City</option>
+							<option value="Metropolis">Metropolis</option>
+							<option value="Gotham City">Gotham City</option>
+							<option value="Keystone City">Keystone City</option>
+							<option value="Coast City">Coast City</option>
+							<option value="Star City">Star City</option>
+						</select>
+					</label><br>
 					<div id="powers">
 						<p>Super Powers:</p>
 						<label for="flight">Flight:
@@ -156,16 +166,7 @@
 					<label for="age">Age:
 						<input type="number" id="age" name="age" min="0" step="1">
 					</label><br>
-					<label for="City">Base of Operations:
-						<select name="city" id="city">
-							<option value="" selected>Choose a City</option>
-							<option value="Metropolis">Metropolis</option>
-							<option value="Gotham City">Gotham City</option>
-							<option value="Keystone City">Keystone City</option>
-							<option value="Coast City">Coast City</option>
-							<option value="Star City">Star City</option>
-						</select>
-					</label><br>
+					
 					<label for="origin">Origin Story:
 						<textarea id="origin" name="origin"></textarea>
 					</label>

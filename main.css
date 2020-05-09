@@ -20,7 +20,7 @@ body{
 	background-size: cover;
 }
 
-body, textarea::placeholder{
+body, select, input, textarea{
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
 }
@@ -323,10 +323,20 @@ button.active{
 	font-weight: 700;
 }
 
+#search>button{
+	display: inline;
+}
+
 .hero-class{
 	width: 2em;
 	padding: 1em;
 
+}
+#hero-form select{
+	border-radius: 5px;
+	width: 100%;
+	
+	padding: .5em;
 }
 
 #powers input, #char-type input{
@@ -340,6 +350,7 @@ input#age {
 	display: inline;
 	margin-right: 30%;
 	float: right;
+	height: .75em;
 }
 
 .error{
@@ -370,11 +381,20 @@ input#age {
 
 .quiz-body{
     background: #4e4e4e;
-    margin: 3em 33%;
+    margin: 3em;
     padding: 1em;
     -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
     -moz-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
     box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+	color: #dddcdc;
+}
+
+.quiz-body div{
+	padding: 1em;
+}
+
+.quiz-body form button, .quiz-body form input{
+	margin-top: 1em;
 }
 .mainsection-ninja h1{
 	line-height: 1.25em;
@@ -383,9 +403,9 @@ input#age {
 }
 .mainsection-ninja button {
     color: #ffffff;
-    background-color: #611BBD;
-    border-color: #130269;
-    border-radius: 4px;
+    background-color: #113939;
+    border-color: #072727;
+    border-radius: 5px;
     margin: 0.2em 0;
     display: block;
     width: 100%;
@@ -396,14 +416,24 @@ input#age {
 }
 #result{
     color: #fff;
-    margin: 0.2em 0;
-    width: 100%;
+    margin: auto;
+    width: 75%;
     text-align: center;
+	border-radius: 5px;
 }
 .correct {
-    background-color: #0c0;
+    background-color: #44591b;
+	font-family: 'Zilla Slab', serif;
+	font-size: 1.5em;
+	line-height: 1.25em;
 }
 .wrong {
-    color: #fff;
-    background-color: #c00;
+    background-color: #5f1d1d;
+	font-family: 'Zilla Slab', serif;
+	font-size: 1.5em;
+	line-height: 1.25em;
+}
+#info{
+	text-align: center;
+	font-size: 2em;
 }
