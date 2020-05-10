@@ -16,7 +16,7 @@ body{
 	background-image: url("bgcode.png");
 	height: 100vh;
 	background-position: center;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	background-size: cover;
 }
 
@@ -360,7 +360,9 @@ input#age {
 	padding: 1em;
     }
 
-
+#story-dice img {
+	padding: 1em;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										Quiz Ninja 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

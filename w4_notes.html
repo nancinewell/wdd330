@@ -97,6 +97,7 @@
 				audio.play();
 			}
 		}
+		
 		//first die: 6 sides (default)
 		const die1 = new Dice();
 		
@@ -106,30 +107,31 @@
 		//third die: 10 sides
 		const die3 = new Dice(10);
 		
+		//function to roll the 3 dice and display the images accordingly.
 		function rollDice(){
 			const storyDice = document.getElementById("story-dice");
-			const threeDice = storyDice.getElementsByTagName("img");
+			const diceCount = storyDice.getElementsByTagName("img");
+			let genericDie = new Dice();
 			
-			//const die1Roll = die1.roll();
-			
-			
-			for (let i = 0; i < threeDice.length; i++){
-				
+			for (let i = 0; i < diceCount.length; i++){
+				//This is where I first rolled each die individually... but I can do better. See below.
 				//roll each die
-				let dieRoll; 
+				/*let dieRoll; 
 				switch(i){
 					case 0:  dieRoll = die1;
 						break;
 					case 1:  dieRoll = die2;
 						break;
 					case 2:  dieRoll = die3;
+						break;
 				}
 				
-				//dieRoll.roll();
-				dieRoll.sound();
-				
+				dieRoll.roll();
+				*/
+
 				//set how many sides for the image display
-				let dieSides;
+				//this required there only be 3 dice... I want to make more, so scratch that!
+				/*let dieSides;
 				switch (i){
 					case 0: dieSides = 6;
 						break;
@@ -137,51 +139,101 @@
 						break;
 					case 2: dieSides = 10;
 						break;
-				}
-			
-			
-				switch (dieRoll.roll()){
-					case 1: threeDice[i].src="images/" + dieSides + "-1.png";
+				}*/
+				
+				//instead of switching for individuals, why won't we grab the sides attribute and roll for that?
+				let dieSides = diceCount[i].attributes.sides.value;
+				genericDie.sides = dieSides;
+				
+				//make the rolling dice sound!
+				genericDie.sound();
+				
+				//display the image for each die roll
+				switch (genericDie.roll(dieSides)){
+					case 1: diceCount[i].src="images/" + dieSides + "-1.png";
 						break;
-					case 2: threeDice[i].src="images/" + dieSides + "-2.png";
+					case 2: diceCount[i].src="images/" + dieSides + "-2.png";
 						break;
-					case 3: threeDice[i].src="images/" + dieSides + "-3.png";
+					case 3: diceCount[i].src="images/" + dieSides + "-3.png";
 						break;
-					case 4: threeDice[i].src="images/" + dieSides + "-4.png";
+					case 4: diceCount[i].src="images/" + dieSides + "-4.png";
 						break;
-					case 5: threeDice[i].src="images/" + dieSides + "-5.png";
+					case 5: diceCount[i].src="images/" + dieSides + "-5.png";
 						break;
-					case 6: threeDice[i].src="images/" + dieSides + "-6.png";
+					case 6: diceCount[i].src="images/" + dieSides + "-6.png";
 						break;
-					case 7: threeDice[i].src="images/" + dieSides + "-6.png";
+					case 7: diceCount[i].src="images/" + dieSides + "-7.png";
 						break;
-					case 8: threeDice[i].src="images/" + dieSides + "-6.png";
+					case 8: diceCount[i].src="images/" + dieSides + "-8.png";
 						break;
-					case 9: threeDice[i].src="images/" + dieSides + "-6.png";
+					case 9: diceCount[i].src="images/" + dieSides + "-9.png";
 						break;
-					case 10: threeDice[i].src="images/" + dieSides + "-6.png";
+					case 10: diceCount[i].src="images/" + dieSides + "-10.png";
 						break;
 				}
 			}
 		}
 		
-		/*
-		switch (die1Roll){
-			case 1: threeDice[i].src="images/6-1.png";
-				break;
-			case 2: threeDice[i].src="images/6-2.png";
-				break;
-			case 3: threeDice[i].src="images/6-3.png";
-				break;
-			case 4: threeDice[i].src="images/6-4.png";
-				break;
-			case 5: threeDice[i].src="images/6-5.png";
-				break;
-			case 6: threeDice[i].src="images/6-6.png";
-				break;
-		}
-		*/
 		
+		//Can we do it better? 
+		//Update class Dice to include a display function
+		Dice.prototype.display = function(sides, roll) {
+			switch (roll){
+					case 1: return "images/" + sides + "-1.png";
+						break;
+					case 2: return "images/" + sides + "-2.png";
+						break;
+					case 3: return "images/" + sides + "-3.png";
+						break;
+					case 4: return "images/" + sides + "-4.png";
+						break;
+					case 5: return "images/" + sides + "-5.png";
+						break;
+					case 6: return "images/" + sides + "-6.png";
+						break;
+					case 7: return "images/" + sides + "-6.png";
+						break;
+					case 8: return "images/" + sides + "-6.png";
+						break;
+					case 9: return "images/" + sides + "-6.png";
+						break;
+					case 10: return "images/" + sides + "-6.png";
+						break;
+				}
+		}
+		
+		function individualDie(event) {
+			let targetDie = event.target;
+			let dieSides = targetDie.attributes.sides.value;
+			let newDie = new Dice(dieSides);
+			let newRoll = newDie.roll();
+			let display = newDie.display(dieSides, newRoll);
+			targetDie.src=display;
+			newDie.sound();
+		}
+		
+		//Could we possibly extend? 
+		class createDice extends Dice {
+			constructor(sides){
+				super (sides);
+			}
+			
+			createImg (sides){
+				let diceContainer = document.getElementById("dice-container");
+				let genDie = document.createElement("img");
+				genDie.setAttribute("src", "images/" + sides + "-1.png");
+				genDie.setAttribute("sides", sides);
+				genDie.setAttribute("alt", sides + "-sided die");
+				diceContainer.appendChild(genDie);
+			}
+		}
+		
+		//Now we can create more dice that generate the image and will work within the rollDice() and individualDie() functions!
+		function createMoreDice(){
+			let sides = document.getElementById("die-sides").value;
+			let newDie = new createDice(sides);
+			newDie.createImg(sides);
+		}
 		
 	</script>
 </head>
@@ -232,6 +284,11 @@
 					<label for="realName">Real Name:
 						<input type="password" name="realName" id="realName">
 					</label>
+					
+					<label for="origin">Origin Story:
+						<textarea id="origin" name="origin"></textarea>
+					</label>
+					<br>
 					<label for="City">Base of Operations:
 						<select name="city" id="city">
 							<option value="" selected>Choose a City</option>
@@ -241,6 +298,9 @@
 							<option value="Coast City">Coast City</option>
 							<option value="Star City">Star City</option>
 						</select>
+					</label><br>
+					<label for="age">Age:
+						<input type="number" id="age" name="age" min="0" step="1">
 					</label><br>
 					<div id="powers">
 						<p>Super Powers:</p>
@@ -272,14 +332,7 @@
 							<input class="hero-class" type="radio" name="category" value="Antihero" id="anti-hero">
 						</label>
 					</div>
-					<label for="age">Age:
-						<input type="number" id="age" name="age" min="0" step="1">
-					</label><br>
 					
-					<label for="origin">Origin Story:
-						<textarea id="origin" name="origin"></textarea>
-					</label>
-					<br>
 					<button type="submit">Submit</button>
 					<button type="reset">Reset</button>
 
@@ -291,10 +344,23 @@
 				<h4>Story Dice</h4>
 				<p>Roll the dice, then make up a story using the images on the dice. This is a favorite of my children's.</p>
 				<button type="button" id="roll-dice">Roll!</button>
-				<img src="images/6-1.png" alt="6-sided die">
-				<img src="images/8-1.png" alt="8-sided die">
-				<img src="images/10-1.png" alt="10-sided die">
-				
+				<div id="dice-container">
+					<img src="images/6-1.png" sides="6" alt="6-sided die">
+					<img src="images/8-1.png" sides="8" alt="8-sided die">
+					<img src="images/10-1.png" sides="10" alt="10-sided die">
+				</div>
+				<p>The purpose for this was to use a class and call on it.</p>
+				<p>After, completing the Story Dice, I tried to come up with a way (and reason) to change the prototype. Now you can click on any individual die to roll just that die.</p>
+				<label for="Dice">How many sides on your new die?
+					<select name="die-sides" id="die-sides">
+						<option value="" selected>Choose a die</option>
+						<option value="6">6-sided</option>
+						<option value="8">8-sided</option>
+						<option value="10">10-sided</option>
+					</select>
+				</label>
+				<button id="make-dice">Make A Die</button>
+				<p>Creating new dice was done by extending the class Dice. Then I updated  rollDice() to be able to work with more than 3 dice.</p>
 			</div>
 		</section>
 		<script>
@@ -334,6 +400,11 @@
 			const rollButton = document.getElementById("roll-dice");
 			rollButton.addEventListener("click", rollDice)
 			
+			const diceContainer = document.getElementById("dice-container");
+			diceContainer.addEventListener("click", individualDie, false);
+			
+			const makeDice = document.getElementById("make-dice");
+			makeDice.addEventListener("click", createMoreDice);
 		</script>
 	</main>
 </body>
