@@ -5,6 +5,8 @@
 	<title>WDD330 Nanci Newell</title>
 	<link rel="stylesheet" media="screen" href="main.css">
 	<link rel="stylesheet" media="screen" href="large.css">
+	<script type="module" src="w4.js"></script>
+	<script type="text/javascript" src="w4module.js"></script>
 	<script>
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 											SEARCH
@@ -82,7 +84,7 @@
 		
 		
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-									OBJECT ORIENTED PROGRAMMING
+									STORY DICE
 		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 		//create Dice class
 		class Dice {
@@ -234,6 +236,12 @@
 			let newDie = new createDice(sides);
 			newDie.createImg(sides);
 		}
+		
+		/*function animateDino(){
+			document.getElementById("dino-display").innerHTML = "Something is happening..."
+			//createDino();
+		}*/
+		
 		
 	</script>
 </head>
@@ -422,9 +430,10 @@
 			makeDice.addEventListener("click", createMoreDice);
 			
 			/* * * * * * * * * * Dinosaur * * * * * * * * * * */
-			cosnt dinoButton = document.getElementById("dino-button");
+			const dinoButton = document.getElementById("dino-button");
 			dinoButton.addEventListener("click", animateDino);
 		</script>
 	</main>
+	
 </body>
 </html>

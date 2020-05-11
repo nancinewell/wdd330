@@ -1,7 +1,5 @@
 // JavaScript Module
 
-
-
 function createDino(){
 	let dinoChoice = document.getElementById("dino-select").value;
 	let dinoSpace = document.getElementById("dino-display");
@@ -32,4 +30,4 @@ function makeImage(imgName, appendTo){
 export {
 	createDino, 
 	makeImage
-}// JavaScript Document
+}
