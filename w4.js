@@ -4,7 +4,7 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-		import * as dino from 'w4module.js';
+		import * as dino from './w4module.js';
 		
 		function animateDino(){
 			document.getElementById("dino-display").innerHTML = "Something is happening..."
