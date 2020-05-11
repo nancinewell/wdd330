@@ -362,6 +362,21 @@
 				<button id="make-dice">Make A Die</button>
 				<p>Creating new dice was done by extending the class Dice. Then I updated  rollDice() to be able to work with more than 3 dice.</p>
 			</div>
+			
+			<div id="dinosaurs">
+				<label for="dinosaurs">Which dinosaur shall we see?
+					<select name="dino-select" id="dino-select">
+						<option value="" selected disabled>Choose a dinosaur</option>
+						<option value="t-rex">Tyrannosaurus Rex</option>
+						<option value="stego">Stegosaurus</option>
+						<option value="diplo">Diplodocus</option>
+					</select>
+				</label>
+				<button type="button" id="dino-button">This One!</button>
+				<div id="dino-display"></div>
+				
+			</div>
+		
 		</section>
 		<script>
 			/* * * * * * * * * * Search Form* * * * * * * * * * */
@@ -405,6 +420,10 @@
 			
 			const makeDice = document.getElementById("make-dice");
 			makeDice.addEventListener("click", createMoreDice);
+			
+			/* * * * * * * * * * Dinosaur * * * * * * * * * * */
+			cosnt dinoButton = document.getElementById("dino-button");
+			dinoButton.addEventListener("click", animateDino);
 		</script>
 	</main>
 </body>
