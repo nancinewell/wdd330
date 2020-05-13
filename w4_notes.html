@@ -5,8 +5,8 @@
 	<title>WDD330 Nanci Newell</title>
 	<link rel="stylesheet" media="screen" href="main.css">
 	<link rel="stylesheet" media="screen" href="large.css">
-	<script type="module" src="w4.js"></script>
-	<script type="module" src="w4module.js"></script>
+	<!--<script type="module" src="w4.js"></script>
+	<script type="module" src="w4module.js"></script>-->
 	<script>
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 											SEARCH
@@ -91,9 +91,11 @@
 			constructor(sides = 6){
 				this.sides = sides;
 			}
+			
 			roll() {
 				return Math.floor(this.sides * Math.random() + 1);
 			}
+			
 			sound(){
 				let audio = new Audio("die-sound.mp3");
 				audio.play();
@@ -240,12 +242,92 @@
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 									DINOSAUR ANIMATION
  		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-		import * as dino from './w4module.js';
+		//import { makeImage } from './w4module.js';
+		//I tried to put the Make Image into a module that would be imported, but I can't seem to get the modules to work. Import and Export give me errors, and the called upon function doesn't read them. Grrrr....
 		
-		function animateDino(){
-			document.getElementById("dino-display").innerHTML = "Something is happening..."
-			//createDino();
+		function createDino(){
+			let dinoChoice = document.getElementById("dino-select").value;
+			let dinoSpace = document.getElementById("dino-display");
+			dinoSpace.innerHTML = "";
+			
+			makeImage(dinoChoice, dinoSpace);
 		}
+
+		function makeImage(imgName, appendTo){
+			let genLLeg = document.createElement("img");
+			genLLeg.setAttribute("src", "images/" + imgName + "-lleg.png");
+			genLLeg.setAttribute("alt", imgName + " left leg");
+			genLLeg.setAttribute("class", "dino-img");
+			genLLeg.setAttribute("id", "lleg");
+			appendTo.appendChild(genLLeg);
+
+			let genRLeg = document.createElement("img");
+			genRLeg.setAttribute("src", "images/" + imgName + "-rleg.png");
+			genRLeg.setAttribute("alt", imgName + " right leg");
+			genRLeg.setAttribute("class", "dino-img");
+			genRLeg.setAttribute("id", "rleg");
+			appendTo.appendChild(genRLeg);
+			
+			let genbody = document.createElement("img");
+			genbody.setAttribute("src", "images/" + imgName + "-body.png");
+			genbody.setAttribute("alt", imgName + " body");
+			genbody.setAttribute("class", "dino-img");
+			genbody.setAttribute("id", "dbody");
+			appendTo.appendChild(genbody);
+		}
+		
+		
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+									OBJECT PRACTICE
+ 		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		const adventurer = {
+				name: "",
+				race: "",
+				introduction(expLocation){
+					expLocation.innerHTML = `Hello! My name is ${this.name}. I am a${this.race == "elf" ? "n" : ""} ${this.race}. I am going on an adventure!`;
+					return this;
+				},
+				portrait(imgLocation){
+					imgLocation.setAttribute("src", "images/" + this.race + ".png")
+					return this;
+				}
+			
+		}
+		
+		
+		function mixin(target,...objects) {
+			for (const object of objects) {   
+			if(typeof object === 'object') {
+				for (const key of Object.keys(object)) {
+					if (typeof object[key] === 'object') {
+					target[key] = Array.isArray(object[key]) ? [] : {};
+					mixin(target[key],object[key]);
+					} else {
+					Object.assign(target,object);  
+					}
+				}
+				}
+			}
+			return target;
+		}
+		
+		
+		function createAdventurer(){
+			let expLocation = document.getElementById("adventurer-info");
+			let imgLocation = document.getElementById("adventurer-img");
+			let adName = document.getElementById("adventurer-name").value;
+			let adRace = document.getElementById("adventurer-race").value;
+			
+			const firstAdventurer = Object.create(adventurer);
+			//firstAdventurer.name = adName;
+			//firstAdventurer.race = adRace;
+			mixin (firstAdventurer, {name: adName, race: adRace});
+
+			firstAdventurer.introduction(expLocation).portrait(imgLocation);
+			imgLocation.style.display= "block";
+		}
+		
+		
 		
 		
 	</script>
@@ -377,7 +459,9 @@
 			</div>
 			
 			<div id="dinosaurs">
-				<label for="dinosaurs">Which dinosaur shall we see?
+				<h4>Dinosaurs</h4>
+				<p>Well, this section was to try to use modules... but I have been unable to get them to work. I'll have to come back to this.</p>
+				<label for="dino-select">Which dinosaur shall we see?
 					<select name="dino-select" id="dino-select">
 						<option value="" selected disabled>Choose a dinosaur</option>
 						<option value="t-rex">Tyrannosaurus Rex</option>
@@ -385,9 +469,31 @@
 						<option value="diplo">Diplodocus</option>
 					</select>
 				</label>
-				<button type="button" id="dino-button" onclick="animateDino()">This One!</button>
+				<button type="button" id="dino-button" onclick="createDino()">This One!</button>
 				<div id="dino-display"></div>
-				
+			</div>
+			
+			<div id="object-practice">
+				<h4>Object Practice</h4>
+				<h3>Create an Adventurer</h3>
+				<form id="adventurer-form">
+					<label for="adventurer-name">Name:
+						<input type="text" id="adventurer-name" name="adventurer-name" autofocus placeholder="Your Adventurer's Name" maxlength="32">
+					</label><br>
+					<label for="adventurer-race">Race:
+						<select name="adventurer-race" id="adventurer-race">
+							<option value="" selected disabled>Choose a Race</option>
+							<option value="gnome">Gnome</option>
+							<option value="dwarf">Dwarf</option>
+							<option value="elf">Elf</option>
+							<option value="human">Human</option>
+						</select>
+					</label><br>
+					<button type="button" onclick="createAdventurer()">Create Adventurer</button>
+				</form>
+				<div id="adventurer-info"></div>
+				<img id="adventurer-img" alt="Adventurer's Image">
+				<p>I felt like the book was <em>very</em> unclear on this mixin stuff! It seemed that mixin was a built-in method, like reduce or filter, but it is <strong>not</strong>. Please note that mixin is a function you build yourself to put things together! </p>
 			</div>
 		
 		</section>
@@ -434,9 +540,7 @@
 			const makeDice = document.getElementById("make-dice");
 			makeDice.addEventListener("click", createMoreDice);
 			
-			/* * * * * * * * * * Dinosaur * * * * * * * * * * 
-			const dinoButton = document.getElementById("dino-button");
-			dinoButton.addEventListener("click", animateDino);*/
+			
 		</script>
 	</main>
 	

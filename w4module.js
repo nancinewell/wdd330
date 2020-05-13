@@ -5,7 +5,7 @@
 function createDino(){
 	let dinoChoice = document.getElementById("dino-select").value;
 	let dinoSpace = document.getElementById("dino-display");
-	
+	dinoSpace.innerHTML = "";
 	makeImage(dinoChoice, dinoSpace);
 	
 }
