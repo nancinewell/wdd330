@@ -398,6 +398,26 @@ input#age {
 #adventurer-img {
 	display: none;
 }
+
+#tic-tac-toe{
+	border-collapse: collapse;
+	border: solid 2px black;
+	font-size: 4em;
+	font-weight: 700;
+	position: absolute;
+	top: 5em;
+}
+
+#tic-tac-toe tr:hover {
+	background-color: transparent;
+}
+
+#tic-tac-toe .ttt-cell{
+	height: 2em;
+	width: 2em;
+	text-align: center;
+	padding: 0;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										ANIMATION
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

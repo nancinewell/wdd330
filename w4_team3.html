@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+	<script>
+		/* Tic Tac Toe
+		1. Build a 3X3 board in HTML and CSS.
+		You could do this with either a table element, or a collection of divs. Both have their advantages and disadvantages.
+
+		2.  Attach a touchend listener to the board.
+		When a cell is touched it should add either an 'X or an 'O', depending on whether it is player 1 or player 2's turn.
+
+		3. Add a reset button.
+		When touched the reset button should remove all of the marks from the board.
+		
+		Stretch Goals:
+		1. remove the outer borders from the board
+		
+		2. Right now the players have to decide who won, or whether it was a tie. Add some game logic to figure out when the game should result in a tie.
+		
+		3. Add the logic to figure out when someone wins*/
+		
+		
+
+		//Nanci - game
+		let counter = 0;
+
+		function game(event) {
+		  const target = event.target;
+		  counter++;
+		if(target.innerHTML == ""){
+		  switch (counter % 2) {
+			case 0:
+			  target.innerHTML = "O";
+			  target.style.color = "red";
+			  break;
+			case 1:
+			  target.innerHTML = "X";
+			  target.style.color = "green";
+			  break;
+		  }
+		}
+		  for (i = 0; i < 3; i++) {
+						if ((document.getElementById(i).innerHTML == "X") && (document.getElementById(i + 3).innerHTML == 'X') && (document.getElementById(i + 6).innerHTML == 'X')) {
+						var winner = "X Wins";
+						document.getElementById("winner").innerText = winner;
+					}
+				}
+
+		for (i = 0; i < 3; i++) {
+						if ((document.getElementById(i).innerHTML == "O") && (document.getElementById(i + 3).innerHTML == 'O') && (document.getElementById(i + 6).innerHTML == 'O')) {
+						var winner = "O Wins";
+						document.getElementById("winner").innerText = winner;
+					}
+				}
+
+		for (i = 0; i < 9; i += 3) {
+						if ((document.getElementById(i).innerHTML == "X") && (document.getElementById(i + 1).innerHTML == 'X') && (document.getElementById(i + 2).innerHTML == 'X')) {
+						var winner = "X Wins";
+						document.getElementById("winner").innerText = winner;
+					}
+				}
+
+		for (i = 0; i < 9; i += 3) {
+						if ((document.getElementById(i).innerHTML == "O") && (document.getElementById(i + 1).innerHTML == 'O') && (document.getElementById(i + 2).innerHTML == 'O')) {
+						var winner = "O Wins";
+						document.getElementById("winner").innerText = winner;
+					}
+				}
+
+		if ((document.getElementById(0).innerHTML == "X") && (document.getElementById(4).innerHTML == 'X') && (document.getElementById(8).innerHTML == 'X')) {
+			var winner = "X Wins";
+						document.getElementById("winner").innerText = winner;
+		}
+
+		if ((document.getElementById(2).innerHTML == "X") && (document.getElementById(4).innerHTML == 'X') && (document.getElementById(6).innerHTML == 'X')) {
+			var winner = "X Wins";
+						document.getElementById("winner").innerText = winner;
+		}
+
+		if ((document.getElementById(0).innerHTML == "O") && (document.getElementById(4).innerHTML == 'O') && (document.getElementById(8).innerHTML == 'O')) {
+			var winner = "O Wins";
+						document.getElementById("winner").innerText = winner;
+		}
+
+		if ((document.getElementById(2).innerHTML == "O") && (document.getElementById(4).innerHTML == 'O') && (document.getElementById(6).innerHTML == 'O')) {
+			var winner = "O Wins";
+						document.getElementById("winner").innerText = winner;
+		}
+
+		}
+
+		//Naomi - Reset
+		function reset() {
+		  counter = 0;
+		  for (let i = 0; i < 9; i++) {
+			var cleared = "";
+			var initText = "No Winner Yet";
+			var square = document.getElementById(i);
+			var winner = document.getElementById('winner');
+			square.innerText = cleared;
+			winner.innerText = initText;
+		  }
+		}
+
+	</script>
+	<style>
+	td {
+		border: 4px solid purple;
+		height: 100px;
+		width: 100px;
+		margin: 0 auto;
+		text-align: center;
+		vertical-align: middle;
+		font-family: "Comic"
+	}
+
+	table {
+		border-collapse: collapse;
+		position: absolute;
+		left: 50%;
+		margin-left: -155px;
+		top: 50px;
+	}
+
+	table tr:first-child td {
+		border-top: 0;
+	}
+
+	table tr:last-child td {
+		border-bottom: 0;
+	}
+
+	table tr td:first-child {
+		border-left: 0;
+	}
+
+	table tr td:last-child {
+		border-right: 0;
+	}
+
+	button{
+	  border-radius: 5px;
+	  padding: .5em;
+	}
+	</style>
+	
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li>Week 4
+					<ul>
+						<li><a href="w4_team3.html">Team Assignment</a></li>
+						<li><a href="w4_notes.html">Notes</a></li>
+						<li><a href="w4_exercises.html">Exercises</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<section class="mainsection">
+			 <table id="tic-tac-toe">
+      <tr>
+        <td class="cell" id="0"></td>
+        <td class="cell" id="1"></td>
+        <td class="cell" id="2"></td>
+      </tr>
+      <tr>
+        <td class="cell" id="3"></td>
+        <td class="cell" id="4"></td>
+        <td class="cell" id="5"></td>
+      </tr>
+      <tr>
+        <td class="cell" id="6"></td>
+        <td class="cell" id="7"></td>
+        <td class="cell" id="8"></td>
+      </tr>
+    </table>
+   
+    <button type="button" onclick="reset()">Replay</button>
+    <script src="main.js"></script>
+        <div><p id="winner">No Winner Yet</p></div>
+		</section>
+	</main>
+	<script>
+		const cells = document.getElementById("tic-tac-toe");
+		cells.addEventListener("click", game);
+	</script>
+</body>
+</html>
