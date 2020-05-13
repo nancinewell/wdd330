@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+	<script>
+		/* * * * * * * * * * * * * * 6.1 The Secret Life of Objects * * * * * * * * * * * * * 
+		X 	Write a class Vec that represents a vector in two-dimensional space. It takes x and y 		parameters (numbers), which it should save to properties of the same name.
+
+		X	Give the Vec prototype two methods, plus and minus, that take another vector as a 	 		parameter and return a new vector that has the sum or difference of the two vectors’ 		(this and the parameter) x and y values.
+
+		X	Add a getter property length to the prototype that computes the length of the vector—that 
+			is, the distance of the point (x, y) from the origin (0, 0).*/
+		
+		class Vec{
+			constructor(x, y){
+				this.x = x;
+				this.y = y;
+				/*let _length = () => {
+					const xa = 0;
+					const ya = 0;
+					let a = this.x - xa;
+					let b = this.y - ya;
+					let aSquared = Math.pow(a, 2);
+					let bSquared = Math.pow(b, 2);
+					let sumSquared = aSquared + bSquared;
+					let squareRoot = Math.sqrt(sumSquared);
+					return squareRoot;
+				};
+				
+				
+				this.length = function() {_length;};*/
+			}
+			plus(v){
+				this.x += v.x;
+				this.y += v.y;
+				return "x:" + this.x + ", y:" + this.y; 
+				
+			}
+			minus(v){
+				this.x -= v.x;
+				this.y -= v.y;
+				return "x:" + this.x + ", y:" + this.y; 
+			}
+			get length() {
+				const xa = 0;
+				const ya = 0;
+				let a = this.x - xa;
+				let b = this.y - ya;
+				let aSquared = Math.pow(a, 2);
+				let bSquared = Math.pow(b, 2);
+				let sumSquared = aSquared + bSquared;
+				return Math.sqrt(sumSquared);
+			}
+			
+		}
+		
+		console.log(new Vec(1, 2).plus(new Vec(2, 3)));
+		// → Vec{x: 3, y: 5}
+		console.log(new Vec(1, 2).minus(new Vec(2, 3)));
+		// → Vec{x: -1, y: -1}
+		console.log(new Vec(3, 4).length);
+		// → 5
+	
+		/* * * * * * * * * * * * * * 6.2 Groups * * * * * * * * * * * * * 
+			The standard JavaScript environment provides another data structure called Set. Like an instance of Map, a set holds a collection of values. Unlike Map, it does not associate other values with those—it just tracks which values are part of the set. A value can be part of a set only once—adding it again doesn’t have any effect.
+
+			Write a class called Group (since Set is already taken). 
+			Like Set, it has add, delete, and has methods. 
+			Its constructor creates an empty group, add adds a value to the group (but only if it isn’t already a member), delete removes its argument from the group (if it was a member), and has returns a Boolean value indicating whether its argument is a member of the group.
+
+			Use the === operator, or something equivalent such as indexOf, to determine whether two values are the same.
+
+			Give the class a static from method that takes an iterable object as argument and creates a group that contains all the values produced by iterating over it.*/
+		
+		class Group {
+		  constructor() {
+			this.values = [];
+		  }
+
+		  add(value) {
+			if (this.has(value) !== true) {
+			  this.values.push(value);
+			}
+		  }
+
+		  delete(value) {
+			this.values = this.values.filter(aValue => aValue !== value);
+		  }
+
+		  has(value) {
+			return this.values.includes(value);
+		  }
+
+		  static from(newValues) {
+			let group = new Group;
+			for (let value of newValues) {
+			  group.add(value);
+			}
+			return group;
+		  }
+		}
+
+		let group = Group.from([10, 20]);
+		console.log(group.has(10));
+		// → true
+		console.log(group.has(30));
+		// → false
+		group.add(10);
+		group.delete(10);
+		console.log(group.has(10));
+		// → false
+
+		/* * * * * * * * * * * * * * 6.3 Iterable Groups * * * * * * * * * * * * * 
+		Make the Group class from the previous exercise iterable. Refer to the section about the iterator interface earlier in the chapter if you aren’t clear on the exact form of the interface anymore.
+
+		If you used an array to represent the group’s members, don’t just return the iterator created by calling the Symbol.iterator method on the array. That would work, but it defeats the purpose of this exercise.
+
+		It is okay if your iterator behaves strangely when the group is modified during iteration.
+		*/
+		
+		class GroupIterator{
+			constructor(group){
+				this.group = group;
+			}
+		}
+		
+		Group.prototype[Symbol.iterator] = function(){
+			return new GroupIterator(this);
+		}
+		
+		/* * * * * * * * * * * * * * 10.2 Iterable Groups * * * * * * * * * * * * *
+		Write a CommonJS module, based on the example from Chapter 7, that contains the array of roads and exports the graph data structure representing them as roadGraph. It should depend on a module ./graph, which exports a function buildGraph that is used to build the graph. This function expects an array of two-element arrays (the start and end points of the roads).*/
+		
+		const roads = [
+			"Alice's House-Bob's House",   "Alice's House-Cabin",
+			"Alice's House-Post Office",   "Bob's House-Town Hall",
+			"Daria's House-Ernie's House", "Daria's House-Town Hall",
+			"Ernie's House-Grete's House", "Grete's House-Farm",
+			"Grete's House-Shop",          "Marketplace-Farm",
+			"Marketplace-Post Office",     "Marketplace-Shop",
+			"Marketplace-Town Hall",       "Shop-Town Hall"
+		];
+		import { buildGraph } from '.graphexport.js';
+		
+		/* SHOULD BE IMPORTED!
+		function buildGraph(edges){
+			let graph = Object.create(null);
+			
+			function addEdge(from, to){
+				if(graph[from] == null) {
+					graph[from] = [to];
+				} else {
+					graph[from].push(to);
+				}
+			}
+			for(let [from, to] of edges.map(r => r.split("-"))) {
+				addEdge(from, to);
+				addEdge(to, from);
+			}
+			return graph;
+		}*/
+		
+		const roadGraph = buildGraph(roads);
+		
+	</script>
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li>Week 4
+					<ul>
+						<li><a href="w4_team3.html">Team Assignment</a></li>
+						<li><a href="w4_notes.html">Notes</a></li>
+						<li><a href="w4_exercises.html">Exercises</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<section class="mainsection">
+			<h3>Eloquent JavaScript: Chapter 6</h3>
+			<h4>6.1 The Secret Life of Objects</h4>
+			<p>See console log. <br>
+			console.log(new Vec(1, 2).plus(new Vec(2, 3)));<br>
+			// → Vec{x: 3, y: 5}<br>
+			console.log(new Vec(1, 2).minus(new Vec(2, 3)));<br>
+			// → Vec{x: -1, y: -1}<br>
+			console.log(new Vec(3, 4).length);<br>
+			// → 5
+			</p>
+			
+			<h4>6.2 Groups</h4>
+			<p>See console log <br>
+			let group = Group.from([10, 20]);<br>
+			console.log(group.has(10));<br>
+			// → true<br>
+			console.log(group.has(30));<br>
+			// → false<br>
+			group.add(10);<br>
+			group.delete(10);<br>
+			console.log(group.has(10));<br>
+			// → false</p>
+			<p>I had real trouble with this one! I had severely overcomplicated it and ended up having to look at the answer for help getting it to work after 5 hours trying on my own with my sidekick every-article-ever-written-on-classes-this-objects-filter-reduce-arrow functions-and-other-stuff... </p>
+			
+			<h4>6.3 Iterable Groups</h4>
+			<p>See Console Log</p>
+			
+			<h4>6.4 Borrowing a Method</h4>
+			
+			<h3>Eloquent JavaScript: Chapter 10</h3>
+			<h4></h4>
+			
+		</section>
+	</main>
+</body>
+</html>
