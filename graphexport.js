@@ -1,5 +1,5 @@
 // JavaScript Document
-export function buildGraph(edges){
+function buildGraph(edges){
 			let graph = Object.create(null);
 			
 			function addEdge(from, to){
@@ -16,4 +16,4 @@ export function buildGraph(edges){
 			return graph;
 		}
 
-//export{ buildGraph };
+export{ buildGraph };
