@@ -132,8 +132,12 @@
 			return new GroupIterator(this);
 		}
 		
-		/* * * * * * * * * * * * * * 10.2 Iterable Groups * * * * * * * * * * * * *
+			
+	</script>
+	<script type="module">
+	/* * * * * * * * * * * * * * 10.2 Iterable Groups * * * * * * * * * * * * *
 		Write a CommonJS module, based on the example from Chapter 7, that contains the array of roads and exports the graph data structure representing them as roadGraph. It should depend on a module ./graph, which exports a function buildGraph that is used to build the graph. This function expects an array of two-element arrays (the start and end points of the roads).*/
+		import { buildGraph } from './graphexport.js';
 		
 		const roads = [
 			"Alice's House-Bob's House",   "Alice's House-Cabin",
@@ -144,7 +148,7 @@
 			"Marketplace-Post Office",     "Marketplace-Shop",
 			"Marketplace-Town Hall",       "Shop-Town Hall"
 		];
-		import { buildGraph } from '.graphexport.js';
+		
 		
 		/* SHOULD BE IMPORTED!
 		function buildGraph(edges){
@@ -166,6 +170,9 @@
 		
 		const roadGraph = buildGraph(roads);
 		
+		function displayGraph(){
+			document.getElementById("road-div").innerHTML = roadGraph;
+		}
 	</script>
 </head>
 
@@ -225,7 +232,9 @@
 			<h4>6.4 Borrowing a Method</h4>
 			
 			<h3>Eloquent JavaScript: Chapter 10</h3>
-			<h4></h4>
+			<h4>10.2</h4>
+			<button onclick="displayGraph()">Display Road Graph</button>
+			<div id="road-div"></div>
 			
 		</section>
 	</main>
