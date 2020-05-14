@@ -16,4 +16,5 @@ function buildGraph(edges){
 			return graph;
 		}
 
-export{ buildGraph };
+exports.buildgraph = buildGraph();
+//export{ buildGraph };
