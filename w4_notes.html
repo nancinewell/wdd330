@@ -239,47 +239,6 @@
 			newDie.createImg(sides);
 		}
 		
-		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-									DINOSAUR ANIMATION
- 		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-		//I tried to put the Make Image into a module that would be imported, but I can't seem to get the modules to work. Import and Export give me errors, and the called upon function doesn't read them. 
-		
-		//Uncomment this command to test the import.
-		//import { makeImage } from './makeImage.js';
-		
-		
-		
-		function createDino(){
-			let dinoChoice = document.getElementById("dino-select").value;
-			let dinoSpace = document.getElementById("dino-display");
-			dinoSpace.innerHTML = "";
-			
-			makeImage(dinoChoice, dinoSpace);
-		}
-
-		//Comment out this function to test the import.
-		function makeImage(imgName, appendTo){
-			let genLLeg = document.createElement("img");
-			genLLeg.setAttribute("src", "images/" + imgName + "-lleg.png");
-			genLLeg.setAttribute("alt", imgName + " left leg");
-			genLLeg.setAttribute("class", "dino-img");
-			genLLeg.setAttribute("id", "lleg");
-			appendTo.appendChild(genLLeg);
-
-			let genRLeg = document.createElement("img");
-			genRLeg.setAttribute("src", "images/" + imgName + "-rleg.png");
-			genRLeg.setAttribute("alt", imgName + " right leg");
-			genRLeg.setAttribute("class", "dino-img");
-			genRLeg.setAttribute("id", "rleg");
-			appendTo.appendChild(genRLeg);
-			
-			let genbody = document.createElement("img");
-			genbody.setAttribute("src", "images/" + imgName + "-body.png");
-			genbody.setAttribute("alt", imgName + " body");
-			genbody.setAttribute("class", "dino-img");
-			genbody.setAttribute("id", "dbody");
-			appendTo.appendChild(genbody);
-		}
 		
 		
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -331,9 +290,50 @@
 			firstAdventurer.introduction(expLocation).portrait(imgLocation);
 			imgLocation.style.display= "block";
 		}
+
+	</script>
+	<script type="module">
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+									DINOSAUR ANIMATION
+ 		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		//I tried to put the Make Image into a module that would be imported, but I can't seem to get the modules to work. Import and Export give me errors, and the called upon function doesn't read them. 
+		
+		//Uncomment this command to test the import.
+		//import { makeImage } from './makeImage.js';
 		
 		
 		
+		function createDino(){
+			let dinoChoice = document.getElementById("dino-select").value;
+			let dinoSpace = document.getElementById("dino-display");
+			dinoSpace.innerHTML = "";
+			
+			makeImage(dinoChoice, dinoSpace);
+		}
+
+		//Comment out this function to test the import.
+		function makeImage(imgName, appendTo){
+			let genLLeg = document.createElement("img");
+			genLLeg.setAttribute("src", "images/" + imgName + "-lleg.png");
+			genLLeg.setAttribute("alt", imgName + " left leg");
+			genLLeg.setAttribute("class", "dino-img");
+			genLLeg.setAttribute("id", "lleg");
+			appendTo.appendChild(genLLeg);
+
+			let genRLeg = document.createElement("img");
+			genRLeg.setAttribute("src", "images/" + imgName + "-rleg.png");
+			genRLeg.setAttribute("alt", imgName + " right leg");
+			genRLeg.setAttribute("class", "dino-img");
+			genRLeg.setAttribute("id", "rleg");
+			appendTo.appendChild(genRLeg);
+			
+			let genbody = document.createElement("img");
+			genbody.setAttribute("src", "images/" + imgName + "-body.png");
+			genbody.setAttribute("alt", imgName + " body");
+			genbody.setAttribute("class", "dino-img");
+			genbody.setAttribute("id", "dbody");
+			appendTo.appendChild(genbody);
+		}
 		
 	</script>
 </head>
