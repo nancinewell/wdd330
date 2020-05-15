@@ -15,5 +15,5 @@ function buildGraph(edges){
 			}
 			return graph;
 		}
-
-export { buildGraph };
+export {buildGraph};
+//module.exports = buildGraph;
