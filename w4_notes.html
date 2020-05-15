@@ -242,8 +242,12 @@
 		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 									DINOSAUR ANIMATION
  		* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-		//import { makeImage } from './w4module.js';
-		//I tried to put the Make Image into a module that would be imported, but I can't seem to get the modules to work. Import and Export give me errors, and the called upon function doesn't read them. Grrrr....
+		//I tried to put the Make Image into a module that would be imported, but I can't seem to get the modules to work. Import and Export give me errors, and the called upon function doesn't read them. 
+		
+		//Uncomment this command to test the import.
+		//import { makeImage } from './makeImage.js';
+		
+		
 		
 		function createDino(){
 			let dinoChoice = document.getElementById("dino-select").value;
@@ -253,6 +257,7 @@
 			makeImage(dinoChoice, dinoSpace);
 		}
 
+		//Comment out this function to test the import.
 		function makeImage(imgName, appendTo){
 			let genLLeg = document.createElement("img");
 			genLLeg.setAttribute("src", "images/" + imgName + "-lleg.png");
@@ -460,7 +465,7 @@
 			
 			<div id="dinosaurs">
 				<h4>Dinosaurs</h4>
-				<p>Well, this section was to try to use modules... but I have been unable to get them to work. I'll have to come back to this.</p>
+				<p>Well, this section was to try to use modules... but I have been unable to get them to work. You can comment out the makeImage function, and uncomment the import command to test the import.</p>
 				<label for="dino-select">Which dinosaur shall we see?
 					<select name="dino-select" id="dino-select">
 						<option value="" selected disabled>Choose a dinosaur</option>
