@@ -74,18 +74,6 @@
 			}
 			
 			//LOCK THE BOX BEFORE RETURNING, regardless of whether the argument function returned normally or threw an exception.
-		  	/*let myPromise = new Promise((resolve, reject) => {
-				box.locked = true; 
-				if (box.locked){
-				resolve(console.log("The box is locked: " + box.locked));
-				} else {
-					reject(console.log("REJECTED"));
-				}
-			} );
-			
-			p.then*/
-			
-			
 		}
 
 		withBoxUnlocked(function() {
@@ -122,6 +110,7 @@
 			<ul class="topnav">
 				<li><a href="index.html">Home</a></li>
 				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li><a href="todo.html">Project: To Do</a></li>
 				<li>Week 5
 					<ul>
 						<li><a href="w5_team3.html">Team Assignment</a></li>
@@ -142,6 +131,7 @@
 			<p>See the console for results of the finished code!</p>
 			
 			<h4>8.2 The Locked Box</h4>
+			<p>See the console log for the results of our adventure!</p>
 		</section>
 		<script>
 
