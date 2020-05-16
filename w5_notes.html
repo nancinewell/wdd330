@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+	<script>
+		'use strict';
+		
+		function errorTest(){
+			let input, type;
+			try{
+				input = parseInt(document.getElementById("error").value);
+				type = "no error";
+			}
+			catch(error){
+				input = parseFloat(document.getElementById("error-input").value);
+				type = "an error";
+			}
+			finally{
+				document.getElementById("error-output").innerHTML = `There was ${type} with your entry.`
+			}
+		}
+		
+		
+	</script>
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li>Week 5
+					<ul>
+						<li><a href="w5_team3.html">Team Assignment</a></li>
+						<li><a href="w5_notes.html">Notes</a></li>
+						<li><a href="w5_exercises.html">Exercises</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<section class="mainsection">
+			<p>I find it odd that the books waits until chapter 10 to talk about debugging. You really need to know how to use debugging tools when you start coding.</p>
+			<p><dfn>Exceptions</dfn> are a type of error that give you information to help you deal with the error. <dfn>Stack Traces</dfn> are also produced by exceptions. They walk through the points that led to the exception. This helps you work backwards through the breadcrumbs that lead to the originating point of the error.</p>
+			<p><dfn>Warnings</dfn> can be triggered if there's a small error, but the program keeps running (possibly incorrectly) despite the error. Different browsers throw out warnings differently, so you may or may not get one.</p>
+			<p>You can use <dfn>strict mode</dfn> to find more errors and warnings that may not be caught otherwise, helping you debug issues before they become big. It also catches deprecated and sloppy code. This page has been written using strict mode to practice. This is excellent to me, as I am also learning Java, which is strictly typed. My lazy Javascript habits have spilled into my Java coding, which throws errors at the tiniest thing, like a missing semicolon, which sloppy mode of Javascript accepts without hesitation. You can use strict mode globally (for all of the script), or locally within a single function. Modules use strict mode by default.</p>
+			<p>I was introducted to <dfn>linting tools</dfn> a previous class. I do not care for them at all. They are incredibly picky about indenting and using common conventions. Linting tools do not check for correct code, just consistency in how you code.</p>
+			<p>You can use <dfn>feature detection</dfn> to run particular code based on whether it is supported in the browser running the code, keeping that unsupported feature from crashing your program.</p>
+			<p>I much prefer breakpoints to alerts. Walking through each step of the code and watching the result of each command is a more effective method of debugging in my opinion.</p>
+			<p><dfn>console.trace()</dfn> and the <dfn>debugger</dfn> command are  new tools to me. I'll be using it these week as I debug to see just how useful they are.</p>
+			<p>Why would you want to create an <dfn>error object</dfn>? AKA <dfn>throw</dfn> an error. For reference, here are the standardly supported possibilities.</p>
+			<ul>
+				<li><dfn>RangeError</dfn></li>
+				<li><dfn>ReferenceError</dfn>: thrown when a reference to a non-existant item is made</li>
+				<li><dfn>SyntaxError</dfn></li>
+				<li><dfn>TypeError</dfn></li>
+				<li><dfn>URIError</dfn>: thrown when there's an issu encoding or decoding the URI... What's that?</li>
+			</ul>
+			<p>Let's give <dfn>try</dfn>, <dfn>catch</dfn>, and <dfn>finally</dfn> a try.</p>
+			<input type="number" id="error-input" autofocus placeholder="Type in a number" maxlength="32">
+			<button onclick="errorTest()">Submit</button>
+			<div id="error-output"></div>
+			<p>Okay, I was able to design an error to trigger the catch, but why would we use this? If I can foresee an error well enough to put in a try/catch, wouldn't I simply fix the code so there's no error?</p>
+			<p>It took me a bit to wrap my head around the usefulness of Jest. It seems to me that I can manually test a function with expected outcomes just as fast as I can write a test to do it for me. This is where, as usual, I am not looking at the bigger picture. Imagine you work for a company, and it's a big project, and you would test hundreds or thousands of possibilities through your super complicated code. This is where it becomes very useful!</p>
+					
+		</section>
+		<script>
+		</script>
+	</main>
+	
+</body>
+</html>

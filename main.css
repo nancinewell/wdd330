@@ -230,7 +230,7 @@ ul{
 										MISC 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-.keyword{
+.keyword, dfn{
 	color: #aa3939;
 	font-weight: 600;
 }
