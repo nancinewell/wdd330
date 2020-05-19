@@ -5,14 +5,7 @@
 class ListItemCollection{
 	constructor(){
 		this.itemList = [];
-		//if storage isn't empty, pull the list from storage
-		try{
-			if(this.pullFromStorage() != null){
-				this.pullFromStorage()
-				}
-		} catch(error) {
-			console.log("itemList is currently empty");
-		}
+		this.pullFromStorage()
 	}
 	
 	add(object){
@@ -61,8 +54,10 @@ class ListItemCollection{
 	pullFromStorage(){
 		//pull itemList from storage
 		let storedList = JSON.parse(localStorage.getItem("list"));
-		//set new itemList
-		this.itemList = storedList;
+		//If not null, set  new itemList
+		if(storedList != null){
+			this.itemList = new Array(storedList);
+		} 	
 	}
 	
 	setToStorage(){
@@ -103,8 +98,7 @@ class ListItemCollection{
 	}
 	
 	display(){
-		if(this.pullFromStorage() != null){
-			this.pullFromStorage()}
+		this.pullFromStorage()
 		document.getElementById("item-container").innerHTML = "";
 		for(var item of this.itemList){
 			this.generateDisplay(item.name);
