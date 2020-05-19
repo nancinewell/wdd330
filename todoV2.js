@@ -113,7 +113,8 @@ class ListItemCollection{
 	}
 	
 	display(){
-		this.pullFromStorage()
+		if(this.pullFromStorage() != null){
+			this.pullFromStorage()}
 		document.getElementById("item-container").innerHTML = "";
 		for(var item of this.itemList){
 			this.generateDisplay(item.name);
