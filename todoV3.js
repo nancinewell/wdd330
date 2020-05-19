@@ -1,5 +1,5 @@
 //import
-import  { ListItemCollection, ListItem } from './listItemCollection.js';
+import  { ListItemCollection, ListItem, createElement } from './listItemCollection.js';
 
 //Instantiate the List
 let newList = new ListItemCollection;
