@@ -140,4 +140,4 @@ function createElement(tag, text, className, name){
 }
 
 
-export{ListItemCollection, ListItem }
+export{ListItemCollection, ListItem, createElement }
