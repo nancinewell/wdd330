@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS TO DO PROJECT */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Slab:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+/* * * * * * * * * * * * * * * * * * * * * * * * 
+				GENERAL
+* * * * * * * * * * * * * * * * * * * * * * * */
+body {
+	font-family: 'Roboto Slab', serif;
+	background-color: #404040;
+	height: 100vh;
+	min-width: 475px;
+}
+
+h1, h2{
+	font-family: 'Permanent Marker', cursive;
+	/*font-family: 'Bangers', cursive;*/
+	color: #a6a5a5;
+	text-align: center;
+	letter-spacing: 4px;
+	margin: 0;
+}
+
+h1{
+	font-size: 3em;
+	padding: .5em 0 .25em;
+}
+
+h2{
+	padding: .25em 0 2em;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * * 
+				LAYOUT
+* * * * * * * * * * * * * * * * * * * * * * * */
+main{
+	max-width: 600px;
+	margin: auto;
+	
+}
+#item-container{
+	display: grid;
+	grid-template-columns: 1fr;
+	height: 70%;
+	margin-bottom: 8em;
+}
+
+.lineItem{
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+	grid-gap: 1em;
+	margin-top: 1em;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * 
+				BUTTON/INPUT
+* * * * * * * * * * * * * * * * * * * * * * * */
+button{
+	border-radius: 5px;
+	font-size: 2em;
+	background-color: #7b7a7a;
+	width: 1.5em;
+	margin: auto;
+	text-align: center;
+	border: none;
+	box-shadow: 2px 2px #a6a5a5;
+}
+
+#add-text, .items{
+	border-bottom: 1px solid #a6a5a5;
+	background-color: transparent;
+	font-family: 'Roboto Slab', serif;
+	padding: .5em;
+	font-size: 1.25em;
+	color: #fffefe;
+}
+#add-text{
+	border: 1px solid #a6a5a5;
+}
+#add-text:focus{
+	border: 2px solid #daa257;
+}
+
+#add-button{
+	height: 45px;
+}
+.skull, .delete{
+	text-indent: -3px;
+}
+
+.done {
+	text-decoration: line-through;
+	color: #a6a5a5;
+	font-style: italic;
+	font-weight: 100;
+}
+
+#show-list{
+	color: #7b7a7a;
+}
+#show-list:hover{
+	cursor: context-menu;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * 
+				BOTTOM BUTTONS
+* * * * * * * * * * * * * * * * * * * * * * * */
+.to-do-buttons{
+	margin: 0 auto;
+	position: fixed;
+	left: 0;
+	right: 0;
+	max-width: 600px;
+	bottom: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 1em;
+	background-color: #404040;
+	width: 90%;
+	padding: 1em 1em 2em;
+	min-width: 475px;
+}
+
+.to-do-buttons button{
+	width: 100%;
+}

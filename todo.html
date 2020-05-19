@@ -3,32 +3,31 @@
 <head>
 	<meta charset="utf-8">
 	<title>WDD330 Nanci Newell</title>
-	<link rel="stylesheet" media="screen" href="main.css">
-	<link rel="stylesheet" media="screen" href="large.css">
+	<link rel="stylesheet" media="screen" href="todo.css">
 </head>
 
 <body>
 	
 	<header>
-		<h1><span id="brand">nanci</span>newell</h1>
-		<h2>WDD 330 - Mobile Application Pilot</h2>
-		<h4>Spring 2020</h4>
+		<h1>Killin' It</h1>
+		<h2 id="remaining">0 To Be Killed</h2>
 	</header>
 	
 	<main>
-		<nav class="mobile-menu">
-			<div id="menu">M E N U</div>
-			<input type="checkbox" id="menu-check">
-			<ul class="topnav">
-				<li><a href="index.html">Home</a></li>
-				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
-				<li><a href="todo.html">Project: To Do</a></li>
-			</ul>
-		</nav>
-		
-		<section class="mainsection">
-			
-		</section>
+		<div class="lineItem">
+			<button id="add-button" onclick="createNewItem()">+</button>
+			<input type="text" id="add-text" onfocus="this.value=''" placeholder="new thing to do">
+			<button class="delete" id="clear-input" onclick="clearInput()">&#128163;</button>
+		</div>
+		<div id="item-container">
+		<!-- INSERT ALL ITEMS HERE!-->
+		</div>
 	</main>
+	<section class="to-do-buttons">
+		<button onclick="newList.filterItems(false)">&#128128;</button>
+		<button onclick="newList.filterItems(true)">&#9760;</button>
+		<button onclick="newList.display()">&#128128; &#9760;</button>
+	</section>
+<script src="todoV3.js" type="module"></script>
 </body>
 </html>

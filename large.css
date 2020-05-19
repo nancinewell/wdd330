@@ -26,7 +26,7 @@ main section.mainsection{
 	
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-										MADLIBS LAYOUT 
+										MISC 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 	#madlibs-entry {
 		display: grid;
@@ -37,7 +37,6 @@ main section.mainsection{
 	#madbutton {
 		grid-row-start: 8;
 	}
-	
 	
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										NAVIGATION 
