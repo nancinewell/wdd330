@@ -1,6 +1,9 @@
-﻿//VERSION4
+﻿//VERSION 6
+import { createElement } from './utilities.js';
+import { pullFromStorage, setToStorage } from './ls.js'
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-		LIST ITEMS
+	LIST ITEMS
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 class ListItem {
 	constructor(text, name) {
@@ -9,7 +12,6 @@ class ListItem {
 			this.name = name
 	}
 }
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		COLLECTION
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -17,15 +19,13 @@ class ListItemCollection {
 	constructor() {
 		//begin with an empty array
 		this.itemList = [];
-		//if there's anything in local storage, pull it and fill the array
-		this.pullFromStorage()
 	}
 
 	add(object) {
 		//push new item into itemList
 		this.itemList.push(object);
 		//set to storage
-		this.setToStorage();
+		setToStorage();
 		//create new display
 		this.display();
 	}
@@ -36,7 +36,7 @@ class ListItemCollection {
 		//remove object from collection
 		this.itemList.splice(thisOne, 1);
 		//set to storage
-		this.setToStorage();
+		setToStorage();
 		//create new display
 		this.display();
 	}
@@ -47,7 +47,7 @@ class ListItemCollection {
 		//Update object's complete  property.
 		this.itemList[thisOne].complete = true;
 		//set to storage
-		this.setToStorage();
+		setToStorage();
 		//create new display
 		this.display();
 	}
@@ -58,7 +58,7 @@ class ListItemCollection {
 		//Update object's complete  property.
 		this.itemList[thisOne].complete = false;
 		//set to storage
-		this.setToStorage();
+		setToStorage();
 		//create new display
 		this.display();
 	}
@@ -67,7 +67,7 @@ class ListItemCollection {
 		//Find index of specific object using findIndex method.    
 		let thisOne = this.itemList.findIndex((obj => obj.name == nameid));
 		return thisOne;
-    }
+	}
 
 	filterItems(filterWhat) {
 		//clear container
@@ -78,19 +78,6 @@ class ListItemCollection {
 		for (var item of filteredList) {
 			this.generateDisplay(item.name);
 		}
-	}
-
-	pullFromStorage() {
-		//pull itemList from storage
-		let storedList = JSON.parse(localStorage.getItem("list"));
-		//set new itemList
-		if (storedList != null) {
-		this.itemList = storedList;
-		}
-	}
-
-	setToStorage() {
-		localStorage.setItem("list", JSON.stringify(this.itemList));
 	}
 
 	generateDisplay(name) {
@@ -124,7 +111,7 @@ class ListItemCollection {
 
 	display() {
 		//get most recent list
-		this.pullFromStorage()
+		pullFromStorage(this)
 		//clear the item-container
 		document.getElementById("item-container").innerHTML = "";
 		//fill the item container
@@ -140,41 +127,23 @@ class ListItemCollection {
 		let remainingItems = this.itemList.filter(item => item.complete == false).length;
 		//display remaining items
 		let display = document.getElementById("remaining");
-		display.innerHTML = `${remainingItems} things to knock out`;
+		display.innerHTML = `${remainingItems} thing${remainingItems>1 ? 's': ''} to knock out`;
 	}
 }
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-		SUPPORT FUNCTIONS
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-//function to create elements to display list
-function createElement(tag, text, className, name) {
-	const genElement = document.createElement(tag);
-	genElement.textContent = text;
-	genElement.classList.add(className);
-	genElement.setAttribute("name", name);
-	return genElement;
-}
 
-//incrementor for unique names of items
-function getName(incrementor) {
-	{
-		for (item of newList.itemList) {
-			if (item.name >= incrementor) {
-				incrementor = item.name + 1;
-			}
-		}
-	}
-	return incrementor;
-}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		MAIN FUNCTIONS
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 //Instantiate the newList
 let newList = new ListItemCollection;
+//if there's anything in local storage, pull it and fill the array
+pullFromStorage(newList);
 
 function createNewItem() {
-	let name = getName(0);
+	//make unique name with timestamp
+	let name = Math.round(new Date().getTime());
 	const input = document.getElementById("add-text");
 	let content = input.value;
 
@@ -206,5 +175,4 @@ function removeItem(event) {
 	newList.remove(nameid);
 }
 
-//display on load
-newList.display();
+export { ListItem, ListItemCollection, newList, createNewItem, markDone, markUndone, removeItem }

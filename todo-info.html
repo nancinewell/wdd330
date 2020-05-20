@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -37,7 +37,101 @@
 				<img src="images/todo-wireframe-sm.png" alt="small wireframe" class="todo-img">
 				<img src="images/todo-wireframe-lg.png" alt="small wireframe" class="todo-img">	
 			</div>
-			
+			<div>
+				<h4>My To Do List</h4>
+				<ul>
+					<li>&#9745; Body markup/style</li>
+					<li>&#9745; Header markup/style</li>
+					<li>&#9745; Add markup/style</li>
+					<li>&#9745; Form markup/style</li>
+					<li>&#9745; Buttons markup/style</li>
+					<li>&#9745; Parse & get info from local storage</li>
+					<li>&#9745; Stringify & set info to local storage</li>
+					<li>
+						&#9745; Create New Item function
+						<ul>
+							<li>&#9745; Check to see if input is empty</li>
+							<li>&#9745; Create new object</li>
+							<li>&#9745; Display new object</li>
+							<li>&#9745; Add object to collection</li>
+							<li>&#9745; Run display function (updates localStorage)</li>
+							<li>&#9745; Run remaining items function</li>
+						</ul>
+					</li>
+					<li>
+						&#9745; Display function
+						<ul>
+							<li>&#9745; Run for each item in the itemList</li>
+							<li>&#9745; Add new div to contain pieces</li>
+							<li>&#9745; Add new skull button based on completed status</li>
+							<li>&#9745; Add new event listener based on completed status</li>
+							<li>&#9745; Add new line with text</li>
+							<li>&#9745; Add new delete button</li>
+							<li>&#9745; Prepend div to top of item-container</li>
+							<li>&#9745; Append completed items div to bottom of item-container</li>
+							<li>&#9745; Stringify & save to local storage</li>
+						</ul>
+					</li>
+					<li>
+						&#9745; Add new item function
+						<ul>
+							<li>&#9745; Add new ListItem</li>
+							<li>&#9745; Get text from input</li>
+							<li>&#9745; Set name (timestamp- Do not reduce to seconds. It can resulte in multiple items with same name)</li>
+							<li>&#9745; Set complete = false </li>
+							<li>&#9745; Clear input text </li>
+							<li>&#9745; Run display function (updates localStorage)</li>
+							<li>&#9745; Run remaining items function</li>
+						</ul>
+					</li>
+					<li>&#9745;Done style</li>
+					<li>
+						&#9745; Done function
+						<ul>
+							<li>&#9745; Add done style</li>
+							<li>&#9745; Use id to change complete to true</li>
+							<li>&#9745; Trigger display function (updates localStorage)</li>
+							<li>&#9745; Run remaining items function</li>
+						</ul>
+					</li>
+					<li>
+						&#9745; Delete function
+						<ul>
+							<li>&#9745; Use name from button and object</li>
+							<li>&#9745; Remove object from collection</li>
+							<li>&#9745; Trigger display function (updates localStorage)</li>
+							<li>&#9745; Run remaining items function</li>
+						</ul>
+					</li>
+					<li>
+						&#9745; Remaining items function
+						<ul>
+							<li>&#9745; Obtain items complete == false</li>
+							<li>&#9745; Output the qty into header</li>
+						</ul>
+					</li>
+					<li>
+						Filter buttons
+						<ul>
+							<li>&#9745; Filter to do</li>
+							<li>&#9745; Filter Done</li>
+							<li>&#9745; Filter All (remove filters?)</li>
+						</ul>
+					</li>
+					<li>&#9745; Run Display on load (retrieves from Local Storage)</li>
+					<li>
+						&#9745; Create undone function
+						<ul>
+							<li>&#9745; Remove done style</li>
+							<li>&#9745; Use id to change complete to false</li>
+							<li>&#9745; Trigger display function (updates localStorage)</li>
+							<li>&#9745; Run remaining items function</li>
+						</ul>
+					</li>
+					<li>&#9745; Set localStorage helper to module, pass it this</li>
+					<li>&#9745; Set utilities to module</li>
+				</ul>
+			</div>
 				
 			
 		</section>

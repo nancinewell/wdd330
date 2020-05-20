@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS TO DO PROJECT */
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Slab:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
@@ -7,7 +7,7 @@
 * * * * * * * * * * * * * * * * * * * * * * * */
 body {
 	font-family: 'Roboto Slab', serif;
-	background-color: #404040;
+	background-color: #191919;
 	height: 100vh;
 	min-width: 475px;
 }
@@ -28,6 +28,17 @@ h1{
 
 h2{
 	padding: .25em 0 2em;
+}
+p{
+	grid-column-start: 1;
+	grid-column-end: 4;
+	text-align: center;
+}
+p a{
+	color: #7b7a7a;
+}
+p a:hover {
+	color: #a6a5a5;
 }
 /* * * * * * * * * * * * * * * * * * * * * * * * 
 				LAYOUT
@@ -115,7 +126,7 @@ button{
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: 1em;
-	background-color: #404040;
+	background-color: #191919;
 	width: 90%;
 	padding: 1em 1em 2em;
 	min-width: 475px;

@@ -156,17 +156,6 @@ function createElement(tag, text, className, name) {
 	return genElement;
 }
 
-//incrementor for unique names of items
-function getName(incrementor) {
-	{
-		for (item of newList.itemList) {
-			if (item.name >= incrementor) {
-				incrementor = item.name + 1;
-			}
-		}
-	}
-	return incrementor;
-}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 		MAIN FUNCTIONS
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -174,7 +163,8 @@ function getName(incrementor) {
 let newList = new ListItemCollection;
 
 function createNewItem() {
-	let name = getName(0);
+	//make unique name with timestamp
+	let name = Math.round(new Date().getTime());
 	const input = document.getElementById("add-text");
 	let content = input.value;
 

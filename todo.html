@@ -28,7 +28,17 @@
 		<button onclick="newList.filterItems(false)">&#128128;</button>
 		<button onclick="newList.filterItems(true)">&#9760;</button>
 		<button onclick="newList.display()">&#128128; &#9760;</button>
+		<p><a href="todo-info.html" target="_blank">Click here to view the info about this project.</a></p>
 	</section>
-<script src="todoV4.js"></script>
+	
+<script type="module">
+	import { ListItem, ListItemCollection, newList, createNewItem, markDone, markUndone, removeItem } from './todoV6.js';
+	//HTML expect the global window object- need to redirect it
+	window.createNewItem = createNewItem;
+	window.newList = newList;
+	
+    //display on load
+    newList.display();
+</script>
 </body>
 </html>
