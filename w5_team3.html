@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+</head>
+
+<body>
+
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li><a href="todo.html">Project: To Do</a></li>
+				<li>
+					Week 5
+					<ul>
+						<li><a href="w5_team3.html">Team Assignment</a></li>
+						<li><a href="w5_notes.html">Notes</a></li>
+						<li><a href="w5_exercises.html">Exercises</a></li>
+					</ul>
+				</li>
+
+			</ul>
+		</nav>
+
+		<section class="mainsection-hikes">
+			<div class="header">
+				<header><h1>GREAT HIKES</h1></header>
+			</div>
+
+			<div class="hikes-main">
+				<ul id="hikes" class="hikeStyles">
+					<!-- your hike list should be build here. -->
+					<div><h2>HIKE 1</h2></div>
+					<section class="hike1">
+						<img src="images/falls.jpg" alt="Picture of a waterfall" />
+						<p></p>
+					</section>
+					<div><h2>HIKE 2</h2></div>
+					<section class="hike2">
+						<img src="images/falls.jpg" alt="Picture of a waterfall" />
+						<p>SOME HIKE DETAILS HERE</p>
+					</section>
+					<div><h2>HIKE 3</h2></div>
+					<section class="hike3">
+						<img src="images/falls.jpg" alt="Picture of a waterfall" />
+						<p>SOME HIKE DETAILS HERE</p>
+					</section>
+				</ul>
+			</div>
+		</section>
+	</main>
+	<script type="module">
+		import { hikeList, HikeCollection, renderOneHike, backButton} from './main.js';
+        window.backButton = backButton;        
+	</script>
+</body>
+</html>
