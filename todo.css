@@ -76,6 +76,10 @@ button{
 	box-shadow: 2px 2px #a6a5a5;
 }
 
+button:hover{
+	cursor: pointer;
+}
+
 #add-text, .items{
 	border-bottom: 1px solid #a6a5a5;
 	background-color: transparent;
