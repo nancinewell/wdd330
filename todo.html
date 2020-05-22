@@ -16,8 +16,8 @@
 	
 	<main>
 		<div class="lineItem">
-			<button id="add-button" onclick="createNewItem()">+</button>
-			<input type="text" id="add-text" onfocus="this.value=''" placeholder="new thing to do">
+			<button id="add-button" onclick="createNewItem()" >+</button>
+			<input type="text" id="add-text" onfocus="this.value=''" placeholder="new thing to do" onkeypress="enterKeypress(event)">
 			<button class="delete" id="clear-input" onclick="clearInput()">&#128163;</button>
 		</div>
 		<div id="item-container">
@@ -32,11 +32,13 @@
 	</section>
 	
 <script type="module">
-	import { ListItem, ListItemCollection, newList, createNewItem, markDone, markUndone, removeItem } from './todoV6.js';
+    import { ListItem, ListItemCollection, newList, createNewItem, enterKeypress, markDone, markUndone, removeItem } from './todoV8.js';
 	//HTML expect the global window object- need to redirect it
 	window.createNewItem = createNewItem;
+    window.enterKeypress = enterKeypress;
 	window.newList = newList;
 	
+
     //display on load
     newList.display();
 </script>

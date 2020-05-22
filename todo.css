@@ -59,7 +59,7 @@ main{
 	display: grid;
 	grid-template-columns: 1fr 4fr 1fr;
 	grid-gap: 1em;
-	margin-top: 1em;
+	margin-top: 1.5em;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * 
