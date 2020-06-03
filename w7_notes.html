@@ -1,0 +1,278 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+    <script>
+        // * * * * * * * * * * * * * CALL AND APPLY METHODS * * * * * * * * * * * * * 
+        console.log('%cTesting Call and Apply Methods', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        function howMany() {
+            console.log(`This die has ${this.sides} sides`);
+        }
+
+        const six = { sides: 6 };
+        const eight = { sides: 8 };
+        const ten = { sides: 10 };
+
+        howMany.call(six);
+        howMany.call(eight);
+        howMany.call(ten);
+
+
+        function person() {
+            console.log(`${this.firstName} ${this.lastName} is from ${this.city}.`);
+        }
+
+        const person1 = {
+            firstName: "John", 
+            lastName: "Doe",
+            city: "New York"
+        }
+
+        const person2 = {
+            firstName: "Jane",
+            lastName: "Doe",
+            city: "New Jersey"
+        }
+
+        person.call(person1);
+        person.call(person2);
+
+        function square(x) {
+            console.log( x * x );
+        }
+
+        square.apply(null, [2, 3, 4]);
+
+        // * * * * * * * * * * * * * MEMOIZATION * * * * * * * * * * * * * 
+        console.log('%cTesting Memoization', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        function square2(x) {
+            square2.cache = square2.cache || {};
+            if (!square2.cache[x]) {
+                square2.cache[x] = x * x;
+            }
+            console.log(square2.cache[x]);
+        }
+
+        square2(2);
+        square2(4);
+        square2(6);
+        square2(2);
+
+        console.log("The contents of square2.cache:");
+        for (x in square2.cache) {
+            console.log(x);
+        }
+
+        // * * * * * * * * * * * * * TEMP & IIFE * * * * * * * * * * * * * 
+        console.log('%cTesting IIFE & Temp Variables', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        (function () {
+            const name = 'Neighbor';
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const date = new Date(), today = days[date.getDay()];
+            console.log(`Howdy ho, ${name}! Today is ${today}, and it is a B-E-A-UTIFUL day!`);
+        })();
+        try {
+            console.log(`Can I remember what day it is? It's... ${today}`);
+        } catch (e) {
+            console.log(`Can I remember what day it is outside the function? It's... ${e}`);
+        }
+
+        // * * * * * * * * * * * * * SELF-REWRITING FUNCTIONS * * * * * * * * * * * * * 
+        function jekyllHyde() {
+            document.getElementById("jekyll-hyde").setAttribute("src", "images/jekyll.jpg");
+            document.getElementById("jekyll-hyde").style.display = "block";
+            jekyllHyde = function () {
+                document.getElementById("jekyll-hyde").setAttribute("src", "images/hyde.jpg");
+            }
+        }
+
+        // * * * * * * * * * * * * * RECURSIVE FUNCTIONS * * * * * * * * * * * * *
+        function recursiveFunction(element) {
+            let output = document.getElementById("recursion-output");
+            output.innerHTML += `${element.tagName}  `
+            if (element.hasChildNodes()) {
+                let childrenQty = element.children.length;
+                for (let i = 0; i < childrenQty; i++) {
+                    recursiveFunction(element.children[i]);
+                }
+            } 
+        }
+        // * * * * * * * * * * * * * FUNCTIONS RETURNING FUNCTIONS * * * * * * * * * * * * *
+        console.log('%cTesting Functions Returning Functions', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+
+        function whoAreYou(user) {
+            console.log(`Your name is ${user}.`);
+            return function (user) {
+                let letters = user.split('');
+                let temp;
+                for (var i = 0; i < letters.length; i++) {
+                    for (var j = i + 1; j < letters.length; j++) {
+                        if (letters[i] > letters[j]) {
+                            temp = letters[i];
+                            letters[i] = letters[j];
+                            letters[j] = temp;
+                        }
+                    }
+                }
+                console.log(`The letters in your name were all out of order. I fixed it. Now your name is ${letters.join('')}`);
+            }
+        }
+
+        const yourName = whoAreYou("Nanci");
+        yourName("Nanci");
+
+
+        // * * * * * * * * * * * * * CALLBACKS * * * * * * * * * * * * *
+        console.log('%cTesting Callback Functions', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        function voicemail(message, callback, seconds) {
+            setTimeout(callback, seconds * 1000);
+            console.log(message);
+        }
+
+        function callback() {
+            console.log("Beeeeep")
+        }
+
+        (function(){
+            let message = "Thank you for calling! Your call is very important to us. Please leave a message after the beep."
+            voicemail(message, callback, 3)
+        })()
+
+        // * * * * * * * * * * * * * PROMISE * * * * * * * * * * * * *
+        console.log('%cTesting Promises', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+
+                /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                 NOTE: THIS API REQUEST IS NOT MY WORK. I COPIED IT FROM THE API TUTORIAL AT
+                https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/ 
+                IN ORDER TO HAVE A LIVE THING TO USE A PROMISE ON. 
+                * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+        const promise = new Promise((resolve, reject) => {
+            var request = new XMLHttpRequest()
+            request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+            request.onload = function () {
+                // Begin accessing JSON data here
+                var data = JSON.parse(this.response)
+
+                if (request.status >= 200 && request.status < 400) {
+                    resolve(data);
+                } else {
+            reject("So sorry. No Studio Ghibli movies today!");
+                }
+            }
+            request.send()
+        })
+        var movies = [];
+        promise.then((data) => {
+            data.forEach(movie => {
+                console.log(movie.title);
+                movies.push(movie.title);
+            })
+        promise.catch((message) => {
+                console.log(message);
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main id="main">
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li>
+                    Week 7
+                    <ul>
+                        <li><a href="w7_team3.html">Team Assignment</a></li>
+                        <li><a href="w7_notes.html">Notes</a></li>
+                        <li><a href="w7_exercises.html">Exercises</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <h3>What I Learned This Module</h3>
+
+            <h4>Call/Apply methods</h4>
+            <p>See console for working examples.</p>
+            <p>
+                The book used the example of square.call(null, 4), but I cannot see any
+                reason to do this since you could simply write square(4). I guess simply knowing
+                that you can is important. Once again we see there are many ways of going about
+                the same objective.
+            </p>
+            <p>
+                Interestingly, when you feed an array into a function as a parameter, and the
+                function is only built to accept one parameter, it will only utilize the first one.
+                This is not a way to iterate the indexes of an array through a function.
+            </p>
+
+            <h4>Memoization</h4>
+            <p>See console for working examples</p>
+            <p>
+                Note to self- this would have been very useful in my isPrime project.
+                Go research corresponding methods in Java.
+            </p>
+
+            <h4>Temporary Variables and IIFE</h4>
+            <p>Surprise! Go to the console to see working examples.</p>
+
+            <h4>Rewriting Functions</h4>
+            <p>Click the button. Then click again to transform!</p>
+            <button onclick="jekyllHyde()">Click!</button>
+            <img alt="Dr. Jekyll" id="jekyll-hyde" />
+
+            <h4>Recursive Functions</h4>
+            <p>
+                Important thing to note: <blockquote cite="https://www.sitepoint.com/recursion-functional-javascript/">
+                    However, while JavaScript’s functional coding style does support recursive functions,
+                    we need to be aware that most JavaScript compilers are not currently optimized to
+                    support them safely.<br /><br /><em><a href="https://www.sitepoint.com/recursion-functional-javascript/" target="_blank">Recursion in Functional JavaScript</a></em>
+                </blockquote>
+            </p>
+            <p>
+                It took a bit to get my recurssive function to work. The examples all ended with returning the function, but if I return,
+                then it breaks out of the function and will only get the first children of the elements. Once I figured that out, I could have
+                the recursive function call itself for each of Main's children, and their children, etc. Logged here:
+            </p>
+            <div id="recursion-output"></div>
+
+            <h4>Functions Returning Functions</h4>
+            
+
+            <h4>Callbacks in Asynchronous Programming</h4>
+            <p>I had to move Callbacks and Promises to the bottom as they were messing up the order of my 
+            console.logs. It's hard to keep track of what's going on when things are working asynchronously!</p>
+            <p>See console for a working example</p>
+            <p>
+                I had a hard time coming up with a reason to use this. My awareness of programming
+                needs is so small. I created one to show I can and I hope to find a need to use them again.
+            </p>
+
+            <h4>Promises</h4>
+            <p>See console for a working example</p>
+            
+        </section>
+    </main>
+    <script>
+        recursiveFunction(document.getElementById("main"));
+
+    </script>
+</body>
+</html>

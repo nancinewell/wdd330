@@ -86,6 +86,8 @@ class ListItemCollection {
 		let item = this.itemList.filter(obj => obj.name == name);
 		let skull = "💀";
 		let crossBones = "☠";
+		// CREATE 2 DIVS- TO DO AND DONE, THEN ALLOW DONE TO 
+
 		//create div to hold the pieces
 		let div = itemContainer.appendChild(createElement("div", "", "lineItem", name));
 		//append the pieces to the div

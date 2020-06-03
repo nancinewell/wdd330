@@ -418,10 +418,14 @@ input#age {
 	text-align: center;
 	padding: 0;
 }
+
+#jekyll-hyde{
+	display: none;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										ANIMATION
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-@keyframes walking{
+@keyframes walking {
 	0% {transform: rotate(7deg);}
 	
 	100% {transform: rotate(-7deg);}
