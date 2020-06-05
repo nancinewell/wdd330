@@ -1,0 +1,191 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WDD330 Nanci Newell</title>
+	<link rel="stylesheet" media="screen" href="main.css">
+	<link rel="stylesheet" media="screen" href="large.css">
+
+	<script>
+        function header(text) {
+            console.log(`%c${text}`, 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        }
+		//* * * * * * * * * * * * * * * 5.1: FLATTEN * * * * * * * * * * * * * * *
+		header("5.1: Flatten")
+
+		/*Use the reduce method in combination with the concat method to “flatten” an array 
+		 of arrays into a single array that has all the elements of the original arrays.*/
+		let arrays = [[1, 2, 3], [4, 5], [6]];
+
+		function flatten(acc, val) {
+			return acc.concat(val);
+        }
+
+		console.log(arrays.reduce(flatten));
+
+		//* * * * * * * * * * * * * * * 5.2: YOUR OWN LOOP * * * * * * * * * * * * * * *
+        header("5.2: Your Own Loop")
+		/*Write a higher-order function loop that provides something like a for loop statement.
+		 It takes a value, a test function, an update function, and a body function. Each 
+		 iteration, it first runs the test function on the current loop value and stops if 
+		 that returns false. Then it calls the body function, giving it the current value. 
+		 Finally, it calls the update function to create a new value and starts from the beginning.
+
+		 When defining the function, you can use a regular loop to do the actual looping.*/
+
+		function loopFunction(value, testFunction, update, body) {
+			if (testFunction(value)) {
+				body(value);
+                loopFunction(update(value), testFunction, update, body);
+			}
+		}
+
+        loopFunction(3, n => n > 0, (n => n - 1), console.log);
+
+        //* * * * * * * * * * * * * * * 5.3: EVERYTHING * * * * * * * * * * * * * * *
+		header("5.3: Everything")
+		/*Analogous to the some() method, arrays also have an every() method. This one returns true 
+		 when the given function returns true for every element in the array. In a way, some is a 
+		 version of the || operator that acts on arrays, and every is like the && operator.
+		 
+		 Implement every as a function that takes an array and a predicate function as parameters. 
+		 Write two versions, one using a loop and one using the some method.*/
+
+        function every(array, test) {
+			return array.every(test);
+		}
+
+		function some(array, test) {
+			return !array.some(number => !test(number));
+		}
+
+		function someLoop(array, test) {
+            let count = 0;
+			for (item of array) {
+				if (test(item) == false){
+					count++;
+                }
+			}
+			if (count == 0) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		}
+
+		header("every()")
+        console.log(every([1, 3, 5], n => n < 10));
+        // → true
+        console.log(every([2, 4, 16], n => n < 10));
+        // → false
+        console.log(every([], n => n < 10));
+		// → true
+
+		
+        header("some()")
+        console.log(some([1, 3, 5], n => n < 10));
+        // → true
+        console.log(some([2, 4, 16], n => n < 10));
+        // → false
+        console.log(some([], n => n < 10));
+		// → true
+
+        header("someLoop()")
+        console.log(someLoop([1, 3, 5], n => n < 10));
+        // → true
+        console.log(someLoop([2, 4, 16], n => n < 10));
+        // → false
+        console.log(someLoop([], n => n < 10));
+		// → true
+
+
+	</script>
+</head>
+
+<body>
+	
+	<header>
+		<h1><span id="brand">nanci</span>newell</h1>
+		<h2>WDD 330 - Mobile Application Pilot</h2>
+		<h4>Spring 2020</h4>
+	</header>
+	
+	<main>
+		<nav class="mobile-menu">
+			<div id="menu">M E N U</div>
+			<input type="checkbox" id="menu-check">
+			<ul class="topnav">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+				<li><a href="todo.html">Project: To Do</a></li>
+					Week 7
+					<ul>
+						<li><a href="w7_team3.html">Team Assignment</a></li>
+						<li><a href="w7_notes.html">Notes</a></li>
+						<li><a href="w7_exercises.html">Exercises</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<section class="mainsection">
+			<h3>Chapter 5 Exercises</h3>
+			<h4>5.1 Flattening</h4>
+			<p>
+				Use the reduce method in combination with the concat method to “flatten” an array
+				of arrays into a single array that has all the elements of the original arrays.
+			</p>
+			<p>See console log.</p>
+
+			<h4>5.2 Your Own Loop</h4>
+			<p>
+				Write a higher-order function loop that provides something like a for loop statement.
+				It takes a value, a test function, an update function, and a body function. Each iteration,
+				it first runs the test function on the current loop value and stops if that returns false.
+				Then it calls the body function, giving it the current value. Finally, it calls the update
+				function to create a new value and starts from the beginning.
+			</p>
+			<p>When defining the function, you can use a regular loop to do the actual looping.</p>
+			<p>See console log.</p>
+
+			<h4>5.3 Everything</h4>
+			<p>
+				Analogous to the <span class="keyword">some</span> method, arrays also have an <span class="keyword">
+					every
+				</span> method. This one returns true when the given function returns true for every element
+				in the array. In a way, <span class="keyword">some</span> is a version of the || operator that
+				acts on arrays, and <span class="keyword">every</span> is like the && operator.
+			</p>
+			<p>
+				Implement <span class="keyword">every</span> as a function that takes an array and a predicate
+				function as parameters.	Write two versions, one using a loop and one using the
+				<span class="keyword">some</span> method.
+			</p>
+			<h3>Chapter 18 Exercises</h3>
+			<h4>18.2 A JavaScript Workbench</h4>
+			<textarea id="code"></textarea>
+			<button id="jsw-button" onclick="testFunction()">Submit</button>
+			<pre id="output">test text</pre>
+		</section>
+	</main>
+	<script>
+		//* * * * * * * * * * * * * * * 18.2: A JAVASCRIPT WORKBENCH * * * * * * * * * * * * * * *
+        
+		function testFunction() {
+			let code = document.getElementById("code").value;
+            let output = document.getElementById("output");
+
+			let evaluate = code => {
+				try {
+                    output.textContent = eval(code);
+				} catch (e) {
+                    output.textContent = e;
+                }
+			}
+			evaluate(code);
+        }
+
+	</script>
+</body>
+</html>

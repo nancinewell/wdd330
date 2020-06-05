@@ -6,8 +6,13 @@
     <link rel="stylesheet" media="screen" href="main.css">
     <link rel="stylesheet" media="screen" href="large.css">
     <script>
+        function header(text) {
+            console.log(`%c${text}`, 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        }
+
         // * * * * * * * * * * * * * CALL AND APPLY METHODS * * * * * * * * * * * * * 
-        console.log('%cTesting Call and Apply Methods', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        header("Testing Call and Apply Methods");
+        
         function howMany() {
             console.log(`This die has ${this.sides} sides`);
         }
@@ -47,7 +52,7 @@
         square.apply(null, [2, 3, 4]);
 
         // * * * * * * * * * * * * * MEMOIZATION * * * * * * * * * * * * * 
-        console.log('%cTesting Memoization', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        header("Testing Memoization")
         function square2(x) {
             square2.cache = square2.cache || {};
             if (!square2.cache[x]) {
@@ -67,7 +72,8 @@
         }
 
         // * * * * * * * * * * * * * TEMP & IIFE * * * * * * * * * * * * * 
-        console.log('%cTesting IIFE & Temp Variables', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        header("Testing IIFE & Temp Variables");
+
         (function () {
             const name = 'Neighbor';
             const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -101,7 +107,7 @@
             } 
         }
         // * * * * * * * * * * * * * FUNCTIONS RETURNING FUNCTIONS * * * * * * * * * * * * *
-        console.log('%cTesting Functions Returning Functions', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        header("Testing Functions Returning Functions")
 
         function whoAreYou(user) {
             console.log(`Your name is ${user}.`);
@@ -124,15 +130,47 @@
         const yourName = whoAreYou("Nanci");
         yourName("Nanci");
 
+        // * * * * * * * * * * * * * PURE FUNCTIONS * * * * * * * * * * * * *
+        header("Testing Pure Functions")
+
+        //pass an array of numbers into it.
+        function mean(x) {
+            let mean;
+            let sum = 0;
+            //Sum up the numbers
+                for (number of x) {
+                    sum += number;
+                }
+                //Calculate the mean
+                mean = sum / x.length;
+                //Return the mean
+                return mean;
+            }
+        let numbers = [2, 3, 4, 5, 6];
+        console.log(`The mean of the numbers contained in the array "numbers" is ${mean(numbers)}.`);
+
+
+        // * * * * * * * * * * * * * PURE FUNCTIONS * * * * * * * * * * * * *
+        header("Testing Higher-Order Functions")
+
+        function taxCalculator(taxRate) {
+            return function (cost) {
+                return cost * taxRate;
+            }
+        }
+
+        let ninePercent = taxCalculator(.09);
+        console.log(`Madison, AL has a tax rate of 9%. If you purchase $25 of products, you will pay $${ninePercent(25)} in tax.`);
 
         // * * * * * * * * * * * * * CALLBACKS * * * * * * * * * * * * *
-        console.log('%cTesting Callback Functions', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        header("Testing Callback Functions")
         function voicemail(message, callback, seconds) {
             setTimeout(callback, seconds * 1000);
             console.log(message);
         }
 
         function callback() {
+            header("Back to the Callback Function");
             console.log("Beeeeep")
         }
 
@@ -142,7 +180,7 @@
         })()
 
         // * * * * * * * * * * * * * PROMISE * * * * * * * * * * * * *
-        console.log('%cTesting Promises', 'background: #4e4e4e; color: #e5f5c4; padding: .5em; font-family: sans-serif; font-weight: bold; letter-spacing: 3px;font-size: 1.25em;');
+        
 
                 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
                  NOTE: THIS API REQUEST IS NOT MY WORK. I COPIED IT FROM THE API TUTORIAL AT
@@ -166,15 +204,19 @@
             request.send()
         })
         var movies = [];
+        
         promise.then((data) => {
+            header("Testing Promises");
             data.forEach(movie => {
                 console.log(movie.title);
                 movies.push(movie.title);
             })
-        promise.catch((message) => {
+            promise.catch((message) => {
+                header("Testing Promises")
                 console.log(message);
             })
         })
+        
     </script>
 </head>
 
@@ -208,7 +250,7 @@
 
         <section class="mainsection">
             <h3>What I Learned This Module</h3>
-
+            <h3>Chapter 11</h3>
             <h4>Call/Apply methods</h4>
             <p>See console for working examples.</p>
             <p>
@@ -254,11 +296,22 @@
             <div id="recursion-output"></div>
 
             <h4>Functions Returning Functions</h4>
-            
+            <p>See console for a working example.</p>
+
+            <h4>Pure, Higher-Order, and Curried Functions</h4>
+            <p> See console for working examples.</p>
+            <p>
+                mean(), which is a pure function because it returns a value dependant solely on the passed argument,
+                has no side effects, and will always return the same number if given the same arguments. It has at
+                least one argument and a return value.
+            </p>
+            <p> taxCalculator() returns a function as a result, so is a higher-order function, and can be curried.</p>
 
             <h4>Callbacks in Asynchronous Programming</h4>
-            <p>I had to move Callbacks and Promises to the bottom as they were messing up the order of my 
-            console.logs. It's hard to keep track of what's going on when things are working asynchronously!</p>
+            <p>
+                I had to move Callbacks and Promises to the bottom as they were messing up the order of my
+                console.logs. It's hard to keep track of what's going on when things are working asynchronously!
+            </p>
             <p>See console for a working example</p>
             <p>
                 I had a hard time coming up with a reason to use this. My awareness of programming
@@ -267,12 +320,113 @@
 
             <h4>Promises</h4>
             <p>See console for a working example</p>
+
+            <h3>Chapter 13</h3>
+            <h4>Retrieving Information</h4>
+            <p>Here is a working fetch request as outlined by the book. I removed the numbers piece as that site is no longer working.</p>
+
+            <button id='chuck'>Chuck Norris Fact</button>
+            <em><div id='ajax-output'></div></em>
+
+            <p>Here is a working fetch I made myself! I used the Studio Ghibli API and pulled the movie titles.</p>
+            <div id="ghibli"></div>
             
+            <h4>Sending Information</h4>
+            <form id='ajax-todo' action='https://jsonplaceholder.typicode.com/todos' method='POST'>
+                <input type='text' name='task' placeholder='What do you need to get done?' autofocus required>
+                <button type='submit'>Add Task</button>
+            </form>
         </section>
     </main>
     <script>
         recursiveFunction(document.getElementById("main"));
+        // * * * * * * * * * * * * * API REQUEST * * * * * * * * * * * * *
+        
+        //from the book   
+        const apiButton = document.getElementById('chuck');
+        const outputDiv = document.getElementById('ajax-output');
+        const apiURL = "https://api.chucknorris.io/jokes/random";
 
+        apiButton.addEventListener('click', () => {
+            fetch(apiURL)
+                .then(response => {
+                    outputDiv.innerHTML = 'Waiting for response...';
+                    if (response.ok) {
+                        return response;
+                    }
+                    throw Error(response.statusText);
+                })
+                .then(response => response.json())
+                .then(data => outputDiv.innerText = data.value)
+                .catch(error => console.log('There was an error:', error))
+        }, false);
+        //my own API request!
+        const url = 'https://ghibliapi.herokuapp.com/films';
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Accept-Charset': 'utf-8', 'Accept-Encoding': 'gzip,deflate' })
+        const request = new Request(url, {
+            headers: headers,
+            method: 'GET',
+            cache: 'no-cache',
+            redirect: 'follow'
+        })
+
+        fetch(request)
+            .then(function (response) {
+                if (response.ok) {
+                    header("Testing Fetch");
+                    console.log("The fetch seems to have worked!");
+                    return response;
+                }
+                throw Error(response.statusText);
+            })
+            .then(response => response.json())
+            .then(data => data.forEach(movie => {
+                let output = document.getElementById("ghibli");
+                output.innerHTML += (`${movie.title} <br>`)
+            })
+            )
+                
+            .catch(error => {
+                console.log(header("Testing Fetch"));
+                console.log("There was an error. The fetch request didn't work.", error);
+            })
+
+    // * * * * * * * * * * * * * * * * * * * * * SENDING INFORMATION * * * * * * * * * * * * * * * * * * * * *
+        const form = document.forms['ajax-todo'];
+        form.addEventListener('submit', addTask, false);
+
+        function addTask(event) {
+            event.preventDefault();
+            const task = new FormData(form);
+            const data = JSON.stringify(task);
+            const url = `http://echo.jsontest.com/id/1/title/${form.task.value}`;
+            const headers = new Headers({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            });
+            const request = new Request(url,
+                {
+                    method: 'POST',
+                    header: headers,
+                    body: JSON.stringify(task),
+                    mode: 'no-cors'
+                }
+            )
+            //reset input field
+            form.task.value = "";
+
+            fetch(request)
+                .then(response => response.json())
+                .then( data => {
+                    header("Testing Sending Information");
+                    console.log(`Task saved with an id of ${data.id}`)
+                })
+                //every time I test this, it says the faux site is overloaded and service is unavailable.
+                .catch(error => {
+                    header("Testing Sending Information");
+                    console.log('There was an error:', error);
+                })
+        }
     </script>
 </body>
 </html>
