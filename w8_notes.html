@@ -1,0 +1,200 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+</head>
+
+<body>
+
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main>
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li>
+                    Week 8
+                    <ul>
+                        <li><a href="w8_team3.html">Team Assignment</a></li>
+                        <li><a href="w8_notes.html">Notes</a></li>
+                        <li><a href="w8_exercises.html">Exercises</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <h3>What I Learned This Module</h3>
+            <h4>CSS Animations</h4>
+            <div>
+                <div class="dukes">
+                    <div class="dukes" id="inner-div">
+                        <img src="images/dukes.png" class="dukes" alt="Moustache Man" />
+                        <h2 class="dukes">PUT</h2>
+                        <h2 class="dukes">YOUR</h2>
+                        <h1 class="dukes">DUKES</h1>
+                        <h2 class="dukes">UP SIRE</h2>
+                        <p class="dukes">It's time for a good old thrashing.<br />I will rotate your moustache OFF!</p>
+                    </div>
+                </div>
+                <br />
+                <div id="animation-sprite"></div>
+
+                <div>
+                    <h5>Improved Dinosaur</h5>
+                    <p>
+                        You'll recognize these dinosaurs from my previous notes. I've updated
+                        the animation based on this week's reading.
+                    </p>
+                    <div id="dino-img2-container">
+                        <img class="dino-img2 lleg2" src="images/t-rex-lleg.png" alt="T-Rex Left Leg" />
+                        <img class="dino-img2 rleg2" src="images/t-rex-rleg.png" alt="T-Rex Right Leg" />
+                        <img class="dino-img2 dbody2" src="images/t-rex-body.png" alt="T-Rex Body" />
+                    </div>
+                    <div id="dino-img3-container">
+                        <img class="dino-img3 slleg2" src="images/stego-lleg.png" alt="Stegosaurus Left Leg" />
+                        <img class="dino-img3 srleg2" src="images/stego-rleg.png" alt="Stegosaurus Right Leg" />
+                        <img class="dino-img3 sdbody2" src="images/stego-body.png" alt="Stegosaurus Body" />
+                    </div>
+                    <div id="dino-img4-container">
+                        <img class="dino-img4 dlleg2" src="images/diplo-lleg.png" alt="Stegosaurus Left Leg" />
+                        <img class="dino-img4 drleg2" src="images/diplo-rleg.png" alt="Stegosaurus Right Leg" />
+                        <img class="dino-img4 ddbody2" src="images/diplo-body.png" alt="Stegosaurus Body" />
+                    </div>
+                    <div id="dino-spaceholder"></div>
+                </div>
+            </div>
+            <h4>Canvas</h4>
+            <div>
+                <p>Exercises from the book.</p>
+                <canvas id="myCanvas" class="myCanvas" width="400px" height="250px">Sorry! Your browser doesn't support Canvas.</canvas>
+                <button name="saveButton" id="saveButton" onclick="saveDrawing()">Save Drawing</button>
+                <div id="canvas-output"></div>
+
+                <p>Tracing an image (from the book, but with my own image) and changing to grayscale.</p>
+                <canvas id="canvas2" class="myCanvas" width="200" height="200">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+                <canvas id="canvas3" class="myCanvas" width="200" height="200">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+                <img id="myImageElem" src="images/6-1.png" alt="6-Sided Story Die">
+
+                <p>My own drawings.</p>
+                <canvas id="canvas5" class="myCanvas" width="200" height="200">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+                <canvas id="canvas6" class="myCanvas" width="200" height="200">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+
+                <p>Using grayscale from the book, modified to play on the video. Start the video!</p>
+                <video id="video" src="images/video.mp4" width="200" controls></video>
+                <canvas id="canvas4" class="myCanvas" width="200" height="355">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+            <h4>SVG</h4>
+            <div>
+                <p>Exercises from the book.</p>
+                <svg viewBox="0 0 100 100" width="120" height="120">
+                    <desc>Drawing a circle.</desc>
+                    <circle cx="50" cy="50" r="25" fill="#aa3939" />
+                </svg>
+
+                <svg viewBox="0 0 100 100" width="120" height="120">
+                    <desc>Drawing a rectangle.</desc>
+                    <rect x="10" y="10" width="80" height="80"
+                          fill="#aa3939" stroke="#aa3939" stroke-width="3" />
+                </svg>
+                <div class="spin" id="spinner"></div>
+
+                <p>
+                    My own work. I did this one in another class and added it here
+                    to show my existing work with SVG.
+                </p>
+                <svg class="card" viewBox="0 0 200 280">
+                    <defs>
+                        <symbol id="hallows" viewBox="0 0 200 280">
+                            <polygon class="hpbg" points="37,190 163,190 100,90" />
+                            <circle cx="100" cy="155" r="32" />
+                            <polygon points="37,190 163,190 100,90" />
+                            <line x1="100" y1="90" x2="100" y2="190" />
+                        </symbol>
+                        <pattern id="bolt" patternUnits="userSpaceOnUse" x="0" y="0" width="25" height="30">
+                            <path d="M5,5 L10,15 L10,10 L15,20 L15,15 L20,25 L17,13 L17,18 L12,8 L12,13 L7,3 L5,5" />
+                        </pattern>
+                    </defs>
+                    <rect class="hpbg" />
+                    <rect fill="url(#bolt)" />
+                    <use xlink:href="#hallows"></use>
+                </svg>
+
+
+            </div>
+            <h4>Drag &amp; Drop</h4>
+            <p>Exercise from the book.</p>
+            <h3 id="frog-header">Frog is Hungry</h3>
+            <img src="images/frog.png" alt="Frog" id="frog">
+
+            <div class="draggable-exercise">
+                <p id="bug-container" class="draggable-container">
+                    <img src="images/bug1.png" alt="frog treat" id="bug1" class="bugs draggable" draggable="true">
+                    <img src="images/bug2.png" alt="frog treat" id="bug2" class="bugs draggable" draggable="true">
+                    <img src="images/bug3.png" alt="frog treat" id="bug3" class="bugs draggable" draggable="true">
+                </p>
+            </div>
+            <p>My own exercise. Drag and drop the monkey wherever you like on the scene.</p>
+            <div id="my-draggable">
+                <img id="draggable-monkey" class="draggable" src="images/monkey.png" draggable="true" alt="monkey" />
+                <div class="draggable-container" id="monkey-container">
+                    <div id="1"></div>
+                    <div id="2"></div>
+                    <div id="3"></div>
+                    <div id="4"></div>
+                    <div id="5"></div>
+                    <div id="6"></div>
+                    <div id="7"></div>
+                    <div id="8"></div>
+                    <div id="9"></div>
+                    <div id="10"></div>
+                    <div id="11"></div>
+                    <div id="12"></div>
+                    <div id="13"></div>
+                    <div id="14"></div>
+                    <div id="15"></div>
+                    <div id="16"></div>
+                    <div id="17"></div>
+                    <div id="18"></div>
+                    <div id="19"></div>
+                    <div id="20"></div>
+                    <div id="21"></div>
+                    <div id="22"></div>
+                    <div id="23"></div>
+                    <div id="24"></div>
+                    <div id="25"></div>
+                    <div id="26"></div>
+                    <div id="27"></div>
+                    <div id="28"></div>
+                    <div id="29"></div>
+                    <div id="30"></div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="wk8canvas.js"></script>
+    <script src="raphael-2.3.0/raphael.js"></script>
+</body>
+</html>

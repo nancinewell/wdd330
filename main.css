@@ -1,16 +1,31 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+										COLORS 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/*
+	#f5f5f5: Very light gray
+	#dddcdc: Light gray
+	#b2b0b0: Gray
+	#4e4e4e: Dark gray
+	#d56a6a: Light red 
+	#aa3939: Red
+	#e5f5c4: Very light green
+	#a6c663: Light green
+	#7c9f35: Green
+	#557412: Dark green
+*/
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										FONTS 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Zilla+Slab:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme+Expanded:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										GENERAL 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-body{
+body {
 	margin: 0;
 	line-height: 1.5em;
 	background-image: url("bgcode.png");
@@ -376,11 +391,37 @@ input#age {
 	position: absolute;
 }
 
-#lleg{
+.dino-img2, .dino-img3, .dino-img4 {
+	width: 20em;
+	position: absolute;
+}
+
+#dino-img2-container {
+	animation: 7s infinite walking-move linear;
+	transform-origin: 30%;
+}
+
+#dino-img3-container {
+	position: relative;
+	top: 55px;
+	left: 75px;
+	animation: 9s infinite walking-move linear;
+	transform-origin: 30%;
+}
+
+#dino-img4-container {
+	position: relative;
+	top: -10px;
+	left: 225px;
+	animation: 8s infinite walking-move linear;
+	transform-origin: 30%;
+}
+
+#lleg {
 	animation-name: walking;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
-	animation-direction: alternate ;
+	animation-direction: alternate;
 }
 
 #rleg{
@@ -389,12 +430,61 @@ input#age {
 	animation-direction: alternate-reverse;
 	animation-iteration-count: infinite;
 }
-#dbody{
+#dbody {
 	animation-name: walking-body;
 	animation-duration: .5s;
 	animation-iteration-count: infinite;
-	animation-direction: alternate ;
+	animation-direction: alternate;
+	
 }
+
+.dbody2 {
+	animation: .5s infinite alternate walking-body ease-in-out;
+	transform-origin: 50% 75%;
+}
+
+.lleg2 {
+	animation: 1s infinite walking-circle .5s linear;
+}
+
+.rleg2 {
+	animation: 1s infinite walking-circle linear;
+}
+
+.sdbody2 {
+	animation: .6s infinite alternate walking-body .2s ease-in-out;
+	transform-origin: 50% 75%;
+}
+
+.slleg2 {
+	animation: 1.2s infinite walking-circle .8s linear;
+}
+
+.srleg2 {
+	animation: 1.2s infinite walking-circle .2s linear;
+}
+
+.ddbody2 {
+	animation: .8s infinite alternate walking-body .2s ease-in-out;
+	transform-origin: 50% 75%;
+}
+
+.dlleg2 {
+	animation: 1.6s infinite walking-circle .8s linear;
+}
+
+.drleg2 {
+	animation: 1.6s infinite walking-circle linear;
+}
+
+
+#dino-spaceholder{
+	height: 275px;
+	background-image: url(images/grassbg.png);
+	background-repeat: repeat-x;
+	overflow: hidden;
+}
+
 #adventurer-img {
 	display: none;
 }
@@ -422,6 +512,62 @@ input#age {
 #jekyll-hyde{
 	display: none;
 }
+
+div.dukes {
+	background-color: #dddcdc;
+	padding: 1em;
+	width: 360px;
+}
+
+div.dukes #inner-div {
+		border: 2px solid #b2b0b0;
+		padding: 0;
+	}
+img.dukes{
+	position: relative;
+	float: left;
+	width: 130px;
+	margin: 0;
+}
+p.dukes {
+	font-family: 'Playfair Display', serif;
+	font-size: 15px;
+	line-height: 16px;
+	color: 4e4e4e;
+	-webkit-transform: translateX(-20px); /* iOS8, Android ↵4.4.3, BB10 */
+	-ms-transform: translateX(-20px); /* IE9 only */
+	transform: translateX(-20px);
+	margin: 10px 0 13px;
+}
+
+h2.dukes {
+	font-family: 'BioRhyme Expanded', serif;
+	color: #b2b0b0;
+}
+
+h1.dukes {
+	font-family: 'BioRhyme Expanded', serif;
+	color: #999999;
+}
+
+#inner-div:hover h1 {
+	-webkit-transform: translateX(30px) scale(1.5) rotate(10deg); /* iOS8, Android ↵4.4.3, BB10 */
+	-ms-transform: translateX(30px) scale(1.5) rotate(10deg); /* IE9 only */
+	transform: translateX(30px) scale(1.5) rotate(10deg);
+	-webkit-transition: .3s;
+	transition: all .2s ease-out 50ms;
+}
+
+#animation-sprite:after {
+	content: '';
+	width: 90px;
+	height: 92px;
+	background-image: url(images/animation-sprite.png);
+	display: block;
+	margin: auto;
+	animation: 0.4s steps(4, end) infinite 50ms bike, 8s linear infinite 50ms move;	
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										ANIMATION
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -431,13 +577,116 @@ input#age {
 	100% {transform: rotate(-7deg);}
 }
 
-@keyframes walking-body{
-	0% {transform: rotate(3deg);}
-	
-	100% {transform: rotate(-3deg);}
+@keyframes walking-circle {
+	0% {transform: translate(4px, 0px);}
+
+	25% {transform: transform: translate(0px, -4px);}
+
+	50% {transform: translate(-4px, 0px)}
+
+	75% {transform: translate(0px, 4px);}
+
+	100% {transform: translate(4px, 0px);}
 }
 
+@keyframes walking-body{
+	0% {transform: rotate(-4deg);}
+	
+	100% {transform: rotate(0deg);}
+}
 
+@keyframes walking-move {
+	0% {transform: translateX(150px);}
+
+	49% {transform: scaleX(1);}
+	
+	50% {transform: translateX(-150px) scaleX(-1);}
+
+	99% {transform: scaleX(-1);}
+
+	100% {transform: translateX(150px) scaleX(1);}
+}
+
+@keyframes bike {
+	0% {background-position: 0 0;}
+
+	100% {background-position: -360px 0;}
+}
+
+@keyframes move {
+	0% {transform: translateX(-100px);}
+
+	100% {transform: translateX(100px);}
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+										CANVAS/SVG/DRAG/DROP
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+.myCanvas, svg {
+	border: dotted 2px #557412;
+	background-color: white;
+}
+
+svg.card {
+	margin: 15px;
+	width: 200px;
+	height: 280px;
+	border: 1px solid black;
+	border-radius: 15px;
+}
+
+.card path {
+	stroke: #d3a625;
+	fill: #d3a625;
+}
+
+.card rect {
+	width: 200px;
+	height: 280px;
+}
+
+.hpbg {
+	fill: #740001;
+	stroke: #740001;
+}
+
+.card circle, polygon, line {
+	stroke: #eeba30;
+	stroke-width: 5px;
+	fill: transparent;
+}
+
+#bug-container{
+	text-align: center;
+}
+
+#bug-container{
+	width: 100%;
+}
+
+#frog {
+	width: 125px;
+	transform: scaleX(-1);
+}
+
+.bugs{
+	height: 40px;
+}
+
+#monkey-container {
+	background-image: url(images/grassy_background.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 25em;
+	display: grid;
+	grid-template-rows: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
+}
+
+#draggable-monkey {
+	width: 75px;
+	margin: 0;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										Quiz Ninja 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
