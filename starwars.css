@@ -1,0 +1,115 @@
+﻿img.starwars {
+    width: 100%;
+    display: block;
+    position: relative;
+    bottom: 25%;
+    margin-top: 30px;
+}
+
+.mainsection {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zS0DFoskOuz2zFJMo_ElvQHaFJ%26pid%3DApi&f=1");
+    margin: 0;
+    color: #fff;
+}
+
+.header {
+    text-align: center;
+}
+
+h1.starwars {
+    font-size: 3em;
+    color: yellow;
+}
+
+h2.starwars {
+    font-size: 2.25em;
+}
+
+.main {
+    text-align: center;
+    margin: 1em;
+}
+
+#bottom {
+    display: grid;
+    grid-template-columns: 120px 1fr 120px;
+    align-self: flex-end;
+    min-width: 400px;
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em;
+}
+
+a.starwars {
+    color: #979792;
+    transition: .3s;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+    a.starwars:hover {
+        color: #cacbc8;
+    }
+
+#output {
+    padding: .5em 1em 2em;
+}
+#output * {
+    font-size: 2em;
+    padding: .25em;
+    line-height: 1em;
+}
+
+#output .container {
+    color: yellow;
+    font-size: 20px;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.zS0DFoskOuz2zFJMo_ElvQHaFJ%26pid%3DApi&f=1");
+}
+
+#output .container div {
+    width: 75%;
+    margin: auto;
+    padding-top: 3em;
+    line-spacing: 1em;
+}
+
+button.close {
+    background-color: yellow;
+    border-radius: 5px;
+    margin-top: 2em;
+    position: fixed;
+    top: .25em;
+    right: .25em;
+}
+
+@media only screen and (max-width: 600px) {
+    .output {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    button.close {
+        position: fixed;
+        top: .25em;
+        right: .25em;
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .output {
+        grid-template-columns: 1fr 1fr;
+    }
+    button.close {
+        position: fixed;
+        top: .5em;
+        right: .5em;
+        margin: 0;
+    }
+}

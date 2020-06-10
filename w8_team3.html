@@ -1,0 +1,164 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+    <link rel="stylesheet" media="screen" href="starwars.css">
+    <script>
+        //  https://swapi.dev/api/starships/
+        /*
+         1. Create a basic application and use fetch to pull a list of people or ships.
+         Display this list in the browser window.
+         */
+        let shipArray = [];
+
+        fetch('https://swapi.dev/api/starships/', {
+            method: 'GET',
+            mode: 'cors',
+            redirect: 'follow',
+            cache: 'no-cache'
+        })
+
+            .then(response => {
+                return response.json();
+            })
+
+            .then(starships => {
+                let ships = starships.results;
+                let nextURL = starships.next;
+                let previousURL = starships.previous;
+                const previous = document.getElementById('previous');
+                const next = document.getElementById('next');
+                let output = document.getElementById("output");
+                showShips(ships);
+
+                if (nextURL) {
+                    next.onclick = () => nextTen(nextURL);
+                }
+
+                if (previousURL) {
+                    next.onclick = () => nextTen(previousURL);
+                }
+            })
+
+        function showShips(ships) {
+            output.innerHTML = "";
+            for (let i = 0; i < ships.length; i++) {
+                let outputDiv = output.appendChild(createElement("div", ships[i].name, "starships"));
+                outputDiv.addEventListener("click", details);
+                outputDiv.setAttribute("id", ships[i].name)
+                shipArray.push(ships[i]);
+            }
+        }
+
+        function details(event) {
+            let target = event.target;
+            let id = target.getAttribute("id");
+            let model = shipArray[thisOne(id)].model;
+            let mfg = shipArray[thisOne(id)].manufacturer;
+            let output = document.getElementById(id);
+            let container = output.appendChild(createElement("div", "", "container"))
+            container.appendChild(createElement("div", "Model: " + model, "model"));
+            container.appendChild(createElement("div", "Manufacturer: " + mfg, "mfg"));
+            let button = container.appendChild(createElement("button", "X", "close"));
+            button.addEventListener("click", close);
+        }
+
+        function close() {
+            let container = document.querySelectorAll(".container")[0];
+            container.parentNode.removeChild(container);
+        }
+        function thisOne(id) {
+            //Find index of specific object using findIndex method.
+            let thisOne = shipArray.findIndex((obj => obj.name == id));
+            return thisOne;
+        }
+
+        function createElement(tag, text, className) {
+            const genElement = document.createElement(tag);
+            genElement.textContent = text;
+            genElement.classList.add(className);
+            return genElement;
+        }
+        function nextTen(url) {
+            const next = document.getElementById('next');
+            const previous = document.getElementById('previous');
+            if (url) {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(nextShips => {
+                        showShips(nextShips.results);
+
+                        nextURL = nextShips.next;
+                        previousURL = nextShips.previous;
+
+                        if (nextURL) {
+                            next.onclick = () => nextTen(nextURL);
+                        }
+
+                        if (previousURL) {
+                            previous.onclick = () => nextTen(previousURL);
+                        }
+                    })
+            }
+        }
+
+
+        /*
+         2. Skip to page
+         Add a button to your paginated list for each page in the results set that will let
+         you jump straight to that page. For example if the results set had 57 items in it...
+         and you got 10 at a time, you would have 6 pages of results.*/
+
+
+    </script>
+
+</head>
+<body>
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main>
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li>
+                    Week 8
+                    <ul>
+                        <li><a href="w8_team3.html">Team Assignment</a></li>
+                        <li><a href="w8_notes.html">Notes</a></li>
+                        <li><a href="w8_exercises.html">Exercises</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <div class="header">
+                <h1 class="starwars">Star Wars</h1>
+                <h2 class="starwars">Star Ships</h2class="starwars">
+            </div>
+            <section class="main">
+                <div id="output"></div>
+                <div id="bottom">
+                    <a class="starwars" href="#" id="previous">&laquo; Previous</a>
+                    <img class="starwars" src="http://www.pngall.com/wp-content/uploads/2016/03/Star-Wars-Ship-Vector-PNG.png" alt="Star Wars Ship" />
+                    <a class="starwars" href="#" id="next">Next &raquo;</a>
+                </div>
+
+            </section>
+        </section>
+
+        
+</body>
+</html>
