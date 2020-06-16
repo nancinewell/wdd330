@@ -10,6 +10,7 @@
 	#4e4e4e: Dark gray
 	#d56a6a: Light red 
 	#aa3939: Red
+	#f2fae2: Extremely light green
 	#e5f5c4: Very light green
 	#a6c663: Light green
 	#7c9f35: Green
@@ -568,6 +569,57 @@ h1.dukes {
 	animation: 0.4s steps(4, end) infinite 50ms bike, 8s linear infinite 50ms move;	
 }
 
+#ball {
+	width: 3em;
+	height: 3em;
+	background-color: #aa3939;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	position: absolute;
+	transform: rotate(0deg);
+	transition: transform 1s linear;
+}
+#ball p {
+	margin: 0;
+	transition: transform 1s linear;
+}
+
+#ball-container {
+	height: 10em;
+	width: 10em;
+	position: relative;
+	transform: rotate(0deg);
+	transition: transform 1s linear;
+}
+
+#color-change{
+	padding: 1em;
+	border-radius: 5px;
+}
+#color-change input{
+	width: 90%;
+}
+
+.received {
+	background-color: #dddcdc;
+	color: #4e4e4e;
+	border-radius: 20px;
+	padding: .5em;
+	max-width: 600px;
+}
+
+.sent {
+	background-color: #4e4e4e;
+	color: #fff;
+	border-radius: 20px;
+	text-align: right;
+	padding: .5em;
+	max-width: 600px;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										ANIMATION
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -618,6 +670,23 @@ h1.dukes {
 
 	100% {transform: translateX(100px);}
 }
+
+@keyframes fly {
+	0% {transform: translate(0, 0);}
+
+	25% {transform: translate(5em, 5em);}
+
+	50% {transform: translate(8em, 3em);}
+
+	75% {transform: translate(4em, -2em);}
+
+	100% {transform: translate(0, 0);}
+}
+
+@keyframes rotate {
+	100%{transform: rotate(360deg);}
+}
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										CANVAS/SVG/DRAG/DROP
@@ -687,14 +756,97 @@ svg.card {
 	width: 75px;
 	margin: 0;
 }
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+#mySVG, #grassy-container {
+	width: 500px;
+	height: 30em;
+}
+#grassy-container {
+	background-color: #f2fae2;
+}
+
+#bg-green, #grass-fill {
+	width: 120%;
+	height: 30em;
+	transform: translate(-10%, -10%);
+}
+#grass {
+	stroke: #7c9f35;
+	fill: #7c9f35;
+}
+
+#bg-green {
+	fill: #f2fae2;
+	stroke: #f2fae2;
+}
+
+#frog2 {
+	width: 90px;
+	height: 70px;
+	transform: scaleX(-1);
+	background-image: url("images/frog.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	top: 10em;
+	left: 5em;
+
+}
+
+#frog2:hover {
+	background-image: url("images/frog2.png");
+}
+
+#frog2-header {
+	position: relative;
+	top: 7em;
+	left: 7em;
+	background-color: #ffe7e7;
+	padding: 1em;
+	width: 6em;
+	border-radius: 35px;
+}
+	#frog2-header::before {
+		content: "";
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		border-left: 24px solid #ffe7e7;
+		border-right: 12px solid transparent;
+		border-top: 12px solid #ffe7e7;
+		border-bottom: 20px solid transparent;
+		left: 32px;
+		bottom: -24px;
+	}
+
+#bug4 {
+	position: relative;
+	top: 0em;
+	left: 5em;
+	animation: rotate 5s linear infinite;
+}
+
+#bug5 {
+	position: relative;
+	top: 0em;
+	left: 10em;
+	animation: rotate 5s linear infinite -1s;
+}
+
+#bug6 {
+	position: relative;
+	top: 0em;
+	left: 15em;
+	animation: rotate 5s linear infinite -.5s;
+}
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										Quiz Ninja 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-.mainsection-ninja{
-	background: #5F1C1C;
-    /*font-family: 'Roboto', sans-serif;*/
-}
+	.mainsection-ninja {
+		background: #5F1C1C;
+		/*font-family: 'Roboto', sans-serif;*/
+	}
 
 .dojo{
 	background:  url(https://cdn.rawgit.com/alexmwalker/6acbe9040d9fe6e5e9fd758a25e1b2a5/raw/9c8131eb2ccc1e3839a5a5114cb16b5dc74daf04/dojo.svg) no-repeat;

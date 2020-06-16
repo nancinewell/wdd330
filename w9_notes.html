@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+    <script src="w9_notes.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main>
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li>
+                    Week 9
+                    <ul>
+                        <li><a href="w9_team3.html">Team Assignment</a></li>
+                        <li><a href="w9_notes.html">Notes</a></li>
+                        <li><a href="w9_exercises.html">Exercises</a></li>
+                        <li><a href="w9_proposal.html">Challenge Proposal</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <h3>What I Learned this Module</h3>
+            <h3>Chapter 9</h3>
+            <h4>window.confirm</h4>
+            <button onclick="confirmDelete()">Delete Pretend Stuff</button>
+            <h4>window.location</h4>
+            <div id="protocol"></div>
+            <div id="host"></div>
+            <div id="hostname"></div>
+            <div id="pathname"></div>
+            <div id="address"></div>
+            <div id="dimensions"></div>
+            <h4>Cookies- YUM!</h4>
+            <div>
+                What is your favorite dessert?
+                <input id="input1" />
+                What is your favorite flavor of icecream?
+                <input id="input2" />
+                <button onclick="cookieTest()">Submit</button>
+                <div id="cookie-output"></div>
+            </div>
+            <h4>JS Animation</h4>
+            <div id="ball-container">
+                <div id="ball"><p>🌸</p></div>
+            </div>
+            <h4>PopUp and Close</h4>
+            <button onclick="selfDestruct()">Self Destruct</button>
+
+            <h3>Chapter 14</h3>
+            <h4>Geolocation</h4>
+            <div id="position"></div>
+
+            <h4>Workers</h4>
+            <button id='rainbow'>Change Color</button>
+            <form id="color-change">
+                <label for='number'>Enter a Number to Factorize:</label>
+                <input id='number' type='number' name='number' min=1 value='20'>
+                <button type='submit'>Submit</button>
+            </form>
+            <div id='output'></div>
+
+            <h4>Websocket</h4>
+
+            <form id="websocket-form">
+                <label for='message'>Enter a Message:</label>
+                <input type='text' name='message'>
+                <button type='submit'>Submit</button>
+            </form>
+            <div id="websocket-output"></div>
+        </section>
+    </main>
+    <script src="w9_notes_ps.js"></script>
+    
+</body>
+</html>

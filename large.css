@@ -37,6 +37,34 @@ main section.mainsection{
 	#madbutton {
 		grid-row-start: 8;
 	}
+
+	#mySVG, #grassy-container {
+		width: 700px;
+		height: 30em;
+	}
+
+	#bg-green, #grass-fill {
+		width: 800px;
+		height: 30em;
+		transform: translate(-25%, -10%);
+	}
+
+	#bug4 {
+		position: relative;
+		top: -5em;
+		left: 10em;
+	}
+
+	#bug5 {
+		position: relative;
+		left: 20em;
+	}
+
+	#bug6 {
+		position: relative;
+		top: 10em;
+		left: 25em;
+	}
 	
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										NAVIGATION 

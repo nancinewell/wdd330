@@ -1,0 +1,98 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+</head>
+<body>
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main>
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li>
+                    Week 8
+                    <ul>
+                        <li><a href="w8_team3.html">Team Assignment</a></li>
+                        <li><a href="w8_notes.html">Notes</a></li>
+                        <li><a href="w8_exercises.html">Exercises</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <h3>Week 8 Exercises</h3>
+            <p>There were no exercises in the assignment, so I decided to make some of my own.</p>
+            <div class="draggable-exercise">
+                <svg class="draggable-container" id="mySVG" viewBox="0 0 300 300">
+                    <defs>
+                        <!--<symbol id="hallows" viewBox="0 0 200 280">
+                        <polygon class="hpbg" points="37,190 163,190 100,90" />
+                        <circle cx="100" cy="155" r="32" />
+                        <polygon points="37,190 163,190 100,90" />
+                        <line x1="100" y1="90" x2="100" y2="190" />
+                    </symbol>-->
+                        <pattern id="grass" patternUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+                            <path d="M5,28 q-5,-15 -8,-25 Z" />
+                            <path d="M5,25 q5,-15 3,-28 Z" />
+                            <path d="M5,27 q0,-5 10,-25 Z" />
+
+                            <path d="M30,53 q-5,-15 -8,-25 Z" />
+                            <path d="M30,50 q5,-15 3,-28 Z" />
+                            <path d="M30,52 q0,-5 10,-25 Z" />
+
+                            <path d="M55,38 q-5,-15 -8,-25 Z" />
+                            <path d="M55,35 q5,-15 3,-28 Z" />
+                            <path d="M55,37 q0,-5 10,-25 Z" />
+
+                            <path d="M75,78 q-5,-15 -8,-25 Z" />
+                            <path d="M75,75 q5,-15 3,-28 Z" />
+                            <path d="M75,77 q0,-5 10,-25 Z" />
+
+                            <path d="M45,98 q-5,-15 -8,-25 Z" />
+                            <path d="M45,95 q5,-15 3,-28 Z" />
+                            <path d="M45,97 q0,-5 10,-25 Z" />
+
+                            <path d="M15,88 q-5,-15 -8,-25 Z" />
+                            <path d="M15,85 q5,-15 3,-28 Z" />
+                            <path d="M15,87 q0,-5 10,-25 Z" />
+                    </defs>
+                    <rect class="draggable-container" id="bg-green" />
+                    <rect class="draggable-container" id="grass-fill" fill="url(#grass)" />
+
+                </svg>
+                <div id="grassy-container" class="draggable-container">
+                    <h3 id="frog2-header">I am hungry!</h3>
+                    <div id="frog2"></div>
+                    <img src="images/bug1.png" alt="frog treat" id="bug4" class="bugs draggable" draggable="true">
+                    <img src="images/bug2.png" alt="frog treat" id="bug5" class="bugs draggable" draggable="true">
+                    <img src="images/bug3.png" alt="frog treat" id="bug6" class="bugs draggable" draggable="true">
+                </div>
+                <p>
+                    I designed a background using SVG, then discovered that SVG doesn't support drag/drop.
+                    So I put a transparent div over the SVG that does support drag/drop... It did allow the drag 
+                    and drop, but still showed the cursor indicating it would not, so I left it and animated the frog
+                    and bugs in a separate div.
+                </p>
+                <div>
+                </div>
+            </div>
+
+        </section>
+
+        <script src="w8_exercises.js"></script>
+</body>
+</html>
