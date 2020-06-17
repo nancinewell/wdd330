@@ -1,0 +1,159 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+    <link rel="stylesheet" media="screen" href="w9_team3.css">
+    <script src="w9_notes.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main>
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li>
+                    Week 9
+                    <ul>
+                        <li><a href="w9_team3.html">Team Assignment</a></li>
+                        <li><a href="w9_notes.html">Notes</a></li>
+                        <li><a href="w9_exercises.html">Exercises</a></li>
+                        <li><a href="w9_proposal.html">Challenge Proposal</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <div class="keys">
+                <div data-key="65" class="key">
+                    <kbd>A</kbd>
+                    <span class="sound">clap</span>
+                </div>
+                <div data-key="83" class="key">
+                    <kbd>S</kbd>
+                    <span class="sound">hihat</span>
+                </div>
+                <div data-key="68" class="key">
+                    <kbd>D</kbd>
+                    <span class="sound">kick</span>
+                </div>
+                <div data-key="70" class="key">
+                    <kbd>F</kbd>
+                    <span class="sound">openhat</span>
+                </div>
+                <div data-key="71" class="key">
+                    <kbd>G</kbd>
+                    <span class="sound">boom</span>
+                </div>
+                <div data-key="72" class="key">
+                    <kbd>H</kbd>
+                    <span class="sound">ride</span>
+                </div>
+                <div data-key="74" class="key">
+                    <kbd>J</kbd>
+                    <span class="sound">snare</span>
+                </div>
+                <div data-key="75" class="key">
+                    <kbd>K</kbd>
+                    <span class="sound">tom</span>
+                </div>
+                <div data-key="76" class="key">
+                    <kbd>L</kbd>
+                    <span class="sound">tink</span>
+                </div>
+            </div>
+
+            <audio data-key="65" src="sounds/clap.wav"></audio>
+            <audio data-key="83" src="sounds/hihat.wav"></audio>
+            <audio data-key="68" src="sounds/kick.wav"></audio>
+            <audio data-key="70" src="sounds/openhat.wav"></audio>
+            <audio data-key="71" src="sounds/boom.wav"></audio>
+            <audio data-key="72" src="sounds/ride.wav"></audio>
+            <audio data-key="74" src="sounds/snare.wav"></audio>
+            <audio data-key="75" src="sounds/tom.wav"></audio>
+            <audio data-key="76" src="sounds/tink.wav"></audio>
+
+
+
+            
+                    </section >
+                </main >
+<script>
+                /*✔️1.  add the Javascript necessary to make the appropriate sound file play when the
+                  corresponding key is pressed.
+                  */
+        let audioKeys = [];
+        let counter = 0;
+                (function () {
+            let keys = document.querySelectorAll(".key");
+
+                    for (item of keys) {
+            let dataKey = item.dataset.key;
+                        audioKeys.push(dataKey);
+                    }
+
+                    let body = document.getElementsByTagName("body")[0];
+                    body.addEventListener("keypress", playAudio);
+                })()
+
+                function playAudio(event) {
+            let keyPressed = event.keyCode;
+                    let audios = document.querySelectorAll("audio");
+                    if (audioKeys.includes(keyPressed.toString())) {
+            let isIndex = index => index == keyPressed.toString();
+                        let index = audioKeys.findIndex(isIndex);
+                        console.log(audios[index]);
+                        audios[index].currentTime = 0;
+                        audios[index].play();
+                        let duration = parseInt(audios[index].duration * 1000);
+                        console.log(duration);
+                        let keyDivs = document.querySelectorAll(".key");
+                        keyDivs[index].classList.add("playing");
+                        setTimeout(() => keyDivs[index].classList.remove("playing"), duration);
+
+
+                        keyDivs[index].style.transform = `translateY(-${counter * 10}px)`;
+                        counter++;
+                        if (counter >= 10) {
+            counter = 0;
+                            keyDivs[index].style.transform = `translateY(0px)`;
+                        }
+                    }
+
+
+
+                }
+
+                /*
+                  2. Modify your code to make the sound restart each time the same key is pressed.
+                  (Hint use console.dir to take a good look at the audio element)
+
+                  ✔️3. Style it. Add the playing class to a button when it's key is pressed.
+                  Then remove it after the appropriate length of time.
+                  (Hint: check out the list of possible events.)*/
+
+
+
+                /*STRETCH GOALS
+                  ✔️1. Each time a key is pressed move the corresponding button down 10px.
+
+                  ✔️2. After 10 presses of a key, reset the position of it's button.
+                  */
+
+</script>
+</body>
+</html>

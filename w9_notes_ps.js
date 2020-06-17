@@ -97,3 +97,16 @@ function message(event) {
 }
 
 form2.addEventListener('submit', message, false);
+
+// AUDIO/VIDEO
+const audio = document.getElementsByTagName('audio')[0];
+audio.addEventListener('pause', console.log('The audio has been paused'));
+
+const video = document.getElementsByTagName('video')[0];
+audio.addEventListener('pause', console.log('The video has been paused'));
+video.addEventListener('loadedmetadata', () => { console.log(video.duration); });
+
+let play = () => { video.play(); video.loop = true;}
+let pause = () => video.pause();
+let volumeUp = () => video.volume += .1;
+let volumeDown = () => video.volume -= .1;

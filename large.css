@@ -94,8 +94,13 @@ main section.mainsection{
 		margin-right: 30%;
 		float: right;
 }
-	
-	
-	
+
+	video {
+		max-width: 600px;
+	}
+	#video-controls {
+		height: 30px;
+		max-width: 300px;
+	}
 /*DON'T DELETE THIS ONE!*/	
 }

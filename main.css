@@ -57,7 +57,6 @@ main, mainsection{
 }
 
 
-
 h1{
 	font-size: 2em;
 	font-weight: 700;
@@ -621,6 +620,53 @@ h1.dukes {
 	max-width: 600px;
 }
 
+video{
+	width: 100%;
+	border-radius: 5px;
+}
+#video-controls{
+	height: 30px;
+	width: 50%;
+	display: grid;
+	grid-template-columns: repeat(4, 2em);
+}
+
+	#play {
+		width: 0;
+		height: 0;
+		border-top: 12px solid transparent;
+		border-left: 25px solid #7c9f35;
+		border-bottom: 12px solid transparent;
+	}
+
+#pause{
+	width: 25px;
+	height: 25px;
+	display: flex;
+	justify-content: space-around;
+}
+
+#pause div {
+	width: 8px;
+	height: 25px;
+	background-color: #7c9f35;
+}
+
+#volume-down {
+	width: 0;
+	height: 0;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-top: 25px solid #7c9f35;
+}
+
+#volume-up {
+	width: 0;
+	height: 0;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	border-bottom: 25px solid #7c9f35;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										ANIMATION
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */

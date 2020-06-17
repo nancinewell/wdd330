@@ -85,6 +85,34 @@
                 <button type='submit'>Submit</button>
             </form>
             <div id="websocket-output"></div>
+
+            <h4>Audio/Video</h4>
+            <p>Autoplay is often not allowed until various criteria are met which vary by browser.</p>
+            <audio src="/beautiful.mp3" controls>
+                Your browser does not support the audio element.
+            </audio>
+
+            <video src="homeward_bound.mp4">
+                Your browser does not support the video element.
+            </video>
+            <div id="video-controls">
+                <canvas id='play' onclick="play()" width='25' height='25'>Sorry, but your browser does not support the canvas element</canvas>
+
+                <div id="pause" onclick="pause()">
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="volume-up" onclick="volumeUp()"></div>
+                <div id="volume-down" onclick="volumeDown()"></div>
+            </div>
+            <div>
+                <h4>NPM</h4>
+                <p>I did finally get it to work. I went over it with my programmer husband, who did not recommend it compared
+                to other possible projects. We tried to lint and copied my site into the src folder to let it build my site,
+                there is a formatting expectation within npm that would require me to alter my file structure and subsequently 
+                alter every page in the site, so I opted not to use it for this particular project that is 9 weeks in the making.
+                However, it is good to know that these tools exist for future projects.</p>
+            </div>
         </section>
     </main>
     <script src="w9_notes_ps.js"></script>
