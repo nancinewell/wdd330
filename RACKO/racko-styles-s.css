@@ -8,28 +8,9 @@
     dark orange: #ac7911            very dark orange: #855a00
 */
 
-/* * * * * * * * * * * * * * * * * * * * * *COLOR SWATCHES* * * * * * * * * * * * * * * * * * * * * */
-.color-swatch {
-    height: 2em;
-    width: 2em;
-}
-
-#colors li {
-    display: grid;
-    grid-template-columns: repeat(5,2em);
-}
-/* * * * * * * * * * * * * * * * * * * * * *WIREFRAMES* * * * * * * * * * * * * * * * * * * * * */
-.s-wireframe{
-    width: 48%;
-    max-width: 500px;
-    margin: 0;
-}
-.l-wireframe {
-    width: 100%;
-    max-width: 700px;
-}
 /* * * * * * * * * * * * * * * * * * * * * *LOGO* * * * * * * * * * * * * * * * * * * * * */
 .logo-container{
+    min-width: 300px;
     width: 400px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -37,7 +18,7 @@
     height: 100px;
     
 }
-.logo, .logo-card {
+.logo {
     margin: 0;
     background-color: #09205a;
     color: #98cc21;
@@ -49,6 +30,20 @@
     border-radius: 5px;
     height: 100px;
 }
+
+.logo-card {
+    margin: 0;
+    background-color: #09205a;
+    color: #98cc21;
+    font-family: 'Oswald', sans-serif;
+    transform: skew(-20deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    height: 45px;
+}
+
 .logo p {
     transform: skew(20deg);
     font-weight: 600;
@@ -57,53 +52,46 @@
 
 .logo-card p {
     transform: skew(20deg);
-    font-weight: 600;
-    font-size: 1.5em;
+    font-weight: 400;
+    font-size: 1em;
     color: #fff;
 }
 .logo-container-card {
-    width: 225px;
-    height: 70px;
+    width: 150px;
+    height: 45px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: .5em;
 }
-
-
-
-#branding li {
-    margin-top: 1em;
-}
-
 /* * * * * * * * * * * * * * * * * * * * * *TYPOGRAPHY* * * * * * * * * * * * * * * * * * * * * */
-.proposal {
+body {
     font-family: 'Rokkitt', serif;
 }
-.proposal h1, .proposal h2, .proposal h3, .proposal h4, .proposal h5, .proposal h6 {
+h1, h2, h3, h4,  h5,  h6, .button {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
 }
 
-#typography a {
+a {
     color: #e8b64e;
     transition: 0.3s;
 }
-#typography a:visited {
+a:visited {
     color: #d99d23;
 }
-#typography a:hover, a:active {
+a:hover, a:active {
     color: #ffd47c;
 }
 
-#typography span {
+span {
     color: #855a00;
     font-weight: 600;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * *CARD FRONT/BACK* * * * * * * * * * * * * * * * * * * * * */
 .card-front, .card-back {
-    width: 300px;
-    height: 200px;
+    width: 175px;
+    height: 130px;;
     border-radius: 15px;
     box-shadow: 2px 2px 5px #09205a;
     border: 1px solid #163174;
@@ -164,3 +152,88 @@
     line-height: 1em;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * HEADER / BODY* * * * * * * * * * * * * * * * * * * * * */
+body {
+    margin: 0;
+    background-color: #ffd47c;
+}
+header {
+    margin: 0;
+    padding: 1em;
+    background-color: #3f5a9c;
+    display: flex;
+    justify-content: center;
+}
+/* * * * * * * * * * * * * * * * * * * * * * BUTTONS * * * * * * * * * * * * * * * * * * * * * */
+.button {
+    border-radius: 5px;
+    transform: skew(-20deg);
+    padding: 1em;
+    height: 2em;
+    width: 4em;
+    background-color: #09205a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.button span {
+    transform: skew(20deg);
+    font-size: 2em;
+    color:#98cc21;
+}
+.button-container {
+    position: fixed;
+    width: 100vw;
+    height: 8em;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffd47c;
+}
+/* * * * * * * * * * * * * * * * * * * * * * SCORE BOARD * * * * * * * * * * * * * * * * * * * * * */
+#score-board {
+    max-height: 65vh;
+    width: 75vw;
+    margin: 2em 1em;
+    background-color: #e8b64e;
+    padding: 1em;
+    text-align: center;
+}
+
+#score-board-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * GAME AREA * * * * * * * * * * * * * * * * * * * * * */
+#game-container {
+    /*display: none;*/
+}
+
+#piles {
+    min-width: 400px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0;
+}
+#draw-pile{
+    margin-right: 1em;
+}
+#discard-pile{
+    margin-left: 1em;
+}
+#player-card-area, #computer-card-area {
+    background-color: #d99d23;
+    height: 50vh;
+}
+
+#computer-card-area {
+    display: none;
+}
