@@ -9,7 +9,7 @@
     #score-board {
     max-width: 700px;
     }
-        /*DO NOT DELETE THIS ONE!*/
+/*DO NOT DELETE THIS ONE!*/
     }
 
 
@@ -35,13 +35,16 @@
         width: 100%;
         margin: 2em 0;
     }
-    #score-board .button-container{
-        display: none;
+
+    #score-board .button-container {
+        /*display: none;*/
     }
+
     #piles{
         width: 100%;
         flex-direction: column;
     }
+
     #draw-pile, #discard-pile{
         margin: 1em;
     }
@@ -52,21 +55,26 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas: 'player piles computer';
     }
+
     #player-card-area {
         grid-area: player;
         height: 100%;
         width: 100%;
     }
+
     #computer-card-area {
         grid-area: computer;
         height: 100%;
         width: 100%;
     }
+
     #piles {
         grid-area: piles;
         height: 100%;
         width: 100%;
         min-width: 100%;
     }
+
+    
     /*DO NOT DELETE THIS ONE!*/
 }

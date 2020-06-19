@@ -67,7 +67,7 @@
 body {
     font-family: 'Rokkitt', serif;
 }
-h1, h2, h3, h4,  h5,  h6, .button {
+h1, h2, h3, h4,  h5,  h6, .button, button {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
 }
@@ -100,7 +100,7 @@ span {
     background-color: #fff;
 }
 .card-back {
-    background-color: #dcf69d;
+    background-color: #98cc21;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,33 +165,34 @@ header {
     justify-content: center;
 }
 /* * * * * * * * * * * * * * * * * * * * * * BUTTONS * * * * * * * * * * * * * * * * * * * * * */
-.button {
+button {
     border-radius: 5px;
     transform: skew(-20deg);
     padding: 1em;
-    height: 2em;
-    width: 4em;
+    height: 4em;
+    width: 7em;
     background-color: #09205a;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    margin: 0 0 2em 2em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: white;
+    transition: .3s;
 }
-.button span {
+    button:hover {
+        box-shadow: 0 0 8px 5px #ffeeca;
+
+    }
+.button-text {
     transform: skew(20deg);
     font-size: 2em;
-    color:#98cc21;
+    color: #98cc21;
+    margin: 1em;
 }
-.button-container {
-    position: fixed;
-    width: 100vw;
-    height: 8em;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffd47c;
-}
+
 /* * * * * * * * * * * * * * * * * * * * * * SCORE BOARD * * * * * * * * * * * * * * * * * * * * * */
 #score-board {
     max-height: 65vh;
@@ -211,8 +212,8 @@ header {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * GAME AREA * * * * * * * * * * * * * * * * * * * * * */
-#game-container {
-    /*display: none;*/
+.name-header {
+    text-align: center;
 }
 
 #piles {
@@ -235,5 +236,38 @@ header {
 }
 
 #computer-card-area {
+    display: none;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * * * COVER * * * * * * * * * * * * * * * * * * * * * */
+
+#cover {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    text-align: center;
+    background-color: #ecfbc8;
+
+}
+
+#cover input {
+    padding: .5em;
+    font-family: 'Rokkitt', serif;
+    min-width: 200px;
+    max-width: 400px;
+    font-size: .75em;
+    border-radius: 5px;
+    text-align: center;
+}
+/* * * * * * * * * * * * * * * * * * * * * * MISC * * * * * * * * * * * * * * * * * * * * * */
+.hide {
     display: none;
 }

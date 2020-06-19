@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>WDD330 Nanci Newell - Challenge 2: Racko</title>
-    <link rel="stylesheet" media="screen" href="racko-styles-s.css">
-    <link rel="stylesheet" media="screen" href="racko-styles-l.css">
-    <script src="racko.js"></script>
+    <link rel="stylesheet" media="screen" href="styles/racko-styles-s.css">
+    <link rel="stylesheet" media="screen" href="styles/racko-styles-l.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
             <div id="score-board">
                 <h1>Score Board</h1>
             </div>
-            <div class="button-container"><div class="button"><span id="play-span">Play!</span></div></div>
+            <button id="play-button" onclick="getPlayerName()"><div class="button-text">Play!</div></button>
         </div>
         <div id="game-container">
             <div id="computer-card-area"></div>
@@ -39,11 +40,15 @@
                 </div>
                 <div class="card-front" id="discard-pile"></div>
             </div>
-            
+
             <div id="player-card-area"></div>
-            <div class="button-container"><div class="button"><span id="play-span">Quit</span></div></div>
+            <button class="hide" onclick="#"><div class="button-text">Quit</div></button>
+
         </div>
     </main>
     <footer></footer>
-</body>
-</html>
+    <script src="js/racko.js">
+        //import { getPlayerName } from './js/racko.js';
+    </script>
+</body >
+</html >
