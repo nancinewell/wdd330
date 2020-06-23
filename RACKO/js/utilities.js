@@ -13,3 +13,18 @@ function enterKeypress(event) {
 }
 
 export { createElement, enterKeypress }
+
+
+
+
+
+
+
+
+
+
+
+function drawTopOfDrawPile(cardContainer) {
+	newDeck.drawTopCard(cardContainer);
+	cardContainer.removeEventListener("click", drawTopOfDrawPile());
+}

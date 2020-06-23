@@ -88,19 +88,29 @@ span {
     font-weight: 600;
 }
 
+h2.name-header {
+    text-align: center;
+    color: #09205a;
+    border-bottom: 2px solid #09205a;
+    transition: .3s;
+}
+h2.active-player {
+    transform: scale(1.25);
+    color: #92c027;
+}
 /* * * * * * * * * * * * * * * * * * * * * *CARD FRONT/BACK* * * * * * * * * * * * * * * * * * * * * */
 .card-front, .card-back {
     width: 175px;
-    height: 130px;;
+    height: 130px;
     border-radius: 15px;
-    box-shadow: 2px 2px 5px #09205a;
+    box-shadow: 2px 2px 3px #09205a;
     border: 1px solid #163174;
 }
 .card-front{
     background-color: #fff;
 }
 .card-back {
-    background-color: #98cc21;
+    background-color: #6179b3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,22 +146,46 @@ span {
 .card-number {
     width: 100%;
     text-align: center;
-    font-size: 3em;
-    padding: .5em 0;
+    font-size: 2em;
+    /*padding: .5em 0;*/
     margin: 0;
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
     color: #855a00;
+    position: relative;
+    top: -.5em;
 }
 
 .card-flavor {
     width: calc(100%-1em);
+    height: 50px;
     margin: 0;
     padding: 0 .5em;
     text-align: center;
     line-height: 1em;
+    font-size: .75em;
+    position: relative;
+    top: -1em;
+    overflow: hidden;
+    transition: .3s;
+}
+.card-flavor:hover{
+    overflow: visible; 
+    transform: scale(1.5);
+    background-color: #fff;
+    border:2px solid #ccf176;
+    border-radius: 5px;
+    white-space: normal;
+    height:auto;
+    z-index: 2;
 }
 
+#draw-pile .card-front{
+    z-index: 2;
+    position: absolute;
+    top: 164px;
+
+}
 /* * * * * * * * * * * * * * * * * * * * * * HEADER / BODY* * * * * * * * * * * * * * * * * * * * * */
 body {
     margin: 0;
@@ -160,7 +194,7 @@ body {
 header {
     margin: 0;
     padding: 1em;
-    background-color: #3f5a9c;
+    background-color: #6179b3;
     display: flex;
     justify-content: center;
 }
@@ -208,10 +242,14 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * GAME AREA * * * * * * * * * * * * * * * * * * * * * */
+.drag-over {
+    box-shadow: 0 0 10px 10px #fff, 0 0 20px 30px #92c027;
+    transform: translateX(-20px);
+}
+
 .name-header {
     text-align: center;
 }
@@ -230,16 +268,72 @@ button {
 #discard-pile{
     margin-left: 1em;
 }
-#player-card-area, #computer-card-area {
-    background-color: #d99d23;
-    height: 50vh;
-}
 
-#computer-card-area {
+#computer-card-area, #computer-card-area>* {
     display: none;
 }
+/* * * * * * * * * * * * * * * * * * * * * * CARD POSITIONS * * * * * * * * * * * * * * * * * * * * * */
 
 
+#player-card-area .card-container .card-front:nth-child(1) {
+    position: absolute;
+    top: 405px;
+    left: 100px;
+}
+
+#player-card-area .card-container .card-front:nth-child(2){
+    position: absolute;    
+    top: 430px;
+    left: 90px;
+}
+
+#player-card-area .card-container .card-front:nth-child(3) {
+    position: absolute;
+    top: 455px;
+    left: 80px;
+}
+
+#player-card-area .card-container .card-front:nth-child(4) {
+    position: absolute;
+    top: 480px;
+    left: 70px;
+}
+
+#player-card-area .card-container .card-front:nth-child(5) {
+    position: absolute;
+    top: 505px;
+    left: 60px;
+}
+
+#player-card-area .card-container .card-front:nth-child(6) {
+    position: absolute;
+    top: 530px;
+    left: 50px;
+}
+
+#player-card-area .card-container .card-front:nth-child(7) {
+    position: absolute;
+    top: 555px;
+    left: 40px;
+}
+
+#player-card-area .card-container .card-front:nth-child(8) {
+    position: absolute;
+    top: 580px;
+    left: 30px;
+}
+
+#player-card-area .card-container .card-front:nth-child(9) {
+    position: absolute;
+    top: 605px;
+    left: 20px;
+}
+
+#player-card-area .card-container .card-front:nth-child(10) {
+    position: absolute;
+    top: 630px;
+    left: 10px;
+}
 /* * * * * * * * * * * * * * * * * * * * * * COVER * * * * * * * * * * * * * * * * * * * * * */
 
 #cover {
@@ -268,6 +362,8 @@ button {
     text-align: center;
 }
 /* * * * * * * * * * * * * * * * * * * * * * MISC * * * * * * * * * * * * * * * * * * * * * */
-.hide {
-    display: none;
+@media only screen and (max-width: 1079px) {
+    #score-board-container.hide, #game-container.hide {
+        display: none;
+    }
 }
