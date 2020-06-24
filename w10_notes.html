@@ -1,0 +1,167 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WDD330 Nanci Newell</title>
+    <link rel="stylesheet" media="screen" href="main.css">
+    <link rel="stylesheet" media="screen" href="large.css">
+</head>
+
+<body>
+
+    <header>
+        <h1><span id="brand">nanci</span>newell</h1>
+        <h2>WDD 330 - Mobile Application Pilot</h2>
+        <h4>Spring 2020</h4>
+    </header>
+
+    <main>
+        <nav class="mobile-menu">
+            <div id="menu">M E N U</div>
+            <input type="checkbox" id="menu-check">
+            <ul class="topnav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quizninja.html">Project: Quiz Ninja</a></li>
+                <li><a href="todo.html">Project: To Do</a></li>
+                <li><a href="RACKO/racko.html">Project: Racko</a></li>
+                <li>
+                    Week 10
+                    <ul>
+                        <li><a href="w10_team3.html">Team Assignment</a></li>
+                        <li><a href="w10_notes.html">Notes</a></li>
+                        <li><a href="w10_exercises.html">Exercises</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <section class="mainsection">
+            <h3>What I Learned This Module</h3>
+            <h3>Form Validation</h3>
+            <div>
+                <form novalidate>
+                    <h4>Built In Form Validation</h4>
+                    <fieldset>
+                        <input required placeholder="Name" type="text" />
+                        <input placeholder="City" type="text" />
+                        <input required placeholder="5550001234 (no dashes)" type="tel" pattern="[0-9]{10}" />
+                        <input required placeholder="me@email.com" type="email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                        <input required type="number" placeholder="Age" min="0" max="110" />
+                    </fieldset>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <form>
+                    <h4>Custom Validity Message</h4>
+                    <fieldset>
+                        <label for="mail">Email address:</label>
+                        <input type="email" id="mail" name="mail">
+                    </fieldset>
+                    <button>Submit</button>
+                </form>
+
+                <form novalidate id="no-validate">
+                    <h4>More Complex Validation using the API</h4>
+                    <p>
+                        <label for="mail">
+                            <span>Please enter an email address:</span>
+                            <input type="email" id="mail2" name="mail" required minlength="8">
+                            <span class="form-error"></span>
+                        </label>
+                    </p>
+                    <button>Submit</button>
+                </form>
+            </div>
+            <h3>Using Fetch</h3>
+            <p>This article was very difficult to follow. It talked a lot about posting  
+            to the API/JSON and it was unclear how to do so. How can I post to an API that isn't mine?
+            Or can I do it at all? Wouldn't that cause problems for the API? What if I try to post 
+            information the owner of the API does not agree to? I'm guessing there are some securities
+            in place to prevent this. I did some additional research and found an API that allows 
+            people to post to it</p>
+            <p>On the Request Options, I've been experiementing with them, but I'm not sure what
+            to do with the <span class="key-word">headers</span> option. Everything I try gives me a 
+            CORS error that I can't get to go away. I ended up commenting it out. Clearly I have some
+            additional research to do because changing the mode did nothing to help.</p>
+            <h4>Post: https://reqres.in/api/users</h4>
+            <p id="using-fetch"></p>
+
+            <h4>Get: https://opentdb.com/api</h4>
+            <p id="fetch-test"></p>
+
+
+
+        </section>
+    </main>
+    <script>
+        (function () { 
+            const email = document.getElementById("mail");
+            email.addEventListener("input", function (event) {                if (email.validity.typeMismatch) {                    email.setCustomValidity("That doesn't look like an email address...");                } else {                    email.setCustomValidity("");                }            });
+        })()
+
+
+        const form = document.getElementById("no-validate");
+        const email = document.getElementById('mail2');        const emailError = document.querySelector('#mail2 + span.form-error');
+        email.addEventListener('input', function (event) {            // Each time the user types something, we check if the            // form fields are valid.
+            if (email.validity.valid) {                // In case there is an error message visible, if the field                // is valid, we remove the error message.                emailError.innerHTML = ''; // Reset the content of the message                emailError.className = 'form-error'; // Reset the visual state of the message            } else {                // If there is still an error, show the correct error                showError();            }        });
+        form.addEventListener('submit', function (event) {            // if the email field is valid, we let the form submit
+            if (!email.validity.valid) {                // If it isn't, we display an appropriate error message                showError();                // Then we prevent the form from being sent by canceling the event                event.preventDefault();            }        });
+        function showError() {            if (email.validity.valueMissing) {                // If the field is empty                // display the following error message.                emailError.textContent = 'You need to enter an e-mail address.';            } else if (email.validity.typeMismatch) {                // If the field doesn't contain an email address                // display the following error message.                emailError.textContent = 'Entered value needs to be an e-mail address.';            } else if (email.validity.tooShort) {                // If the data is too short                // display the following error message.                emailError.textContent = `Email should be at least ${email.minLength} characters; you entered ${email.value.length}.`;            }
+            // Set the styling appropriately            emailError.className = 'form-error active';        }
+
+        //FETCH- POST
+
+        const url = 'https://reqres.in/api/users';
+
+        // post body data 
+        const user = {
+            first_name: 'John',
+            last_name: 'Doe',
+            job_title: 'Faux-Coder'
+        };
+
+        // request options
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        // send POST request
+        fetch(url, options)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
+                document.getElementById("using-fetch").innerHTML = `Response: ID = ${res.id}, Name = ${res.first_name} ${res.last_name}, Job Title = ${res.job_title}, Created ${res.createdAt}`;
+            })
+
+        //FETCH- GET WITH OPTIONS
+        const url2 = 'https://opentdb.com/api.php?amount=1&category=17';
+        let data;
+        const options2 = {
+            method: 'GET', 
+            cache: 'no-cache', 
+            credentials: 'same-origin', 
+            //headers: {'Content-Type': 'application/json'},
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data),
+            //mode: 'no-cors'
+        }
+        fetch(url2, options2)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.results[0].correct_answer);
+                document.getElementById("fetch-test").innerHTML = `${data.results[0].question} See the console log for the answer!`;
+            });
+            
+        
+
+        
+
+
+    </script>
+</body>
+</html>

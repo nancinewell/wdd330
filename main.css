@@ -203,10 +203,27 @@ input{
 	width: 100%;
 	border-radius: 5px;
 	padding: .5em;
+	margin: .5em 0;
 }
 
 input:focus{
 	background-color: #e5f5c4;
+}
+
+input:invalid{
+	background-color: #ffcccc;
+	color: #aa3939;
+}
+input:invalid::placeholder {
+		color: #aa3939;
+}
+
+input:valid{
+	background-color: #f2fae2;
+}
+
+input:required{
+	border-bottom: 3px solid #aa3939;
 }
 
 textarea{
@@ -225,6 +242,46 @@ select{
 	width: 100%;
 	padding: .5em;
 }
+
+fieldset{
+	border-radius: 5px;
+	padding: 1em;
+}
+
+input#mail2[type=email] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	border: 1px solid #333;
+	margin: 0;
+	font-family: inherit;
+	font-size: 90%;
+	box-sizing: border-box;
+}
+/* This is our style for the invalid fields */
+input#mail2:invalid {
+	border-color: #900;
+	background-color: #FDD;
+}
+
+input#mail2:focus:invalid {
+	outline: none;
+}
+/* This is the style of our error messages */
+.form-error {
+	width: 100%;
+	padding: 0;
+	font-size: 80%;
+	color: white;
+	background-color: #900;
+	border-radius: 0 0 5px 5px;
+	box-sizing: border-box;
+}
+
+.form-error.active {
+	padding: 0.3em;
+}
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 										LISTS 
