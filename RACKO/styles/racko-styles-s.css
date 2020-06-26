@@ -171,7 +171,7 @@ h2.active-player {
 }
 .card-flavor:hover{
     overflow: visible; 
-    transform: scale(1.5);
+    transform: scale(1.25);
     background-color: #fff;
     border:2px solid #ccf176;
     border-radius: 5px;
@@ -220,6 +220,7 @@ button {
         box-shadow: 0 0 8px 5px #ffeeca;
 
     }
+
 .button-text {
     transform: skew(20deg);
     font-size: 2em;
@@ -227,6 +228,12 @@ button {
     margin: 1em;
 }
 
+#play-button{
+    z-index: 2;
+}
+#quit-button{
+    1
+}
 /* * * * * * * * * * * * * * * * * * * * * * SCORE BOARD * * * * * * * * * * * * * * * * * * * * * */
 #score-board {
     max-height: 65vh;
@@ -235,6 +242,7 @@ button {
     background-color: #e8b64e;
     padding: 1em;
     text-align: center;
+    overflow: scroll;
 }
 
 #score-board-container {
@@ -244,10 +252,14 @@ button {
     align-items: center;
 }
 
+.score-board-item {
+    font-size: 2em;
+    margin: 0;
+}
 /* * * * * * * * * * * * * * * * * * * * * * GAME AREA * * * * * * * * * * * * * * * * * * * * * */
 .drag-over {
     box-shadow: 0 0 10px 10px #fff, 0 0 20px 30px #92c027;
-    transform: translateX(-20px);
+    
 }
 
 .name-header {
@@ -361,6 +373,41 @@ button {
     border-radius: 5px;
     text-align: center;
 }
+/* * * * * * * * * * * * * * * * * * * * * * WINNER * * * * * * * * * * * * * * * * * * * * * */
+.winner {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 15;
+    text-align: center;
+    font-size: 7em;
+    font-weight: 600;
+    transition: .3s;
+    text-shadow: 5px 5px #ac7911;
+    transform-origin: top center;
+    animation: win-color 3s linear infinite, win-roll .65s ease-out;
+}
+
+
+@keyframes win-color{
+     0%{color: #ecfbc8; }
+    10%{color: #dcf69d; }
+    20%{color: #ccf176; }
+    30%{color: #aed74d; }
+    40%{color: #92c027; }
+    50%{color: #09205a; }
+    60%{color: #163174; }
+    70%{color: #254492; }
+    80%{color: #3f5a9c; }
+    90%{color: #6179b3; }
+   100%{color: #ecfbc8; }
+}
+
+@keyframes win-roll{
+     0%{transform: rotate(0deg) scale(0,0) }
+   100%{transform: rotate(720deg) scale(1,1) }
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * MISC * * * * * * * * * * * * * * * * * * * * * */
 @media only screen and (max-width: 1079px) {
     #score-board-container.hide, #game-container.hide {

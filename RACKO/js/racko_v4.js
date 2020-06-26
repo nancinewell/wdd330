@@ -1,8 +1,18 @@
+//V4 is functional! Can't put straight into discard, but game works.
+
 //import { pullListFromStorage, setListToStorage } from './ls.js';
 //import { createElement } from './utilities.js';
 let numbers, winner, newPlayer, newAI;
 let turns = 0;
 let scoreBoardList = [];
+
+(function () {
+	let scoreBoard = document.getElementById("score-board");
+	pullListFromStorage(scoreBoardList);
+	for (let item of scoreBoardList) {
+		scoreBoard.appendChild(createElement("p", item, "score-board-item"));
+	}
+})()
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 						DECK & PLAYER CLASSES
@@ -18,6 +28,8 @@ class Deck {
 		this.shuffle();
 	}
 	createDeck() {
+		this.deck = [];
+		this.discardPile = [];
 		let i;
 		for (i = 0; i < 60; i++) {
 			this.deck[i] = i + 1;
@@ -47,13 +59,13 @@ class Deck {
 		this.displayCardFront(cardContainer, card);
 		//pass the card
 		return card;
-    }
+	}
 	discard(card) {
 		this.discardPile.unshift(parseInt(card));
 	}
 	topDiscard() {
-		this.discardPile.pop();
-    }
+		this.discardPile.shift();
+	}
 	displayCardFront(cardContainer, card) {
 		let cardFront = cardContainer.appendChild(createElement("div", "", "card-front"));
 		cardFront.setAttribute("id", card);
@@ -67,7 +79,7 @@ class Deck {
 		secondContainer.style.transform = `translateX(${card / 60 * 130 - 35}px) skew(-20deg)`;
 		let paragraph = secondContainer.appendChild(createElement("p", card));
 		paragraph.setAttribute("name", card);
-		
+
 		let cardNumber = firstContainer.appendChild(createElement("div", card, "card-number"));
 		cardNumber.setAttribute("name", card);
 		let flavor = firstContainer.appendChild(createElement("div", numbers[card], "card-flavor"));
@@ -91,12 +103,12 @@ class Deck {
 	refillDeck() {
 		for (let card of this.discardPile) {
 			this.deck.push(card);
-        }
+		}
 		this.shuffle();
 		this.discardPile = [];
 		let discardSpace = document.getElementById("discard-pile");
 		discardSpace.innerHTML = "";
-    }
+	}
 }
 
 let newDeck = new Deck();
@@ -111,6 +123,9 @@ class Player {
 	deal() {
 		this.hand.push(newDeck.topCard());
 	}
+	clearHand() {
+		this.hand = [];
+    }
 	draw(discardedCard, newCard) {
 		let CardIndex = discardedCard;
 		let checkIndex = (discardedCard) => CardIndex == discardedCard;
@@ -119,7 +134,7 @@ class Player {
 	}
 	drawDiscard() {
 		this.hand.push(newDeck.topDiscard());
-    }
+	}
 	discardCard(card) {
 		this.hand.splice(card, 1);
 		newDeck.discard(card);
@@ -149,7 +164,7 @@ class Player {
 				newDeck.displayCardBack(container)
 			}
 		}
-    }
+	}
 	win() {
 		let winningHand = [];
 		for (let card of this.hand) {
@@ -161,28 +176,30 @@ class Player {
 		let winner = true;
 		for (let i = 0; i < this.hand.length; i++) {
 			if (winningHand[i] != this.hand[i]) {
-				winner=false
-            }
+				winner = false
+			}
 		}
 		console.log(`Winner = ${winner}`);
 		return winner;
-			
+
 	}
 	score() {
 		let score = 0;
 		for (let i = this.hand.length - 1; i > 0; i--) {
 			if (this.hand[i] < this.hand[i - 1]) {
 				score += 5;
-            }
+			}
+
 		}
+		score += 5;
 		if (score == 50) {
 			score += 75;
 		}
 		return score;
-    }
+	}
 }
 
-class AIPlayer extends Player{
+class AIPlayer extends Player {
 	constructor(name) {
 		super(name);
 		this.player = 2;
@@ -197,13 +214,13 @@ class AIPlayer extends Player{
 					this.draw(this.hand[i], card);
 					break;
 				} else {
-					newDeck.discard(this.hand[i-1])
+					newDeck.discard(this.hand[i - 1])
 					this.draw(this.hand[i - 1], card);
 					break;
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 
 }
 
@@ -212,23 +229,23 @@ class AIPlayer extends Player{
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 //When "PLAY" button is clicked, generate elements needed to gather the player's name 
- function getPlayerName() {
+function getPlayerName() {
 	let container = document.getElementsByTagName("main")[0];
 	let cover = container.appendChild(createElement("div"));
-	 
-		 cover.setAttribute("id", "cover");
-		 cover.appendChild(createElement("div", "What is your name?"));
-		 let input = cover.appendChild(createElement("input"));
-		 input.setAttribute("id", "player-name");
-		 input.addEventListener("keypress", enterPlayerName);
-		 input.focus();
+	let button = document.getElementById("play-button")
+	cover.setAttribute("id", "cover");
+	cover.appendChild(createElement("div", "What is your name?"));
+	let input = cover.appendChild(createElement("input"));
+	input.setAttribute("id", "player-name");
+	input.addEventListener("keypress", enterPlayerName);
+	input.focus();
+	button.style.zIndex = "-1";
 }
 
 // After player's name is entered, set playerName and remove the elements no longer needed.
 function enterPlayerName(event) {
 	let input = document.getElementById("player-name");
 	let active = document.activeElement
-	let button = document.getElementById("play-button");
 	if (event.keyCode == 13 && active === input) {
 		let playerName = input.value;
 		let cover = document.getElementById("cover");
@@ -240,23 +257,27 @@ function enterPlayerName(event) {
 			gameContainer.classList.remove("hide");
 		}
 		cover.parentNode.removeChild(cover);
-		button.style.display = "none;";
 		newPlayer = new Player(playerName);
 		newAI = new AIPlayer("Johnny Five");
+		
 		startGame();
 	}
 }
 
 // Once players have been established, start the game by shuffling and dealing cards.
 function startGame() {
+	//Start with new deck
+	newDeck.createDeck();
 	//Shuffle Deck
-	newDeck.shuffle;
+	newDeck.shuffle();
 	//set turn count to 0
 	turns = 0;
 	//Create player space labels
 	let playerArea = document.getElementById("player-card-area");
 	let aiArea = document.getElementById("computer-card-area");
-
+	//Ensure hand is empty (in case player has already played)
+	newPlayer.clearHand();
+	newAI.clearHand();
 	//Deal 10 cards to each player
 	for (let i = 0; i < 10; i++) {
 		newPlayer.deal();
@@ -284,9 +305,13 @@ function whosTurn() {
 		//refill deck if necessary
 		if (newDeck.deck.length == 0) {
 			newDeck.refillDeck();
-        }
+		}
 		//On odd turns, player's turn
 		if (turns % 2 == 1) {
+			//Style name of active player
+			let header = document.getElementById("player-card-area").firstChild;
+			header.classList.add("active-player");
+			//Begin player's turn
 			playerTurn();
 		} else {
 			computerTurn();
@@ -295,15 +320,11 @@ function whosTurn() {
 }
 
 function playerTurn() {
-	//Style name of active player
-	let header = document.getElementById("player-card-area").firstChild;
-	header.classList.add("active-player");
-
 	//add eventListener to draw pile
 	let cardContainer = document.getElementById("draw-pile");
 	cardContainer.addEventListener("click", drawTopOfDrawPile);
 
-	
+	//Make discard,if there is one, draggable
 	let target = document.querySelector("#discard-pile>.card-front");
 	if (target) {
 		//make discard draggable
@@ -311,66 +332,20 @@ function playerTurn() {
 		//add event listener to top discarded 
 		target.addEventListener("dragstart", drawTopOfDiscardPile);
 	}
+	//Next thing depends on if player draws a new card or draws a discarded card
 }
 
+//Player draws to of discard pile for turn
 function drawTopOfDiscardPile(event) {
-	//make draggable
-	let target = document.querySelector("#discard-pile>.card-front");
-	target.setAttribute("draggable", "true");
 	event.dataTransfer.setData("text", event.target.id);
-	//set drag/drop event listeners
-	drawFromDiscard();
+	//set drag event listeners
+	setDragOver();
+	//set drop event listeners
+	setDropFromDiscard();
 }
 
-function drawTopOfDrawPile() {
-	//draw the card
-	let cardContainer = document.getElementById("draw-pile");
-	newDeck.drawTopCard(cardContainer);
-	//remove the event listeners so the player can't draw another card or try to take the discard after drawing
-	cardContainer.removeEventListener("click", drawTopOfDrawPile);
-	let discardedCard = document.querySelector("#discard-pile>.card-front");
-	if (discardedCard) {
-		discardedCard.removeEventListener("dragstart", drawTopOfDiscardPile);
-	}
-	//set drag/drop event listeners
-	makeDraggableDraw();
-}
-
-function clearDrawPile() {
-	let drawPile = document.getElementById("draw-pile");
-	let deleteThis = document.querySelector("#draw-pile>.card-front");
-	if (deleteThis) {
-		drawPile.removeChild(deleteThis);
-	}
-	
-}
-
-function computerTurn() {
-	//Style name of active player
-	let header = document.getElementById("computer-card-area").firstChild;
-	header.classList.add("active-player");
-
-	let cardContainer = document.getElementById("draw-pile");
-	newDeck.drawTopCard(cardContainer);
-
-	let card = document.getElementById("draw-pile").children[1].getAttribute("id");
-	console.log(`drawn card: ${card}`);
-	console.log(`AI hand before turn: ${newAI.hand}`);
-	//AI take turn, includes discarding the card
-	newAI.takeTurn(card)
-	console.log(`AI hand after turn: ${newAI.hand}`);
-	//display discard pile
-	newDeck.displayDiscard(); 
-	//remove card element from draw pile
-	clearDrawPile();
-	//end turn- remove active player and continue the game!
-	header.classList.remove("active-player");
-	whosTurn();
-}
-
-
-function drawFromDiscard() {
-	// new cards can be dragged over the cards in the player's hand
+function setDragOver() {
+	// cards can be dragged over the cards in the player's hand and styled
 	let containers = document.getElementById("player-card-container").children;
 	for (let container of containers) {
 		container.addEventListener("dragover", function (event) {
@@ -381,44 +356,118 @@ function drawFromDiscard() {
 			container.classList.remove("drag-over");
 		})
 	}
-
-	for (container of containers) {
-		container.addEventListener("drop", function (event) {
-			//get the dataTransfer that kept track of which element this is and the id of the card it was dropped onto
-			let targetCard = event.target.getAttribute("name");
-			let newCard = event.dataTransfer.getData("text/plain");
-
-			//remove the event listener so the player can't draw a card from the draw pile
-			let cardContainer = document.getElementById("draw-pile");
-			cardContainer.removeEventListener("click", drawTopOfDrawPile);
-
-			//remove card element from draw pile
-			clearDrawPile()
-			
-			//replace old card with the new card
-			newPlayer.draw(targetCard, newCard);
-			//remove drawn discard card from the discard pile
-			newDeck.discardPile.splice(targetCard, 1);
-			//display discard pile
-			newDeck.displayDiscard();
-			//display the new hand
-			newPlayer.displayHand();
-			//check for win condition
-			newPlayer.win();
-			//end turn- remove active player and continue the game!
-			let header = document.getElementById("player-card-area").firstChild;
-			header.classList.remove("active-player");
-			whosTurn();
-		});
-	}
-
-
 }
 
-function makeDraggable() {
+
+function setDropFromDiscard() {
+	let containers = document.getElementById("player-card-container").children;
+
+	for (container of containers) {
+		container.addEventListener("drop", discardListener);
+	}
+}
+
+function discardListener(event) {
+	//get the dataTransfer that kept track of which element this is and the id of the card it was dropped onto
+	let targetCard = event.target.getAttribute("name");
+	let newCard = parseInt(event.dataTransfer.getData("text/plain"));
+
+	//remove the event listener so the player can't draw a card from the draw pile
+	let cardContainer = document.getElementById("draw-pile");
+	cardContainer.removeEventListener("click", drawTopOfDrawPile);
+
+	//remove card element from draw pile
+	//clearDrawPile()
+
+	//replace old card with the new card
+	newPlayer.draw(targetCard, newCard);
+
+	//remove drawn discard card from the discard pile
+	newDeck.topDiscard()
+
+	//display discard pile
+	newDeck.displayDiscard();
+
+	//display the new hand
+	newPlayer.displayHand();
+
+	//check for win condition
+	newPlayer.win();
+
+	//end turn- remove active player and continue the game!
+	let header = document.getElementById("player-card-area").firstChild;
+	header.classList.remove("active-player");
+	whosTurn();
+}
+
+//Player draws new card from draw-pile
+function drawTopOfDrawPile() {
+	//draw the card
+	let cardContainer = document.getElementById("draw-pile");
+	newDeck.drawTopCard(cardContainer);
+	//remove the event listeners so the player can't draw another card or try to take the discard after drawing
+	cardContainer.removeEventListener("click", drawTopOfDrawPile);
+	let discardedCard = document.querySelector("#discard-pile>.card-front");
+	if (discardedCard) {
+		discardedCard.removeEventListener("dragstart", drawTopOfDiscardPile);
+		discardedCard.setAttribute("draggable", false);
+	}
+	//Make drawn card draggable
+	drawnCardDraggable();
+
+	//set drag event listeners
+	setDragOver();
+	//discardDragOver();
+	//set drop event listeners
+	setDropFromDraw();
+}
+
+/*function discardDragOver() {
+	//cards can be dragged over empty discard pile
+	let discardPile = document.getElementById("discard-pile");
+	discardPile.addEventListener("dragover", function (event) {
+		event.preventDefault();
+		discardPile.classList.add("drag-over");
+	})
+	discardPile.addEventListener("dragleave", function (event) {
+		discardPile.classList.remove("drag-over");
+	})
+
+	// new cards can be dragged over the cards in the discard pile
+	discardPile.addEventListener("drop", function (event) {
+		//get the dataTransfer that kept track of which element this is and the id of the card it was dropped onto
+		let targetCard = event.target.getAttribute("name");
+		let newCard = parseInt(event.dataTransfer.getData("text/plain"));
+		let discardPile = document.getElementById("discard-pile");
+		discardPile.classList.remove("drag-over");
+		//once card is dropped, move the card it dropped onto to the discard pile
+		newDeck.discard(newCard);
+		newDeck.displayDiscard();
+		//remove card element from draw pile
+		clearDrawPile()
+		//end turn- remove active player and continue the game!
+		let header = document.getElementById("player-card-area").firstChild;
+		header.classList.remove("active-player");
+		whosTurn();
+	})
+}*/
+
+function drawnCardDraggable() {
+	//make drawn card draggable
+	let target = document.querySelector("#draw-pile>.card-front");
+	target.setAttribute("draggable", "true");
+	target.addEventListener("dragstart", function (event) {
+		//keep track of which card this is
+		let id = event.target.id;
+		event.dataTransfer.setData("text", event.target.id);
+	}, false);
+}
+
+function setDropFromDraw() {
 	// new cards can be dragged over the cards in the player's hand
 	let containers = document.getElementById("player-card-container").children;
 	for (let container of containers) {
+		container.removeEventListener("drop", discardListener);
 		container.addEventListener("dragover", function (event) {
 			event.preventDefault();
 			container.classList.add("drag-over");
@@ -458,68 +507,88 @@ function makeDraggable() {
 }
 
 
-
-
-function makeDraggableDraw() {
-	//make drawn card draggable
-	let target = document.querySelector("#draw-pile>.card-front");
-	target.setAttribute("draggable", "true");
-	target.addEventListener("dragstart", function (event) {
-		//keep track of which card this is
-		let id = event.target.id;
-		event.dataTransfer.setData("text", event.target.id);
-	}, false);
-
-	//Things can be dragged over empty discard pile
-	let discardPile = document.getElementById("discard-pile");
-	discardPile.addEventListener("dragover", function (event) {
-		event.preventDefault();
-		discardPile.classList.add("drag-over");
-	})
-	discardPile.addEventListener("dragleave", function (event) {
-		discardPile.classList.remove("drag-over");
-	})
-
-	// new cards can be dragged over the cards in the discard pile
-	discardPile.addEventListener("drop", function (event) {
-		//get the dataTransfer that kept track of which element this is and the id of the card it was dropped onto
-		let targetCard = event.target.getAttribute("name");
-		let newCard = parseInt(event.dataTransfer.getData("text/plain"));
-		let discardPile = document.getElementById("discard-pile");
-		discardPile.classList.remove("drag-over");
-		//once card is dropped, move the card it dropped onto to the discard pile
-		newDeck.discard(newCard);
-		newDeck.displayDiscard();
-		//remove card element from draw pile
-		clearDrawPile()
-		//end turn- remove active player and continue the game!
-		let header = document.getElementById("player-card-area").firstChild;
-		header.classList.remove("active-player");
-		whosTurn();
-	})
-	//finish up
-	makeDraggable()
+function clearDrawPile() {
+	let drawPile = document.getElementById("draw-pile");
+	let deleteThis = document.querySelector("#draw-pile>.card-front");
+	if (deleteThis) {
+		drawPile.removeChild(deleteThis);
+	}
 
 }
+
+function computerTurn() {
+	//Style name of active player
+	let header = document.getElementById("computer-card-area").firstChild;
+	header.classList.add("active-player");
+
+	let cardContainer = document.getElementById("draw-pile");
+	newDeck.drawTopCard(cardContainer);
+
+	let card = document.getElementById("draw-pile").children[1].getAttribute("id");
+	console.log(`drawn card: ${card}`);
+	console.log(`AI hand before turn: ${newAI.hand}`);
+	//AI take turn, includes discarding the card
+	newAI.takeTurn(card)
+	console.log(`AI hand after turn: ${newAI.hand}`);
+	//display discard pile
+	newDeck.displayDiscard();
+	//remove card element from draw pile
+	clearDrawPile();
+	//end turn- remove active player and continue the game!
+	header.classList.remove("active-player");
+	whosTurn();
+}
+
+
+
 
 function ifWin(win, player) {
 	if (win == true) {
 		let main = document.getElementsByTagName("main")[0];
+		let playerscore = newPlayer.score();
+		let aiscore = newAI.score();
 		//declare winner
 		let winDiv = main.appendChild(createElement("div", `${player} Wins!`, "winner"))
-		winDiv.appendChild(createElement("div", `${newPlayer.name} scored ${newPlayer.score} points`));
-		winDiv.appendChild(createElement("div", `${newAI.name} scored ${newAI.score} points`));
+		winDiv.setAttribute("id", "winner");
 		//add eventlistener- click to dismiss win message
-        winDiv.addEventListener("click", function () {
+		winDiv.addEventListener("click", function () {
 			//set winner name to local storage
 			scoreBoardList.push(player)
 			//update scoreboard from local storage
 			setListToStorage()
-			//reset();
-        })
+			//reset
+			let child = document.getElementById("winner");
+			main.removeChild(child);
+
+			reset();
+		})
 	} else {
 		return false;
-    }
+	}
+}
+
+function reset() {
+	let computerPlayArea = document.getElementById("computer-card-area");
+	let playerPlayArea = document.getElementById("player-card-area");
+	let discardPile = document.getElementById("discard-pile");
+	let drawPile = document.getElementById("draw-pile")
+	let child = drawPile.children[1]
+	//clear playing elements from page
+	computerPlayArea.innerHTML = "";
+	playerPlayArea.innerHTML = "";
+	discardPile.innerHTML = "";
+	let children = document.getElementById("discard-pile").children;
+	for (let child of children) {
+		drawPile.removeChild(child);
+	}
+	//show scoreboard - hide game container
+	let scoreBoard = document.getElementById("score-board-container");
+	let gameContainer = document.getElementById("game-container");
+	scoreBoard.classList.remove("hide");
+	gameContainer.classList.add("hide");
+	//show play button
+	let button = document.getElementById("play-button");
+	button.style.zIndex = "2";
 }
 
 //export { stuff }
@@ -558,7 +627,7 @@ fetch('http://numbersapi.com/1..60', {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 						LOCAL STORAGE HELPERS
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-function pullListFromStorage(scoreBoardList) {
+function pullListFromStorage() {
 	//pull itemList from storage
 	let storedList = JSON.parse(localStorage.getItem("list"));
 	//set new itemList

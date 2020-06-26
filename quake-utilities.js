@@ -1,4 +1,4 @@
-// JavaScript source code
+// fetch data
 function getJSON(url) {
     let data;
     const options = {
@@ -12,13 +12,28 @@ function getJSON(url) {
         //mode: 'no-cors'
     }
 
-
-    fetch(url, options)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.results[0].correct_answer);
+    return fetch(url, options)
+        .then(function (response) {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            } else {
+                return response.json()
+            }
+        })      
+        .catch (function(e) {
+            console.log(e);
         });
-}
+    }
 
-const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-02-02';
-getJSON(url);
+
+//getJSON(url);
+//.then(data => console.log(data.features[0].properties.mag))
+
+//get geolocation
+const getLocation = function (options) {
+    return new Promise(function (resolve, reject) {
+        navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+};
+
+export { getJSON, getLocation }

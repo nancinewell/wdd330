@@ -310,6 +310,7 @@ function makeDraggable() {
     let frogHeader = document.getElementById("frog-header");
     //frog can say stuff when he eats
     frog.addEventListener("drop", function (event) {
+        console.log(event);
        //get the dataTransfer that kept track of which element this is
         let bugID = event.dataTransfer.getData("text");
         frogHeader.innerHTML = yummyNoises[bugID];
