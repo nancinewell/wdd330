@@ -171,15 +171,12 @@ class Player {
 			winningHand.push(parseInt(card))
 		}
 		winningHand.sort(function (a, b) { return b - a });
-		console.log(`This Hand: ${this.hand}`);
-		console.log(`Winning Hand: ${winningHand}`);
 		let winner = true;
 		for (let i = 0; i < this.hand.length; i++) {
 			if (winningHand[i] != this.hand[i]) {
 				winner = false
 			}
 		}
-		console.log(`Winner = ${winner}`);
 		return winner;
 
 	}
@@ -294,14 +291,18 @@ function startGame() {
 						GAME PLAY!
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 function whosTurn() {
-	if (ifWin(newPlayer.win(), newPlayer.name)) {
+	if (newPlayer.win()) {
 		console.log(`${newPlayer.name} is the winner!`);
-
-	} else if (ifWin(newAI.win(), newAI.name)) {
-		console.log(`${newAI.name} is the winner!`)
+		ifWin(newPlayer.win(), newPlayer.name);
+	} else if (newAI.win()) {
+		console.log(`${newAI.name} is the winner!`);
+		ifWin(newAI.win(), newAI.name);
 	} else {
 		//increment turns
 		turns++
+		console.log(`Turn: ${turns}`);
+		console.log(`DiscardPile: ${newDeck.discardPile}`);
+
 		//refill deck if necessary
 		if (newDeck.deck.length == 0) {
 			newDeck.refillDeck();
@@ -376,14 +377,14 @@ function discardListener(event) {
 	let cardContainer = document.getElementById("draw-pile");
 	cardContainer.removeEventListener("click", drawTopOfDrawPile);
 
-	//remove card element from draw pile
-	//clearDrawPile()
+	//remove top discard card from the discard pile
+	newDeck.topDiscard()
 
 	//replace old card with the new card
 	newPlayer.draw(targetCard, newCard);
 
-	//remove drawn discard card from the discard pile
-	newDeck.topDiscard()
+	//discard replaced card
+	newDeck.discard(targetCard);
 
 	//display discard pile
 	newDeck.displayDiscard();
@@ -525,18 +526,31 @@ function computerTurn() {
 	newDeck.drawTopCard(cardContainer);
 
 	let card = document.getElementById("draw-pile").children[1].getAttribute("id");
-	console.log(`drawn card: ${card}`);
-	console.log(`AI hand before turn: ${newAI.hand}`);
+	
 	//AI take turn, includes discarding the card
 	newAI.takeTurn(card)
-	console.log(`AI hand after turn: ${newAI.hand}`);
-	//display discard pile
-	newDeck.displayDiscard();
-	//remove card element from draw pile
-	clearDrawPile();
-	//end turn- remove active player and continue the game!
-	header.classList.remove("active-player");
-	whosTurn();
+
+	let promiseA = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(clearDrawPile());
+			promiseB
+		}, 1000)
+	})
+
+	let promiseB = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(newDeck.displayDiscard());
+			//end turn- remove active player and continue the game!
+			let header = document.getElementById("computer-card-area").firstChild;
+			header.classList.remove("active-player");
+			whosTurn();
+		}, 1000)
+	})
+
+
+	promiseA
+	
+		
 }
 
 

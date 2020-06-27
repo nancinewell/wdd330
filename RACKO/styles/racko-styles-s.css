@@ -377,6 +377,7 @@ button {
 .winner {
     width: 100vw;
     height: 100vh;
+    background-color: #ffd47c;
     position: absolute;
     z-index: 15;
     text-align: center;
