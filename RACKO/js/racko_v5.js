@@ -621,7 +621,7 @@ function createElement(tag, text, className, name) {
 
 //fetch the data from the numbers API and set to the global variable "numbers"
 //retrieve with numbers[i]
-fetch('http://numbersapi.com/1..60', {
+fetch('https://numbersapi.com/1..60', {
 	method: 'GET',
 	mode: 'cors',
 	redirect: 'follow',
