@@ -1,4 +1,4 @@
-//V4 is functional! Can't put straight into discard, but game works.
+
 
 //import { pullListFromStorage, setListToStorage } from './ls.js';
 //import { createElement } from './utilities.js';
