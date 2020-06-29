@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\RACKO"
+    "\\RACKO",
+    "\\RACKO\\js"
   ],
-  "SelectedNode": "\\todoV8.js",
+  "SelectedNode": "\\RACKO\\js\\racko.js",
   "PreviewInSolutionExplorer": false
 }
