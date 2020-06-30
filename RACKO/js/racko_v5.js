@@ -623,7 +623,7 @@ function createElement(tag, text, className, name) {
 //retrieve with numbers[i]
 fetch('http://numbersapi.com/1..60', {
 	method: 'GET',
-	mode: 'cors',
+	//mode: 'cors',
 	redirect: 'follow',
 	cache: 'no-cache'
 })
