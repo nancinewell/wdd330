@@ -621,7 +621,7 @@ function createElement(tag, text, className, name) {
 
 //fetch the data from the numbers API and set to the global variable "numbers"
 //retrieve with numbers[i]
-fetch('https://jsonbase.com/numbersAPI/1_60', {
+fetch('https://jsonbase.com/numbersAPI/1_60'/*, {
 	method: 'GET',
 	mode: 'cors',
 	redirect: 'follow',
@@ -630,7 +630,7 @@ fetch('https://jsonbase.com/numbersAPI/1_60', {
 		'Content-Type': 'application/json'
 		// 'Content-Type': 'application/x-www-form-urlencoded',
 	}
-})
+}*/)
 
 	.then(response => {
 		console.log(response);
