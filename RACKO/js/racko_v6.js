@@ -1,17 +1,17 @@
-
-
-//import { pullListFromStorage, setListToStorage } from './ls.js';
-//import { createElement } from './utilities.js';
-let numbers, winner, newPlayer, newAI;
+import { pullListFromStorage, setListToStorage } from './ls.js';
+import { createElement, isPrime } from './utilities.js';
+let newPlayer, newAI;
 let turns = 0;
 let scoreBoardList = [];
 
 (function () {
-	let scoreBoard = document.getElementById("score-board");
-	pullListFromStorage(scoreBoardList);
-	for (let item of scoreBoardList) {
-		scoreBoard.appendChild(createElement("p", item, "score-board-item"));
-	}
+	scoreBoard();
+
+	let playButton = document.getElementById("play-button");
+	playButton.addEventListener("click", getPlayerName);
+
+	let quitButton = document.getElementById("quit-button");
+	quitButton.addEventListener("click", reset);
 })()
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -74,6 +74,9 @@ class Deck {
 		firstContainer.setAttribute("name", card);
 		let cardHeader = firstContainer.appendChild(createElement("div", "", "card-header"));
 		cardHeader.setAttribute("name", card);
+		if (isPrime(card)) {
+			cardHeader.classList.add("prime");
+		}
 		let secondContainer = cardHeader.appendChild(createElement("div"));
 		secondContainer.setAttribute("name", card);
 		secondContainer.style.transform = `translateX(${card / 60 * 130 - 35}px) skew(-20deg)`;
@@ -125,7 +128,7 @@ class Player {
 	}
 	clearHand() {
 		this.hand = [];
-    }
+	}
 	draw(discardedCard, newCard) {
 		let CardIndex = discardedCard;
 		let checkIndex = (discardedCard) => CardIndex == discardedCard;
@@ -207,10 +210,18 @@ class AIPlayer extends Player {
 			if (card < this.hand[i]) {
 				//place the card and discard replaced card
 				if (i == 0) {
+					//if discarded card was prime, decrement turn count to allow additional turn;
+					if (isPrime(this.hand[i])) {
+						turns--;
+					}
 					newDeck.discard(this.hand[i])
 					this.draw(this.hand[i], card);
 					break;
 				} else {
+					//if discarded card was prime, decrement turn count to allow additional turn;
+					if (isPrime(this.hand[i - 1])) {
+						turns--;
+					}
 					newDeck.discard(this.hand[i - 1])
 					this.draw(this.hand[i - 1], card);
 					break;
@@ -256,7 +267,7 @@ function enterPlayerName(event) {
 		cover.parentNode.removeChild(cover);
 		newPlayer = new Player(playerName);
 		newAI = new AIPlayer("Johnny Five");
-		
+
 		startGame();
 	}
 }
@@ -363,7 +374,7 @@ function setDragOver() {
 function setDropFromDiscard() {
 	let containers = document.getElementById("player-card-container").children;
 
-	for (container of containers) {
+	for (let container of containers) {
 		container.addEventListener("drop", discardListener);
 	}
 }
@@ -392,8 +403,10 @@ function discardListener(event) {
 	//display the new hand
 	newPlayer.displayHand();
 
-	//check for win condition
-	newPlayer.win();
+	//if discarded card was prime, decrement turn count to allow additional turn;
+	if (isPrime(targetCard)) {
+		turns--;
+	}
 
 	//end turn- remove active player and continue the game!
 	let header = document.getElementById("player-card-area").firstChild;
@@ -423,35 +436,6 @@ function drawTopOfDrawPile() {
 	setDropFromDraw();
 }
 
-/*function discardDragOver() {
-	//cards can be dragged over empty discard pile
-	let discardPile = document.getElementById("discard-pile");
-	discardPile.addEventListener("dragover", function (event) {
-		event.preventDefault();
-		discardPile.classList.add("drag-over");
-	})
-	discardPile.addEventListener("dragleave", function (event) {
-		discardPile.classList.remove("drag-over");
-	})
-
-	// new cards can be dragged over the cards in the discard pile
-	discardPile.addEventListener("drop", function (event) {
-		//get the dataTransfer that kept track of which element this is and the id of the card it was dropped onto
-		let targetCard = event.target.getAttribute("name");
-		let newCard = parseInt(event.dataTransfer.getData("text/plain"));
-		let discardPile = document.getElementById("discard-pile");
-		discardPile.classList.remove("drag-over");
-		//once card is dropped, move the card it dropped onto to the discard pile
-		newDeck.discard(newCard);
-		newDeck.displayDiscard();
-		//remove card element from draw pile
-		clearDrawPile()
-		//end turn- remove active player and continue the game!
-		let header = document.getElementById("player-card-area").firstChild;
-		header.classList.remove("active-player");
-		whosTurn();
-	})
-}*/
 
 function drawnCardDraggable() {
 	//make drawn card draggable
@@ -478,7 +462,7 @@ function setDropFromDraw() {
 		})
 	}
 
-	for (container of containers) {
+	for (let container of containers) {
 		container.addEventListener("drop", function (event) {
 			//get the dataTransfer that kept track of which element this is and the id of the card it was dropped onto
 			let targetCard = event.target.getAttribute("name");
@@ -490,15 +474,21 @@ function setDropFromDraw() {
 
 			//remove card element from draw pile
 			clearDrawPile()
+
 			//once card is dropped, move the card it dropped onto to the discard pile
 			newDeck.discard(targetCard);
 			newDeck.displayDiscard();
+
 			//Put replaced the old card with the new card
 			newPlayer.draw(targetCard, newCard);
+
 			//display the new hand
 			newPlayer.displayHand();
-			//check for win condition
-			newPlayer.win();
+
+			//if discarded card was prime, decrement turn count to allow additional turn;
+			if (isPrime(targetCard)) {
+				turns--;
+			}
 			//end turn- remove active player and continue the game!
 			let header = document.getElementById("player-card-area").firstChild;
 			header.classList.remove("active-player");
@@ -526,7 +516,7 @@ function computerTurn() {
 	newDeck.drawTopCard(cardContainer);
 
 	let card = document.getElementById("draw-pile").children[1].getAttribute("id");
-	
+
 	//AI take turn, includes discarding the card
 	newAI.takeTurn(card)
 
@@ -546,15 +536,10 @@ function computerTurn() {
 			whosTurn();
 		}, 1000)
 	})
-
-
+	//delays so human player can perceive ai turn
 	promiseA
-	
-		
+
 }
-
-
-
 
 function ifWin(win, player) {
 	if (win == true) {
@@ -564,22 +549,26 @@ function ifWin(win, player) {
 		//declare winner
 		let winDiv = main.appendChild(createElement("div", `${player} Wins!`, "winner"))
 		winDiv.setAttribute("id", "winner");
+		//fireworks
+		let pyro = winDiv.appendChild(createElement("div", "", "pyrotechnics"));
+
 		//add eventlistener- click to dismiss win message
 		winDiv.addEventListener("click", function () {
 			//set winner name to local storage
-			scoreBoardList.push(player)
+			scoreBoardList.push(player);
 			//update scoreboard from local storage
-			setListToStorage()
+			setListToStorage(scoreBoardList);
 			//reset
 			let child = document.getElementById("winner");
 			main.removeChild(child);
-
+			scoreBoard();
 			reset();
 		})
 	} else {
 		return false;
 	}
 }
+
 
 function reset() {
 	let computerPlayArea = document.getElementById("computer-card-area");
@@ -605,62 +594,39 @@ function reset() {
 	button.style.zIndex = "2";
 }
 
-//export { stuff }
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-						UTILITIES
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-//generic create element function
-function createElement(tag, text, className, name) {
-	const genElement = document.createElement(tag);
-	if (text) { genElement.textContent = text; }
-	if (className) { genElement.classList.add(className); }
-	if (name) { genElement.setAttribute("name", name); }
-	return genElement;
+function scoreBoard() {
+	let scoreBoard = document.getElementById("score-board");
+	scoreBoardList = pullListFromStorage(scoreBoardList);
+	for (let item of scoreBoardList) {
+		scoreBoard.appendChild(createElement("p", item, "score-board-item"));
+	}
 }
+
+export { scoreBoardList }
 
 //fetch the data from the numbers API and set to the global variable "numbers"
 //retrieve with numbers[i]
-fetch('https://nancinewell.github.io/wdd330/numbersapi.json', {
-	method: 'GET',
-	mode: 'cors',
-	redirect: 'follow',
-	cache: 'no-cache',
-	headers: {
-		'Content-Type': 'application/json'
-		// 'Content-Type': 'application/x-www-form-urlencoded',
-	}
-})
-
-	.then(response => {
-		console.log(response);
-		return response.json();
+try {
+	fetch('https://nancinewell.github.io/wdd330/numbersapi.json', {
+		method: 'GET',
+		mode: 'cors',
+		redirect: 'follow',
+		cache: 'no-cache',
+		headers: {
+			'Content-Type': 'application/json'
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+		}
 	})
+		.then(response => {
+			console.log(response);
+			return response.json();
+		})
 
-	.then(numbersObject => {
-		numbers = numbersObject
-	})
-	/*
-	.catch {
+		.then(numbersObject => {
+			numbers = numbersObject
+		})
+} catch{
 	for (let i = 0; i < 60; i++) {
 		numbers[i] = i + 1;
-    }
-	}*/
-
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-						LOCAL STORAGE HELPERS
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-function pullListFromStorage() {
-	//pull itemList from storage
-	let storedList = JSON.parse(localStorage.getItem("list"));
-	//set new itemList
-	if (storedList != null) {
-		scoreBoardList = storedList;
 	}
-}
-
-function setListToStorage() {
-	localStorage.setItem("list", JSON.stringify(scoreBoardList));
 }
