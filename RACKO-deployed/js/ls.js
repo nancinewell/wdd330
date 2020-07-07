@@ -1,4 +1,4 @@
-import { scoreBoardList } from './racko_localplay_stretch.js';
+import { scoreBoardList } from './racko_v6.js';
 
 //Local Storage Helpers
 function pullListFromStorage(newList) {
