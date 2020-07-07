@@ -1,5 +1,4 @@
 import { pullListFromStorage, setListToStorage } from './ls.js';
-import { createElement, isPrime } from './utilities.js';
 let newPlayer, newAI;
 let turns = 0;
 let scoreBoardList = [];
@@ -602,7 +601,7 @@ function scoreBoard() {
 	}
 }
 
-export { scoreBoardList }
+
 
 //fetch the data from the numbers API and set to the global variable "numbers"
 //retrieve with numbers[i]
@@ -630,3 +629,29 @@ try {
 		numbers[i] = i + 1;
 	}
 }
+
+function createElement(tag, text, className, name) {
+	const genElement = document.createElement(tag);
+	if (text) { genElement.textContent = text; }
+	if (className) { genElement.classList.add(className); }
+	if (name) { genElement.setAttribute("name", name); }
+	return genElement;
+}
+
+
+function isPrime(number) {
+	let countDivisors = 0;
+	let isPrimeNum = false;
+	for (let i = 2; i <= number; i++) {
+		if (number % i == 0) {
+			countDivisors++;
+			if (countDivisors > 1) {
+				return isPrimeNum;
+			}
+		}
+	}
+	isPrimeNum = true;
+	return isPrimeNum;
+}
+
+export { scoreBoardList }
