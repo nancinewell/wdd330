@@ -1,0 +1,17 @@
+Click "Play!"
+
+Type in your name and hit the "Enter" key.
+
+You and the computer will both be randomly dealt a hand of 10 cards.
+
+Click the Draw Pile to draw a card.
+
+Drag the card to the location you would like to place the card in your hand. The card already there will be discarded.
+
+If you want the card in the Discard Pile, you can drag that card to your hand instead of drawing a card.
+
+Once your turn is over, Johnny Five will take a turn.
+
+If a player discards a card with a prime number (indicated with green), that player gets another turn.
+
+Once the cards in your hand are in order from lowest to highest, you win! Your name will be recorded on the Winner Board.

@@ -127,6 +127,9 @@ h2.active-player {
     border-top-right-radius: 15px;
     color: #855a00;
 }
+.prime {
+    background-color: #aed74d;
+}
 .card-header div {
     width: 1.75em;
     border-radius: 5px;
@@ -231,8 +234,8 @@ button {
 #play-button{
     z-index: 2;
 }
-#quit-button{
-    1
+#demo-button{
+    left: 10em;
 }
 /* * * * * * * * * * * * * * * * * * * * * * SCORE BOARD * * * * * * * * * * * * * * * * * * * * * */
 #score-board {
@@ -377,7 +380,8 @@ button {
 .winner {
     width: 100vw;
     height: 100vh;
-    background-color: #ffd47c;
+    background-color: #000;
+    color: white;
     position: absolute;
     z-index: 15;
     text-align: center;
@@ -389,7 +393,54 @@ button {
     animation: win-color 3s linear infinite, win-roll .65s ease-out;
 }
 
-
+.pyrotechnics {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    z-index: 50;
+    animation: 1s fireworks ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
+    box-shadow: -111px 53px white, 
+		-175px -57px #ecfbc8,
+		173px -282px #dcf69d,
+		-62px -189px #ccf176,
+		-163px -196px #aed74d,
+		157px -70px #92c027,
+		-152px -145px #6179b3,
+		-192px -130px #3f5a9c,
+		-103px -173px #254492,
+		116px 92px #163174,
+		132px -87px #09205a,
+		-105px -152px #ffd47c,
+		0px -257px #e8b64e,
+		159px -164px #d99d23,
+		131px 85px #ac7911,
+		67px -151px #855a00,
+		84px -111px #def7a4,
+		-191px -245px #cef07e,
+		22px -123px #bfcbea,
+		-140px -129px #8da0d1,
+		-172px -215px #ffeeca,
+		5px -68px #ffe0a2,
+		-147px -70px #c7bde7,
+		-17px -118px #9b8bcd,
+		0px -87px #735faf,
+		202px -55px #574198,
+		50px -210px #fff6ca,
+		106px -87px #ffefa2,
+		-191px -116px #ffe97c,
+		-175px -287px #bbc8e6,
+		92px -52px #899ccb,
+		175px -144px #5d73ab,
+		-16px -244px #dab8e6,
+		10px -71px #b882c9,
+		164px -54px #9555a9,
+		-73px 97px #7c3792,
+		131px -189px #cabce7,
+		156px -62px #9f8acd,
+		-181px -80px #775eae;
+}
+    
 @keyframes win-color{
      0%{color: #ecfbc8; }
     10%{color: #dcf69d; }
@@ -409,9 +460,65 @@ button {
    100%{transform: rotate(720deg) scale(1,1) }
 }
 
+@keyframes fireworks{
+    from {box-shadow: 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white, 
+            0 0 white, 0 0 white, 0 0 white, 0 0 white;}}
+
+@keyframes gravity {
+    to {transform: translateY(200px);
+        opacity: 0;}
+}
+
+@keyframes position {
+    0%, 19.9% {
+        margin-top: 10%;
+        margin-left: 40%;
+    }
+
+    20%, 39.9% {
+        margin-top: 40%;
+        margin-left: 30%;
+    }
+
+    40%, 59.9% {
+        margin-top: 20%;
+        margin-left: 70%;
+    }
+
+    60%, 79.9% {
+        margin-top: 25%;
+        margin-left: 20%;
+    }
+
+    80%, 99.9% {
+        margin-top: 30%;
+        margin-left: 60%;
+    }
+}
 /* * * * * * * * * * * * * * * * * * * * * * MISC * * * * * * * * * * * * * * * * * * * * * */
 @media only screen and (max-width: 1079px) {
     #score-board-container.hide, #game-container.hide {
         display: none;
     }
+}
+main.demo{
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+video {
+    max-width: 1080px;
+    width: 75vw;
+    box-shadow: 5px 5px 3px #855a00;
 }
