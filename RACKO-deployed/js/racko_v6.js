@@ -310,8 +310,6 @@ function whosTurn() {
 	} else {
 		//increment turns
 		turns++
-		console.log(`Turn: ${turns}`);
-		console.log(`DiscardPile: ${newDeck.discardPile}`);
 
 		//refill deck if necessary
 		if (newDeck.deck.length == 0) {
