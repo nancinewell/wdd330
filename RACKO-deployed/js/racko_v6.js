@@ -1,5 +1,5 @@
 import { pullListFromStorage, setListToStorage } from './ls.js';
-let newPlayer, newAI;
+let newPlayer, newAI, numbers;
 let turns = 0;
 let scoreBoardList = [];
 
