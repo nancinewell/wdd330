@@ -1,0 +1,166 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Rokkitt:wght@300;400;600&display=swap');
+/* COLORS
+    very light green: #ecfbc8       light green: #dcf69d        green: #ccf176
+    dark green: #aed74d             very dark green: #92c027
+    very light blue: #6179b3        light blue: #3f5a9c         blue: #254492
+    dark blue: #163174              very dark blue: #09205a
+    very light orange: #ffd47c      light orange: #e8b64e       orange: #d99d23
+    dark orange: #ac7911            very dark orange: #855a00
+*/
+
+/* * * * * * * * * * * * * * * * * * * * * *COLOR SWATCHES* * * * * * * * * * * * * * * * * * * * * */
+.color-swatch {
+    height: 2em;
+    width: 2em;
+}
+
+#colors li {
+    display: grid;
+    grid-template-columns: repeat(5,2em);
+}
+/* * * * * * * * * * * * * * * * * * * * * *WIREFRAMES* * * * * * * * * * * * * * * * * * * * * */
+.s-wireframe{
+    width: 48%;
+    max-width: 500px;
+    margin: 0;
+}
+.l-wireframe {
+    width: 100%;
+    max-width: 700px;
+}
+/* * * * * * * * * * * * * * * * * * * * * *LOGO* * * * * * * * * * * * * * * * * * * * * */
+.logo-container{
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: .5em;
+    height: 100px;
+    
+}
+.logo, .logo-card {
+    margin: 0;
+    background-color: #09205a;
+    color: #98cc21;
+    font-family: 'Oswald', sans-serif;
+    transform: skew(-20deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    height: 100px;
+}
+.logo p {
+    transform: skew(20deg);
+    font-weight: 600;
+    font-size: 2.5em;
+}
+
+.logo-card p {
+    transform: skew(20deg);
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #fff;
+}
+.logo-container-card {
+    width: 225px;
+    height: 70px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: .5em;
+}
+
+
+
+#branding li {
+    margin-top: 1em;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * *TYPOGRAPHY* * * * * * * * * * * * * * * * * * * * * */
+.proposal {
+    font-family: 'Rokkitt', serif;
+}
+.proposal h1, .proposal h2, .proposal h3, .proposal h4, .proposal h5, .proposal h6 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+}
+
+#typography a {
+    color: #e8b64e;
+    transition: 0.3s;
+}
+#typography a:visited {
+    color: #d99d23;
+}
+#typography a:hover, a:active {
+    color: #ffd47c;
+}
+
+#typography span {
+    color: #855a00;
+    font-weight: 600;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * *CARD FRONT/BACK* * * * * * * * * * * * * * * * * * * * * */
+.card-front, .card-back {
+    width: 300px;
+    height: 200px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px #09205a;
+    border: 1px solid #163174;
+}
+.card-front{
+    background-color: #fff;
+}
+.card-back {
+    background-color: #dcf69d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front > div {
+    position: relative;
+    top: -20px;
+}
+
+.card-header {
+    background-color: #163174;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    color: #855a00;
+}
+.card-header div {
+    width: 1.75em;
+    border-radius: 5px;
+    background-color: #fff;
+    position: relative;
+    left: 23%;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    transform: skew(-20deg);
+}
+
+.card-header p {
+    transform: skew(20deg);
+}
+
+.card-number {
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    padding: .5em 0;
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: #855a00;
+}
+
+.card-flavor {
+    width: calc(100%-1em);
+    margin: 0;
+    padding: 0 .5em;
+    text-align: center;
+    line-height: 1em;
+}
+
