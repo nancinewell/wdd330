@@ -196,6 +196,7 @@ body {
 }
 header {
     margin: 0;
+    width: 100vw;
     padding: 1em;
     background-color: #6179b3;
     display: flex;

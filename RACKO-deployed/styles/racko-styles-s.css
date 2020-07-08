@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Rokkitt:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Rokkitt:wght@300;400;600&display=swap');
 /* COLORS
     very light green: #ecfbc8       light green: #dcf69d        green: #ccf176
     dark green: #aed74d             very dark green: #92c027
@@ -12,12 +12,13 @@
 .logo-container{
     min-width: 300px;
     width: 400px;
+    max-width: 85vw;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: .5em;
-    height: 100px;
-    
+    height: 85px;
 }
+
 .logo {
     margin: 0;
     background-color: #09205a;
@@ -28,7 +29,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    height: 100px;
+    height: 85px;
 }
 
 .logo-card {
@@ -278,10 +279,10 @@ button {
     margin: 2em 0;
 }
 #draw-pile{
-    margin-right: 1em;
+    margin-right: .5em;
 }
 #discard-pile{
-    margin-left: 1em;
+    margin-left: .5em;
 }
 
 #computer-card-area, #computer-card-area>* {
