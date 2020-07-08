@@ -403,9 +403,9 @@ button {
     animation: 1s fireworks ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
     box-shadow: -111px 53px white, 
 		-175px -57px #ecfbc8,
-		173px -282px #dcf69d,
+		173px -232px #dcf69d,
 		-62px -189px #ccf176,
-		-163px -196px #aed74d,
+		-103px -196px #aed74d,
 		157px -70px #92c027,
 		-152px -145px #6179b3,
 		-192px -130px #3f5a9c,
