@@ -15,3 +15,5 @@ Once your turn is over, Johnny Five will take a turn.
 If a player discards a card with a prime number (indicated with green), that player gets another turn.
 
 Once the cards in your hand are in order from lowest to highest, you win! Your name will be recorded on the Winner Board.
+
+C:\Users\root\OneDrive - BYU-Idaho\WDD 330\Site Management\images\racko_demonstration.mp4
