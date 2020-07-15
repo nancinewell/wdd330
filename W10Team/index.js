@@ -1,6 +1,6 @@
 
 
-import QuakesController from '/quakecontroller.js';
+import QuakesController from '/W10Team/quakecontroller.js';
 
 
 let myQuakesController = new QuakesController('#quakeList');

@@ -1,8 +1,8 @@
-import { getJSON } from '/utilities.js';
+import { getJSON } from '/W10Team/utilities.js';
 // Quake Model
 export default class Quake {
   constructor() {
-    this.url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson';
+      this.url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=25';
     
     //  this is where we will store the last batch of retrieved quakes in the model.  I don't always do this...in this case the api doesn't have an endpoint to request one quake.
     this._quakes = [];

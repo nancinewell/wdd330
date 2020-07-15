@@ -1,7 +1,7 @@
 
-import Quake from '/quake.js';
-import QuakesView from '/quakesview.js';
-import { getLocation } from '/utilities.js';
+import Quake from '/W10Team/quake.js';
+import QuakesView from '/W10Team/quakesview.js';
+import { getLocation } from '/W10Team/utilities.js';
 
 // Quake controller
  export default class QuakesController {
